@@ -16,8 +16,8 @@ When you run this code, you should have a file path printed to your console. Thi
 To change the working directory, you simply need to navigate to the folder you'd like to import files from in the lower right pane under the **files** tab. 
 
 ```{r echo=FALSE, cache=TRUE, out.height= '80%', out.width= '80%', fig.align='center'}
-setwd("~/Desktop/Code/Statistical-Analysis")
-knitr::include_graphics("images/r_setwd.png")
+setwd("..")
+knitr::include_graphics("./images/r_setwd.png")
 ```
 
 There are two folders shown in the example image above. If you're following along with the folder we created for this book, which you can download [here](https://github.com/JasonDude16), then your folder setup should look the same. 
