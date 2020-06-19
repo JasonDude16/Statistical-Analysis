@@ -89,7 +89,7 @@ aov()
 
 # Resources {-} 
 
-```{r, echo=FALSE, cache=TRUE}
+```{r, echo=FALSE}
 library(dplyr)
 library(knitr)
 library(kableExtra)
