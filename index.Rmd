@@ -9,21 +9,24 @@ always_allow_html: true
 
 ```{r setup_index, include=FALSE}
 knitr::opts_chunk$set(echo = T, comment= '', results = 'hold', warning = F, message = F, fig.align = 'center')
+knitr::opts_knit$set(root.dir = './data')
 ```
 
 # Welcome {-}
 
 ```{r, echo=FALSE, out.height= '50%', out.width= '50%', cache=TRUE, fig.align='left'}
+setwd("~/Desktop/Code/Statistical-Analysis")
 knitr::include_graphics("images/book_cover.png")
 ```
 
-The purpose of this book is to provide a brief introduction to performing statistical analysis in R. It is assumed that the reader is selecting the appropriate statistical model for whatever research question they would like to answer, but they are unsure of how to perform the analysis in R. Consequently, statistical theory will not be covered in this book. It is also assumed that the reader is enirely unfamiliar with programming languages and concepts. Before delving into the various statstical models, a concise overview of programming concepts will be covered, so that hopefully the reader will feel comfortable with modifying and extending on example code to suit their analytic endeavors.
+The purpose of this guidebook is to provide a brief introduction to performing statistical analysis in R. It is assumed that the reader is knowledgeable about statistical analysis and is selecting the appropriate statistical model for whatever research question they would like to answer, but they are unsure of how to perform the analysis in R. Consequently, statistical theory will not be covered in this book. It is also assumed that the reader is unfamiliar with programming languages and concepts. Before delving into the various statistical models, a concise overview of programming concepts will be covered, so that hopefully the reader will feel comfortable with modifying and extending on example code to suit their analytic endeavors.
 
-Chapters 1 and 2 will cover downloading and describing R and the RStudio IDE (what even is an IDE?), and programming basics, such as data types and data structures, objects and assignments, and functions and arguments. Chapters 3 and 4 will cover installing/importing packages (what is a package and why do I need it?), importing data, and formatting the data in a way that is conducive to analysis. Chapters 5 and 6 will briefly cover descriptive statistics, quality assurance, and visualizing data. Chapters 7-13 will cover various statistical tests that all fall under the GLM umbrella.  
+Chapters 1 and 2 will cover downloading and describing R and the RStudio IDE, and programming basics, such as variable types and data types, objects and assignments, and functions and arguments. Chapters 3 and 4 will cover installing/loading packages and reading/writing data. Chapters 5 and 6 will cover formatting data, descriptive statistics, and visualizing data. Chapters 7-13 will cover various statistical models from the General Linear Model (GLM) framework. In the simplest form, GLM is described as: DATA = MODEL + ERROR.  
 
 # Statistical Model Flowchart {-}
 
 ```{r, echo=FALSE, fig.align="center", fig.width=3, cache=TRUE}
+setwd("~/Desktop/Code/Statistical-Analysis")
 knitr::include_graphics("images/flowchart.png")
 ```
 
@@ -32,37 +35,55 @@ Above is a statistical test flowchart that can help you decide which model is mo
 # Functions List{-}
 
 ```{r, eval=FALSE}
+# GET HELP ON TOPICS / WITH FUNCTIONS
+help()
+
+# INSTALL PACKAGES
 install.packages()
+
+# LOAD PACKAGES
 library()
 
+# PRINT FIRST FEW ROWS OF DATA
 head()
+
+# PRINT LAST FEW ROWS OF DATA
 tail()
+
+# PRINT STRUCTURE OF DATA
 str()
 
+# DESCRIPTIVE STATISTICS
 mean()
 sd()
 summary()
-
-plot()
-
-ez::ezANOVA()
 cor()
-cor.test()
-Hmisc::rcorr()
-ppcor::pcor()
 var()
-kurtosis()
-skewness()
-shapiro.test()
-help()
+is.na()
 
-# Linear Model
+# CORRELATION MATRIX 
+rcorr() # Package required: Hmisc
+
+# PAIRWISE PARTIAL CORRELATION
+ppcor::pcor() # Package required: ppcor
+
+# VISUALIZE DATA 
+plot()
+hist()
+
+# SHAPIRO-WILK NORMALITY TEST
+shapiro.test()
+
+# LINEAR MODEL
 lm()
 
-# Student's t-test
+# STUDENT'S T-TEST
 t.test()
 
-# Analysis of Variance
+# ANALYSIS OF DATA FROM FACTORIAL EXPERIMENTS
+ezANOVA() # Package requried: ez
+
+# ANALYSIS OF VARIANCE (MODEL COMPARISON)
 aov()
 ```
 
@@ -108,5 +129,6 @@ kable_styling(bootstrap_options = c("hover", "condensed"))
 # <https://r4ds.had.co.nz/>
 # <https://www.r-bloggers.com/>
 # <https://learn.datacamp.com/>
+# http://r-statistics.co/R-Tutorial.html
     
 ```

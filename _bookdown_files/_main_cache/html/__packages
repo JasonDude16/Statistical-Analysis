@@ -1,0 +1,6 @@
+base
+dplyr
+knitr
+kableExtra
+ggplot2
+readxl

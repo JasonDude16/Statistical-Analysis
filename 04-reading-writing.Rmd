@@ -1,0 +1,87 @@
+```{r include=FALSE}
+library(readxl)
+```
+
+# Reading and Writing Data
+
+## Setting the Working Directory {-}
+Before you start importing files, you need to set the working directory so R looks for and saves files in the correct place. "Directory" is a synonym for folder, so 'setting the working directory' really just means we need to tell R which folder we'd like to use to import data from. You can determine your current working directory with the `getwd()` function:
+
+```{r eval=FALSE}
+getwd()
+```
+
+When you run this code, you should have a file path printed to your console. This file path is your current working directory, which means that's where R is currently looking for files. More specifically, the last folder name listed in the file path is where R is looking for files. 
+
+To change the working directory, you simply need to navigate to the folder you'd like to import files from in the lower right pane under the **files** tab. 
+
+```{r echo=FALSE, cache=TRUE, out.height= '80%', out.width= '80%', fig.align='center'}
+setwd("~/Desktop/Code/Statistical-Analysis")
+knitr::include_graphics("images/r_setwd.png")
+```
+
+There are two folders shown in the example image above. If you're following along with the folder we created for this book, which you can download [here](https://github.com/JasonDude16), then your folder setup should look the same. 
+
+To import files from the data folder, you would click on the data folder and then click on the **More** dropdown arrow and click **Set as Working Directory**. After doing this, you should see something in your console similar to this: `setwd("~/Your/File/Path")`, which indicates that your working directory has been changed to the listed file path. You are now ready to import data files from the data folder. 
+
+Changing your working directory only *temporarily* changes it for your current R session. It does *not* permanently change it. It's best practice to add the code `setwd("~/Your/File/Path")`, which is the same code that's printed to the console, to the beginning of your R script so that you do not have to manually set your working directory every time you open your R script. 
+
+> Note: The code in the rest of this chapter will only work if you are following along with the folder for this book and have correctly set the working directory to the data folder. 
+
+## Reading Data {-}
+Once the working directory has correctly been set, importing data files is easy. There's a file in the data folder named **BMI_1.csv**, and we can import it with the `read.csv()` function:
+
+```{r}
+data_csv <- read.csv("BMI_1.csv")
+# Don't forget to assign the csv file to an object
+```
+
+And if the **BMI_1.csv** was instead a .txt or .xlsx / .xls (excel) file, we could use the `read.delim()` and `read_excel()` functions, respectively:
+
+```{r}
+# txt file
+data_txt <- read.delim("BMI_1.txt")
+
+# excel file
+data_xlsx <- read_excel("BMI_1.xlsx")
+# You need to load the tidyverse package to use the read_excel() function
+```
+
+`read_excel()` is a function that comes from the `tidyverse` package, which means you need to load the tidyverse into your R session in order to use it (`library(tidyverse)`).
+
+After you've imported your data you can view it with the `head()` function:
+
+```{r}
+head(data_xlsx)
+```
+
+The three import functions above have many arguments that you can change if the data is not imported in the format you were expecting. For example, txt files can be formatted in different ways; sometimes the data is delimited with a tab, or it may be delimited with a semicolon. If your txt file is not separated by a tab, you can change the `sep` argument to indicate how it is separated (the default argument for `sep` is `"\t"`, which means separated by a tab).
+
+Here's an example where the txt file is not delimited by a tab, so it gets imported incorrectly:
+
+```{r}
+data <- read.delim("BMI_2.txt")
+head(data)
+```
+
+We can fix this by and passing the `sep` argument a semicolon, which indicates that the data is *not* delimited with a tab, but instead with a semicolon: 
+
+```{r}
+data <- read.delim("BMI_2.txt", sep = ";")
+head(data)
+```
+ 
+As another example, you could read data from the third sheet of an excel file and skip the first 3 lines by specifying the `sheet` and `skip` arguments: `read_excel(your_file, sheet = 3, skip = 3)`
+
+## Writing Data {-}
+Writing files is just as easy as reading files. You can write .txt and .csv files with the following functions: 
+
+```{r, eval=FALSE}
+# Write .txt file
+write.table(x = data, file = "data.txt", sep = "/t")
+
+# Write .csv file
+write.csv(x = data, file = "data.csv")
+```
+
+The first argument, `x`, is an R object, which is typically your dataset object. The second argument, `file`, is what you'd like to name the file you're creating. The data file will be saved in whatever folder you're currently in.

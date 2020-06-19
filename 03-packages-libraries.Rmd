@@ -11,9 +11,9 @@ And that works fine if you want to quickly analyze your data, but that graph is 
 
 ```{r out.height= '70%', out.width= '70%'}
 library(ggplot2)
-set.seed(123)
-ggplot(tibble::tibble(rnorm = rnorm(100)), aes(x = rnorm)) +
-    geom_density(tibble::tibble(rnorm = rnorm(100, mean = 2)), 
+set.seed(1)
+ggplot(tibble::tibble(rnorm = rnorm(100, mean = -1)), aes(x = rnorm)) +
+    geom_density(tibble::tibble(rnorm = rnorm(100, mean = 1)), 
                  mapping = aes(x = rnorm), 
                  fill = "blue", 
                  alpha = .7) +
@@ -21,6 +21,7 @@ ggplot(tibble::tibble(rnorm = rnorm(100)), aes(x = rnorm)) +
     theme_bw() +
     labs(title = "A Colorful Histogram Example") + 
     xlab("Random Normal Distribution") +
+    ylab("Density") +
     theme(panel.grid.minor.y = element_blank(),
           panel.grid.minor.x = element_blank(),
           panel.grid.major.y = element_blank(),
@@ -28,7 +29,7 @@ ggplot(tibble::tibble(rnorm = rnorm(100)), aes(x = rnorm)) +
           text = element_text(size = 16, family = "serif"))
 ```
 
-The `ggplot2` package is simply a collection of R code and functions, created by an R user, that allows you to make highly customizable plots like the one above with without too much difficult. 
+The `ggplot2` package is simply a collection of R code and functions, created by an R user, that allows you to make highly customizable plots like the one above without too much difficulty. 
 
 ## Installing Packages {-}
 There are many packages that you can install to make data analysis easier. One package that we'll use frequently throughout this book is the `tidyverse` package. The `tidyverse` package is actually a collection of packages bundled together-- a meta-package. You can install the `tidyverse` with the following line of code:
@@ -39,7 +40,7 @@ install.packages("tidyverse")
 ```
 
 ## What's a Library? {-}
-Once you install a package it becomes part of your "library". Your library is a collection of all the packages that are installed on your computer. If you click on the "packages" tab in the lower right pane, you can see a list of all the packages that are currently installed. This is your library. Notice how the header even says "System Library". 
+Once you install a package it becomes part of your "library". Your library is a collection of all the packages that are installed on your computer. If you click on the "packages" tab in the lower right pane, you can see a list of all the packages that are currently installed. This is your library. Notice how the header says "System Library". 
 
 ## Loading Packages {-}
 Packages only need to be *installed* once, but they need to be *loaded* every time you start an R session. Loading a package puts it into the working memory; that way R knows you want to use those functions from those packages. You can load a package with the `library()` function:
@@ -50,7 +51,7 @@ library(tidyverse)
 
 Running the code `library(tidyverse)` now allows you to use all of the functions that come bundled with the `tidyverse` package (which is a lot!). 
 
-* Pro tip: It's best practice to load your desired package with the `library()` function at the very beginning of your R script; that way it's loaded *before* the rest of your code is ran
+* Pro tip: It's best practice to load your desired package with the `library()` function at the very beginning of your R script; that way it's loaded *before* the rest of your code is ran.
 
 You can check to see if you installed the `tidyverse` package and loaded it into your R session correctly by running the `ggplot` histogram code above. If you see the same plot in your R session, everything is working correctly!
 

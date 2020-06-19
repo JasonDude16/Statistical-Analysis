@@ -1,0 +1,132 @@
+# (PART) Statistical Analysis {-} 
+
+# Simple Regression
+In this chapter we'll use the `lm()` function for fitting a simple regression model with one continuous predictor. This will be a quick and simple example that assumes the data is in tidy format and is ready for analysis. If this is not the case for you, you can take a look at **Chapter 4** which covers basic data formatting.
+
+## Step 1: Importing {-}
+```{r eval=FALSE}
+# Import
+## Set your working directory to the data folder
+getwd()
+setwd()
+list.files()
+data <- read.csv()
+## You can use the read.csv() arguments to make importing adjustments
+
+## Bind together files if needed 
+cbind() # Column bind
+rbind() # Row bind
+
+## Long and Wide formatting
+```
+
+
+## Step 2: Viewing {-}
+```{r eval=FALSE}
+# View 
+head()
+str()
+summary()
+hist()
+plot()
+is.na()
+mean()
+sd()
+```
+
+ Let's see what it looks like:
+
+```{r}
+head(iris)
+```
+
+As you can see, it's a very simple datasest consisting of sepal lengths and widths, and petal lengths and widths for several (three) species of plants. Now let's use the `str` function to see the structure of the dataset:
+
+```{r}
+str(iris)
+```
+
+This tells us a lot of good information. We have a data-frame, we know the dimensions, and we know the data types of the columns. The next step is typically formatting the data, but obviously there's nothing to format here. So we'll go straight to the modelling step.
+
+## Step 3: Formatting {-}
+
+## Step 4: Modelling {-}
+
+### The `lm()` Function {-}
+
+```{r, eval=FALSE}
+lm(formula, data, subset, weights, na.action,
+   method = "qr", model = TRUE, x = FALSE, y = FALSE, qr = TRUE,
+   singular.ok = TRUE, contrasts = NULL, offset, ...)
+```
+
+The `lm()` (linear model) function is used for fitting linear models. Notice that there are many arguments for this function, but the `formula` argument is the only argument that *needs* to be specified. If you'd like to learn more about functions and arguments, please take a look at **Chapter 2** which covers basic programming concepts, including functions and arguments.
+
+Let's take a look at how we can use the `lm()` function to make two models with the same variables using a simple regression: the untransformed linear model and a mean-centered model. For both models we'll use `Sepal Length` as the dependent variable and `Sepal Width` as the independent variable. 
+
+### Model 1: Untransformed {-} 
+$$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ e_i$$
+The equation above represents the untransformed, simple regression model with one continuous predictor. Let's implement this model with the `lm()` function. The dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s).
+
+```{r}
+lm(formula = Sepal.Length ~ Sepal.Width, data = iris)
+```
+
+The function prints out the slope and intercept for the model. We could then use the slope and intercept to create a plot with an `abline`:
+
+```{r fig.align='center'}
+plot(iris$Sepal.Width, iris$Sepal.Length)
+abline(6.5262, -0.2234, col = "red")
+```
+
+The correlation looks weak, and it likely isn't significant, but how can we be sure? The `lm()` function printed the coefficients but did not provide information about the R-squared or significance. To see this information, we need to save the model as an object, and then print the summary of the model, like so:
+
+```{r}
+my_model <- lm(formula = Sepal.Length ~ Sepal.Width, data = iris)
+summary(my_model)
+```
+
+Now we have a nice summary print-out which includes the `F-statistic`, `Residuals`, `R-squared`, `p-value`, and more. What's also nice is we can now use the `plot` function on the `my_model` object that we just created to view `Residuals vs Fitted`, `Normal Q-Q`, `Scale-Location` and `Residuals vs Leverage` plots.
+
+```{r fig.align='center'}
+par(mfrow = c(2,2)) # this function prints the graphs as a 2x2 grid
+plot(my_model)
+```
+
+What else can we do with the `my_model` object? Let's take a look at the object's `attributes`:
+
+```{r}
+attributes(my_model)
+```
+
+The model's `attributes` can be accessed by using a dollar sign, `$`. For example, here's a printout of the first 5 residuals of our model:
+
+```{r}
+my_model$residuals[1:5]
+```
+
+
+### Model 2: Mean-Centered {-}
+$$y_i=\beta_0+\beta_1\left(x_i\ -\ \overline{x}\right)\ +\ e_i$$
+In this example we'll use the same variables as before but this time we'll mean-center the independent/predictor variable. First, we create a column that consists of the sepal width mean, which is `r {round(mean(iris$Sepal.Width), digits=2)}`. Since there are 150 rows in the iris dataset, that means we are creating a column that has the value `r {round(mean(iris$Sepal.Width), digits = 2)}` repeated 150 times. This value is then saved into the column `SW_mean`; that's what the first line of code in the code chunk below is doing. In the second line of code, each sepal width value is subtracted from the sepal width mean column, which is then stored in a new column called `SW_mean_center`. 
+
+```{r}
+# create a column that consists of the mean sepal width value
+iris$SW_mean <- mean(iris$Sepal.Width) 
+
+# subtract sepal width column from mean column
+iris$SW_mean_center <- iris$Sepal.Width - iris$SW_mean 
+```
+
+Let's see what it looks like.
+
+```{r fig.align='center'}
+plot(iris$SW_mean_center, iris$Sepal.Length)
+abline(lm(iris$Sepal.Length ~ iris$SW_mean_center), col = "red")
+```
+
+We can now use this mean-centered column as the dependent variable.
+
+```{r}
+lm(formula = Sepal.Length ~ SW_mean_center, data = iris)
+```

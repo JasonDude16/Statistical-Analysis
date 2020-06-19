@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Reading/Writing Data | _main.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Reading/Writing Data | _main.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Reading/Writing Data | _main.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="packages-and-libraries.html"/>
+<link rel="next" href="formatting-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="statistical-model-flowchart.html"><a href="statistical-model-flowchart.html"><i class="fa fa-check"></i>Statistical Model Flowchart</a></li>
+<li class="chapter" data-level="" data-path="functions-list.html"><a href="functions-list.html"><i class="fa fa-check"></i>Functions List</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i>Resources</a></li>
+<li class="part"><span><b>I R Basics</b></span></li>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-r"><i class="fa fa-check"></i>What is R?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-r"><i class="fa fa-check"></i>Installing R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-mac-users"><i class="fa fa-check"></i>Step 4: Mac users</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-windows-users"><i class="fa fa-check"></i>Step 4: Windows users</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-r-or-rstudio"><i class="fa fa-check"></i>Opening R or RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#the-rstudio-layout"><i class="fa fa-check"></i>The RStudio Layout</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#following-along"><i class="fa fa-check"></i>Following Along</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="programming-101.html"><a href="programming-101.html"><i class="fa fa-check"></i><b>2</b> Programming 101</a><ul>
+<li class="chapter" data-level="" data-path="programming-101.html"><a href="programming-101.html#running-r-code"><i class="fa fa-check"></i>Running R Code</a></li>
+<li class="chapter" data-level="" data-path="programming-101.html"><a href="programming-101.html#r-is-a-calculator"><i class="fa fa-check"></i>R is a calculator</a></li>
+<li class="chapter" data-level="" data-path="programming-101.html"><a href="programming-101.html#objects-and-assignment"><i class="fa fa-check"></i>Objects and Assignment</a></li>
+<li class="chapter" data-level="" data-path="programming-101.html"><a href="programming-101.html#variable-types"><i class="fa fa-check"></i>Variable Types</a></li>
+<li class="chapter" data-level="" data-path="programming-101.html"><a href="programming-101.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="programming-101.html"><a href="programming-101.html#functions-and-arguments"><i class="fa fa-check"></i>Functions and Arguments</a><ul>
+<li class="chapter" data-level="" data-path="programming-101.html"><a href="programming-101.html#example"><i class="fa fa-check"></i>Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html"><i class="fa fa-check"></i><b>3</b> Packages and Libraries</a><ul>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#what-are-packages"><i class="fa fa-check"></i>What are Packages?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#installing-packages"><i class="fa fa-check"></i>Installing Packages</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#whats-a-library"><i class="fa fa-check"></i>What’s a Library?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="readingwriting-data.html"><a href="readingwriting-data.html"><i class="fa fa-check"></i><b>4</b> Reading/Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="readingwriting-data.html"><a href="readingwriting-data.html#setting-the-working-directory"><i class="fa fa-check"></i>Setting the Working Directory</a></li>
+<li class="chapter" data-level="" data-path="readingwriting-data.html"><a href="readingwriting-data.html#reading-data"><i class="fa fa-check"></i>Reading Data</a></li>
+<li class="chapter" data-level="" data-path="readingwriting-data.html"><a href="readingwriting-data.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="formatting-data.html"><a href="formatting-data.html"><i class="fa fa-check"></i><b>5</b> Formatting Data</a><ul>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#merging-files"><i class="fa fa-check"></i>Merging Files</a></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#long-format"><i class="fa fa-check"></i>Long Format</a></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#wide-format"><i class="fa fa-check"></i>Wide Format</a></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#missing-data"><i class="fa fa-check"></i>Missing Data</a><ul>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#mean-imputation"><i class="fa fa-check"></i>Mean imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#recoding-variables"><i class="fa fa-check"></i>Recoding Variables</a></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#changing-variable-types"><i class="fa fa-check"></i>Changing Variable Types</a></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#rename-columns"><i class="fa fa-check"></i>Rename Columns</a></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#change-column-order"><i class="fa fa-check"></i>Change Column Order</a></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#data-transformation"><i class="fa fa-check"></i>Data Transformation</a></li>
+<li class="chapter" data-level="" data-path="formatting-data.html"><a href="formatting-data.html#dealing-with-dates"><i class="fa fa-check"></i>Dealing with Dates</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="describing-and-visualizing-data.html"><a href="describing-and-visualizing-data.html"><i class="fa fa-check"></i><b>6</b> Describing and Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="describing-and-visualizing-data.html"><a href="describing-and-visualizing-data.html#viewing-data"><i class="fa fa-check"></i>Viewing Data</a></li>
+<li class="chapter" data-level="" data-path="describing-and-visualizing-data.html"><a href="describing-and-visualizing-data.html#data-summaries"><i class="fa fa-check"></i>Data Summaries</a></li>
+<li class="chapter" data-level="" data-path="describing-and-visualizing-data.html"><a href="describing-and-visualizing-data.html#visualizing-data"><i class="fa fa-check"></i>Visualizing Data</a></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Analysis</b></span></li>
+<li class="chapter" data-level="7" data-path="simple-regression.html"><a href="simple-regression.html"><i class="fa fa-check"></i><b>7</b> Simple Regression</a><ul>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#step-1-importing"><i class="fa fa-check"></i>Step 1: Importing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#step-2-viewing"><i class="fa fa-check"></i>Step 2: Viewing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#step-3-formatting"><i class="fa fa-check"></i>Step 3: Formatting</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#step-4-modelling"><i class="fa fa-check"></i>Step 4: Modelling</a><ul>
+<li><a href="simple-regression.html#the-lm-function">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#model-1-untransformed"><i class="fa fa-check"></i>Model 1: Untransformed</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#model-2-mean-centered"><i class="fa fa-check"></i>Model 2: Mean-Centered</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a><ul>
+<li><a href="multiple-regression.html#the-lm-function-1">The <code>lm()</code> Function</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="quick-example.html"><a href="quick-example.html"><i class="fa fa-check"></i>Quick Example</a><ul>
+<li class="chapter" data-level="" data-path="quick-example.html"><a href="quick-example.html#model-1"><i class="fa fa-check"></i>Model 1</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="comprehensive-example.html"><a href="comprehensive-example.html"><i class="fa fa-check"></i><b>9</b> Comprehensive Example</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="readingwriting-data" class="section level1">
+<h1><span class="header-section-number">4</span> Reading/Writing Data</h1>
+<div id="setting-the-working-directory" class="section level2 unnumbered">
+<h2>Setting the Working Directory</h2>
+<p>Before you start importing files, you need to set the working directory so R looks for and saves files in the correct place. “Directory” is a synonym for folder, so ‘setting the working directory’ really just means we need to tell R which folder we’d like to use to import data from. You can determine your current working directory with the <code>getwd()</code> function:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<p>When you run this code, you should have a file path printed to your console. This file path is your current working directory, which means that’s where R is currently looking for files. More specifically, the last folder name listed in the file path is where R is looking for files.</p>
+<p>To change the working directory, you simply need to navigate to the folder you’d like to import files from in the lower right pane under the <strong>files</strong> tab.</p>
+<p><img src="images/r_setwd.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<p>There are two folders shown in the example image above. If you’re following along with the folder we created for this book, which you can download <a href="https://github.com/JasonDude16">here</a>, then your folder setup should look the same.</p>
+<p>To import files from the data folder, you would click on the data folder and then click on the <strong>More</strong> dropdown arrow and click <strong>Set as Working Directory</strong>. After doing this, you should see something in your console similar to this: <code>setwd(&quot;~/Your/File/Path&quot;)</code>, which indicates that your working directory has been changed to the listed file path. You are now ready to import data files from the data folder.</p>
+<p>Changing your working directory only <em>temporarily</em> changes it for your current R session. It does <em>not</em> permanently change it. It’s best practice to add the code <code>setwd(&quot;~/Your/File/Path&quot;)</code>, which is the same code that’s printed to the console, to the beginning of your R script so that you do not have to manually set your working directory every time you open your R script.</p>
+<blockquote>
+<p>Note: The code in the rest of this chapter will only work if you are following along with the folder for this book and have correctly set the working directory to the data folder.</p>
+</blockquote>
+</div>
+<div id="reading-data" class="section level2 unnumbered">
+<h2>Reading Data</h2>
+<p>Once the working directory has correctly been set, importing data files is easy. There’s a file in the data folder named <strong>BMI_1.csv</strong>, and we can import it with the <code>read.csv()</code> function:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">data_csv &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;BMI_1.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co"># Don&#39;t forget to assign the csv file to an object</span></a></code></pre></div>
+<p>And if the <strong>BMI_1.csv</strong> was instead a .txt or .xlsx / .xls (excel) file, we could use the <code>read.delim()</code> and <code>read_excel()</code> functions, respectively:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co"># txt file</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">data_txt &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_1.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="co"># excel file</span></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">data_xlsx &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;BMI_1.xlsx&quot;</span>)</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="co"># You need to load the tidyverse package to use the read_excel() function</span></a></code></pre></div>
+<p><code>read_excel()</code> is a function that comes from the <code>tidyverse</code> package, which means you need to load the tidyverse into your R session in order to use it (<code>library(tidyverse)</code>).</p>
+<p>After you’ve imported your data you can view it with the <code>head()</code> function:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">head</span>(data_xlsx)</a></code></pre></div>
+<pre><code># A tibble: 6 x 2
+  height weight
+   &lt;dbl&gt;  &lt;dbl&gt;
+1   68.5   155.
+2   65.3   174.
+3   62.1   138.
+4   64.8   165.
+5   70.1   149.
+6   67.3   197.</code></pre>
+<p>The three import functions above have many arguments that you can change if the data is not imported in the format you were expecting. For example, txt files can be formatted in different ways; sometimes the data is delimited with a tab, or it may be delimited with a semicolon. If your txt file is not separated by a tab, you can change the <code>sep</code> argument to indicate how it is separated (the default argument for <code>sep</code> is <code>&quot;\t&quot;</code>, which means separated by a tab).</p>
+<p>Here’s an example where the txt file is not delimited by a tab, so it gets imported incorrectly:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_2.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw">head</span>(data)</a></code></pre></div>
+<pre><code>                      height.weight
+1 68.5166834855604;154.681763861273
+2 65.3186507959108;173.958957660404
+3 62.0789448822327;138.211660043739
+4 64.8491663241866;165.020083309111
+5 70.1389452245124;148.630607472854
+6 67.3137063327876;196.627466047489</code></pre>
+<p>We can fix this by and passing the <code>sep</code> argument a semicolon, which indicates that the data is <em>not</em> delimited with a tab, but instead with a semicolon:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="kw">head</span>(data)</a></code></pre></div>
+<pre><code>    height   weight
+1 68.51668 154.6818
+2 65.31865 173.9590
+3 62.07894 138.2117
+4 64.84917 165.0201
+5 70.13895 148.6306
+6 67.31371 196.6275</code></pre>
+<p>As another example, you could read data from the third sheet of an excel file and skip the first 3 lines by specifying the <code>sheet</code> and <code>skip</code> arguments: <code>read_excel(your_file, sheet = 3, skip = 3)</code></p>
+<!--
+### Many Files {-}
+The `rbind()` works great if you have only a few files that need to be appended, but if you had, say, 30 files, the `rbind()` function would be rather tedious-- you would need to read in 30 files with the `read.csv()` function, and then append all of them with  `rbind(data1, data2, data2, ...)` which is a lot of typing. 
+
+This same task can be accomplished in just a few lines a code, but unfortunately much more programming knowledge is needed to implement such code. Here's some example code that will read all files in a folder and append them: 
+
+
+```r
+list <- list.files()
+for (i in 1:length(list)) {
+    readLines(getwd(), n = 10)
+}
+```
+-->
+</div>
+<div id="writing-data" class="section level2 unnumbered">
+<h2>Writing Data</h2>
+<p>Writing files is just as easy as reading files. You can write .txt and .csv files with the following functions:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># Write .txt file</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw">write.table</span>(<span class="dt">x =</span> data, <span class="dt">file =</span> <span class="st">&quot;data.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;/t&quot;</span>)</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="co"># Write .csv file</span></a>
+<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="kw">write.csv</span>(<span class="dt">x =</span> data, <span class="dt">file =</span> <span class="st">&quot;data.csv&quot;</span>)</a></code></pre></div>
+<p>The first argument, <code>x</code>, is an R object, which is typically your dataset object. The second argument, <code>file</code>, is what you’d like to name the file you’re creating. The data file will be saved in whatever folder you’re currently in.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="packages-and-libraries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="formatting-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
