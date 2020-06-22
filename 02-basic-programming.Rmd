@@ -57,7 +57,7 @@ x # typing x by itself will print the value to the concole
 
 **The object `x` no longer refers to 5**. We overwrote `x` and assigned it to a new value, ~117.7. 
 
-When analyzing data, you'll likely need transform the data before you can run  statistical tests. You can accomplish this by transforming the data and then saving the data as a new object. Let's look at one more example.
+When analyzing data, you'll likely need to transform the data before you can run  statistical tests. You can accomplish this by transforming the data and then saving the data as a new object. Let's look at one more example.
 
 ```{r}
 head(iris)
@@ -177,7 +177,7 @@ lm(formula = mpg ~ hp, data = mtcars, subset = c(1:10))
 
 This is where the documentation comes in handy. You can type a question mark in front of the function you'd like to learn more about (`?factor`). If you're using RStudio, this will bring up the documentation page for that function under the help tab in the lower right pane, which will usually include a description, the arguments (and their descriptions), and example code showing how to use the function. You can also type the function into the search bar under the help tab on the lower right pane.
 
-Hopefully, though, we'll provide enough example code throughout this booklet that you won't need to concern yourself with all of these details. But, we can't provide examples of *everything* for *every* situation, and you'll almost certainly use functions that aren't covered in this bookt. This is where having a basic understanding of these topics will come in handy.
+Hopefully, though, we'll provide enough example code throughout this book that you won't need to concern yourself with all of these details. But, we can't provide examples of *everything* for *every* situation, and you'll almost certainly use functions that aren't covered in this book. This is where having a basic understanding of these topics will come in handy.
 
 <!--
 ## Test Your Knowledge {-}

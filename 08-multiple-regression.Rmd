@@ -1,6 +1,32 @@
 # Multiple Regression 
 
-## The `lm()` Function {-}
+> In this example we'll use the `lm()` function for fitting a multiple regression model with two continuous predictors, which will take the following forms: 
+
+$$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ \beta_2\left(x_i\right)\ +\ e_i$$
+
+The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+
+## Step 1: Importing {-}
+```{r eval=FALSE}
+
+```
+
+## Step 2: Viewing {-}
+```{r eval=FALSE}
+
+```
+
+## Step 3: Formatting {-}
+```{r}
+
+```
+
+## Step 4: Modeling {-}
+```{r}
+
+```
+
+### The `lm()` Function {-}
 
 ```{r, eval=FALSE}
 lm(formula, data, subset, weights, na.action,
@@ -8,42 +34,10 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-The `lm()` (linear model) function is used for fitting linear models. This is the function we'll be using for this chapter. Notice that there are many arguments for this function, but the `formula` argument is the only argument that *needs* to be specified. If you'd like to learn more about functions and arguments, please have a look at **Chapter 2** which covers basic programming concepts, including functions and arguments.
-
-# Quick Example {-}
-In this example we'll use the `lm()` function for fitting a multiple regression model with two continuous predictors. This will be a quick and simple example that assumes the data is in tidy format and is ready for analysis. If this is not the case for you, you can take a look at **Chapter 4** which covers basic data formatting.
+The `lm()` (linear model) function is used for fitting linear models. This is the function we'll be using for this chapter. Notice that there are many arguments for this function, but the `formula` argument is the only argument that *needs* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
 
 ### Model 1 {-} 
 $$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ \beta_2\left(x_i\right)\ +\ e_i$$
 
-# Comprehensive Example 
-```{r eval=FALSE}
-# Import
-## Set your working directory to the data folder
-getwd()
-setwd()
-list.files()
-data <- read.csv()
-## You can use the read.csv() arguments to make importing adjustments
+### Model 2 {-}
 
-## Bind together files if needed 
-cbind() # Column bind
-rbind() # Row bind
-
-## Long and Wide formatting
-
-# View 
-head()
-str()
-summary()
-hist()
-plot()
-is.na()
-mean()
-sd()
-
-# Format 
-
-# Model
-lm()
-```

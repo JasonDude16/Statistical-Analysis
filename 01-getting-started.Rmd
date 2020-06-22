@@ -100,7 +100,7 @@ setwd("..")
 knitr::include_graphics("./images/rstudio_panes.png")
 ```
 
-* **Pane A**: This is where you write your scripts. You can think of a script like a word document, where you can write up an analysis and then save it for later.
+* **Pane A**: This is where you write your scripts. You can think of a script like a notepad, where you can write your code and then save it for later.
 
 * **Pane B**: This is where your code is "analyzed", and specifically it is analyzed under the `Console` tab (you can ignore the `Terminal` tab). For example, if you wanted to calculate the mean of 3 numbers, like this `mean(c(12, 32, 15))`, the result, `r {round(mean(c(12, 32, 15)), digits=1)}`, would be displayed in this pane under the `Console` tab. You can also *write* code here. For example, you could write `mean(c(12, 32, 15))` directly into the console (instead of in Pane A), but keep in mind that **any code that is typed here will not be saved.**
 
@@ -116,11 +116,36 @@ setwd("..")
 knitr::include_graphics("./images/github.png")
 ```
 
-You can then click on the dropdown arrow on the green button and click **Download ZIP**. Next, find the folder on your computer, unzip it, move it to a convenient location (such as your Desktop) and then open the file within the folder that ends with the extension **.Rproj**. 
+You can then click on the dropdown arrow on the green button and click **Download ZIP**. Next, find the folder on your computer, unzip it, and move it to a convenient location (such as your Desktop). If you currently have an R session open, go ahead and close it. After you've closed your current R session, open the file within the folder that ends with the extension **.Rproj**. After you click on the **Rproj** file, RStudio should open and you should see a screen similar to the one below. 
+
+> By opening the .Rproj file, we opened an R project. There's nothing particularly "special" about an R project; all it really does is set the working directory to the correct location, which will make more sense after reading Chapter 4. 
+
+```{r echo=FALSE, cache=TRUE, out.height= '80%', out.width= '80%', fig.align='center'}
+setwd("..")
+knitr::include_graphics("./images/rstudio-project.png")
+```
 
 ## Opening a Script {-}
-After you open the **Rproj** file,
+You can open a script in R by clicking on the dropdown arrow next to the white piece of paper with a green plus sign that's located in the upper left corner. Then click on **R Script**. 
+
+```{r echo=FALSE, cache=TRUE, out.height= '80%', out.width= '80%', fig.align='center'}
+setwd("..")
+knitr::include_graphics("./images/rstudio-script.png")
+```
+
+You should now see a new pane added to the upper left section of your screen, which is the R script.
+
+```{r echo=FALSE, cache=TRUE, out.height= '80%', out.width= '80%', fig.align='center'}
+setwd("..")
+knitr::include_graphics("./images/rstudio-script2.png")
+```
+
+Let's add a comment to the script so it's no longer blank:
+
+```{r eval=FALSE}
+# This is my first R script
+```
 
 ## Saving a Script {-}
-
+You can then save the script by clicking on `File > Save as`, and navigating to the folder you'd like to save it in. 
 

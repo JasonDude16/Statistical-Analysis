@@ -8,7 +8,7 @@ library(dplyr)
 
 > This chapter will cover: missing data, merging data files, changing variable types, recoding varibles, data transformation and tidy data principles. 
 
-> The code in this chapter only works if you're following along with the Github folder for this book (which you can download here), correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
 
 ## Merging Files {-}
 Sometimes you might want to import multiple files and combine them into one dataset. This can be accomplished with the `cbind()` and `rbind()` functions, which are short for column bind and row bind. Let's say you have three files that have the same column names and you want to combine them. 

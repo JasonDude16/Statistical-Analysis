@@ -113,7 +113,9 @@ tibble::tibble(
                     
                     "Need help with R? Stackoverflow is a website where you can                     post programming related questions", 
                     
-                    "Quick R by Datacamp is a webpage where the content is very                     simmilar to that of this guidebook: short and sweet, but                        still covering everything from install R to statistics.", 
+                    "Quick R by Datacamp is a webpage where the content is very                     simmilar to that of this guidebook: short and to the point,
+                    but still covering everything from installing R to
+                    statistics.", 
                     
                     "R Programming for Data Science is a comprehensive                              introduction to R and data analysis.")
 )

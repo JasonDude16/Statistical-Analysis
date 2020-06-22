@@ -15,14 +15,14 @@ When you run this code, you should have a file path printed to your console. Thi
 
 To change the working directory, you simply need to navigate to the folder you'd like to import files from in the lower right pane under the **files** tab. 
 
-```{r echo=FALSE, cache=TRUE, out.height= '80%', out.width= '80%', fig.align='center'}
+```{r echo=FALSE, cache=TRUE, out.height= '70%', out.width= '70%', fig.align='center'}
 setwd("..")
 knitr::include_graphics("./images/r_setwd.png")
 ```
 
 There are two folders shown in the example image above. If you're following along with the folder we created for this book, which you can download [here](https://github.com/JasonDude16), then your folder setup should look the same. 
 
-To import files from the data folder, you would click on the data folder and then click on the **More** dropdown arrow and click **Set as Working Directory**. After doing this, you should see something in your console similar to this: `setwd("~/Your/File/Path")`, which indicates that your working directory has been changed to the listed file path. You are now ready to import data files from the data folder. 
+To import files from the data folder, you would click on the data folder and then click on the **More** dropdown arrow and click **Set as Working Directory**. After doing this, you should see something in your console similar to this: `setwd("~/Your/File/Path")`, which indicates that your working directory has been changed to the listed file path. If you type and run the code `list.files()` you can see the names of the files that are in your current working directory. If you see several data files listed when you run this code, such as the **BMI_1.csv**, then you're all set. 
 
 Changing your working directory only *temporarily* changes it for your current R session. It does *not* permanently change it. It's best practice to add the code `setwd("~/Your/File/Path")`, which is the same code that's printed to the console, to the beginning of your R script so that you do not have to manually set your working directory every time you open your R script. 
 

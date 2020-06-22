@@ -1,56 +1,88 @@
+```{r}
+library(dplyr)
+```
+
 # (PART) Statistical Analysis {-} 
 
 # Simple Regression
-In this chapter we'll use the `lm()` function for fitting a simple regression model with one continuous predictor. This will be a quick and simple example that assumes the data is in tidy format and is ready for analysis. If this is not the case for you, you can take a look at **Chapter 4** which covers basic data formatting.
+> In this chapter we'll use the `lm()` function for fitting a simple regression model with one continuous predictor, which will take the following forms: 
 
-## Step 1: Importing {-}
-```{r eval=FALSE}
-# Import
-## Set your working directory to the data folder
-getwd()
-setwd()
-list.files()
-data <- read.csv()
-## You can use the read.csv() arguments to make importing adjustments
+$$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ e_i$$
+$$y_i=\beta_0+\beta_1\left(x_i\ -\ \overline{x}\right)\ +\ e_i$$
 
-## Bind together files if needed 
-cbind() # Column bind
-rbind() # Row bind
+> The top equation is an untransformed model, and the bottom is a mean-centered model.
 
-## Long and Wide formatting
-```
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
 
+> The data used in this chapter is from Kaggle: <https://www.kaggle.com/open-powerlifting/powerlifting-database>. This dataset is a snapshot of the OpenPowerlifting database as of April 2019. Powerlifting is a sport in which competitors compete to lift the most weight for their class in three separate barbell lifts: the Squat, Bench, and Deadlift.
 
-## Step 2: Viewing {-}
-```{r eval=FALSE}
-# View 
-head()
-str()
-summary()
-hist()
-plot()
-is.na()
-mean()
-sd()
-```
-
- Let's see what it looks like:
+## Importing {-}
+The first step is importing the data. In this example we'll use the **powerlifting.csv** file in the data folder, which is a dataset that consists of competitors and their statistics at a Powerlifting competition:
 
 ```{r}
-head(iris)
+data <- read.csv("powerlifting.csv")
 ```
 
-As you can see, it's a very simple datasest consisting of sepal lengths and widths, and petal lengths and widths for several (three) species of plants. Now let's use the `str` function to see the structure of the dataset:
+## Viewing {-}
+You can use the `str()` and `head()` functions to get the overall "impression" of the dataset.
 
 ```{r}
-str(iris)
+str(data)
 ```
 
-This tells us a lot of good information. We have a data-frame, we know the dimensions, and we know the data types of the columns. The next step is typically formatting the data, but obviously there's nothing to format here. So we'll go straight to the modelling step.
+The `str()` function provides a lot of good information. We now know that the dataset was correctly imported as a data frame which consists of 1000 observations of 27 variables, and we know the column names and column variable types. Additionally, the first few observations for each column is printed. But if you'd rather look at the dataset in a more standard format, you can use the `head()` function to see the first few observations:  
 
-## Step 3: Formatting {-}
+```{r}
+head(data[1:9])
+# Only the first 9 columns are printed here to save space
+```
 
-## Step 4: Modelling {-}
+Let's hypothesize that competitors who weigh more will have a higher `TotalKg`, which is the sum of the competitor's most weight lifted on three lifts: Squat, Bench Press, and Deadlift. First, let's visualize the relationship between these variables.
+
+```{r out.height= "70%", out.width= "70%"}
+plot(data$BodyweightKg, data$TotalKg)
+```
+
+> It looks like data points are concentrated more heavily at specific body weights. This is likely because powerlifters compete in weight classes, and its advantageous to be as close as possible to the cutoff weight limit. 
+
+We can use the `hist()` function to visualize the distributions of each variable:
+
+```{r out.height= "70%", out.width= "70%"}
+par(mfrow = c(1, 2))
+hist(data$TotalKg)
+hist(data$BodyweightKg)
+```
+
+Or you can make a boxplot with the `boxplot()` function: 
+
+```{r out.height= "70%", out.width= "70%"}
+par(mfrow = c(1, 2))
+boxplot(data$TotalKg)
+boxplot(data$BodyweightKg)
+```
+
+And you can look at the six number summary with the `summary()` function:
+
+```{r}
+summary(data[c(9,26)])
+```
+Notice how the summary also includes the `NA` count, which is a really nice feature.
+
+## Formatting {-}
+Before modeling, we need to ask ourselves a few questions. What if someone didn't perform one of the lifts? Powerlifting competitions have several event options, and we might be including in our analysis individuals who have a `TotalKg` value, but their value is only for the squat and bench press lifts, rather than all three. Also, what if a competitor didn't successfully complete a lift? That is, they competed in all three lifts, but they (likely) attempted to lift too much weight and their attempts were unsuccessful. It probably isn't a good idea to include either of these scenarios in our analysis because their `TotalKg` values wouldn't represent the summation of all three lifts, which is what we're interested in. We could use the `filter()` function from the `dplyr` package to filter the data and take care of both of these issues in one step:
+
+```{r}
+# Replace the original data object with the filtered data
+data <- filter(data,
+               !is.na(Best3SquatKg), 
+               !is.na(Best3BenchKg),
+               !is.na(Best3DeadliftKg),
+               !is.na(TotalKg))
+```
+
+In the code block above, the data was filtered to include only observations that had a successful squat, bench press, and deadlift, and had a `TotalKg` value. This ensures that the competitor competed in all three lifts and also had at least one successful attempt on each lift. The data is now ready for modeling. 
+
+## Modeling {-}
 
 ### The `lm()` Function {-}
 
@@ -60,36 +92,36 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-The `lm()` (linear model) function is used for fitting linear models. Notice that there are many arguments for this function, but the `formula` argument is the only argument that *needs* to be specified. If you'd like to learn more about functions and arguments, please take a look at **Chapter 2** which covers basic programming concepts, including functions and arguments.
+The `lm()` (linear model) function is used for fitting linear models. Notice that there are many arguments for this function, but the `formula` argument is the only argument that *needs* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
 
-Let's take a look at how we can use the `lm()` function to make two models with the same variables using a simple regression: the untransformed linear model and a mean-centered model. For both models we'll use `Sepal Length` as the dependent variable and `Sepal Width` as the independent variable. 
+Let's take a look at how we can use the `lm()` function to make two models with the same variables using a simple regression: the untransformed linear model and a mean-centered model. For both models, `TotalKg` will be the dependent variable and `BodyWeightKg` will be the independent variable. 
 
-### Model 1: Untransformed {-} 
+### Untransformed Model {-} 
 $$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ e_i$$
-The equation above represents the untransformed, simple regression model with one continuous predictor. Let's implement this model with the `lm()` function. The dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s).
+The equation above represents the untransformed, simple regression model with one continuous predictor. In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s).
 
 ```{r}
-lm(formula = Sepal.Length ~ Sepal.Width, data = iris)
+lm(formula = TotalKg ~ BodyweightKg, data = data)
 ```
 
 The function prints out the slope and intercept for the model. We could then use the slope and intercept to create a plot with an `abline`:
 
-```{r fig.align='center'}
-plot(iris$Sepal.Width, iris$Sepal.Length)
-abline(6.5262, -0.2234, col = "red")
+```{r fig.align='center', out.height= "70%", out.width= "70%"}
+plot(data$BodyweightKg, data$TotalKg)
+abline(50.83, 5.24, col = "red")
 ```
 
-The correlation looks weak, and it likely isn't significant, but how can we be sure? The `lm()` function printed the coefficients but did not provide information about the R-squared or significance. To see this information, we need to save the model as an object, and then print the summary of the model, like so:
+It looks like there may be a significant relationship between the two variables, but how can we be sure? The `lm()` function printed the coefficients but did not provide information about the R-squared or significance. To see this information, we need to save the model as an object, and then print the summary of the model, like so:
 
 ```{r}
-my_model <- lm(formula = Sepal.Length ~ Sepal.Width, data = iris)
+my_model <- lm(formula = TotalKg ~ BodyweightKg, data = data)
 summary(my_model)
 ```
 
 Now we have a nice summary print-out which includes the `F-statistic`, `Residuals`, `R-squared`, `p-value`, and more. What's also nice is we can now use the `plot` function on the `my_model` object that we just created to view `Residuals vs Fitted`, `Normal Q-Q`, `Scale-Location` and `Residuals vs Leverage` plots.
 
-```{r fig.align='center'}
-par(mfrow = c(2,2)) # this function prints the graphs as a 2x2 grid
+```{r fig.align='center', out.height= "70%", out.width= "70%"}
+par(mfrow = c(2,2))
 plot(my_model)
 ```
 
@@ -99,34 +131,35 @@ What else can we do with the `my_model` object? Let's take a look at the object'
 attributes(my_model)
 ```
 
-The model's `attributes` can be accessed by using a dollar sign, `$`. For example, here's a printout of the first 5 residuals of our model:
+The model's `attributes` can be accessed by using a dollar sign, `$`. For example, here's a printout of the first 5 residuals of the model:
 
 ```{r}
 my_model$residuals[1:5]
 ```
 
-
-### Model 2: Mean-Centered {-}
+### Mean-Centered Model {-}
 $$y_i=\beta_0+\beta_1\left(x_i\ -\ \overline{x}\right)\ +\ e_i$$
-In this example we'll use the same variables as before but this time we'll mean-center the independent/predictor variable. First, we create a column that consists of the sepal width mean, which is `r {round(mean(iris$Sepal.Width), digits=2)}`. Since there are 150 rows in the iris dataset, that means we are creating a column that has the value `r {round(mean(iris$Sepal.Width), digits = 2)}` repeated 150 times. This value is then saved into the column `SW_mean`; that's what the first line of code in the code chunk below is doing. In the second line of code, each sepal width value is subtracted from the sepal width mean column, which is then stored in a new column called `SW_mean_center`. 
+In this example we'll use the same variables as before, but this time the predictor variable will be mean-centered. First, we create a column that consists of the `BodyweightKg` mean, which is `r {round(mean(data$BodyweightKg), digits=2)}`. Since there are 1000 rows in the powerlifting dataset, that means we are creating a column that has the value `r {round(mean(data$BodyweightKg), digits=2)}` repeated 1000 times. This value is then saved into the column `BodyweightKg_mean`; that's what the first line of code in the code chunk below is doing. In the second line of code, each `BodyweightKg` value is subtracted from the `BodyweightKg_mean` mean column, which is then stored in a new column called `BodyweightKg_mc`. 
 
 ```{r}
-# create a column that consists of the mean sepal width value
-iris$SW_mean <- mean(iris$Sepal.Width) 
+# Create a column that consists of the mean BodyweightKg
+data$BodyweightKg_mean <- mean(data$BodyweightKg, na.rm = TRUE) 
 
-# subtract sepal width column from mean column
-iris$SW_mean_center <- iris$Sepal.Width - iris$SW_mean 
+# Subtract BodyweightKg from mean BodyweightKg column
+data$BodyweightKg_mc <- data$BodyweightKg - data$BodyweightKg_mean
 ```
 
-Let's see what it looks like.
+Let's see what it looks like:
 
-```{r fig.align='center'}
-plot(iris$SW_mean_center, iris$Sepal.Length)
-abline(lm(iris$Sepal.Length ~ iris$SW_mean_center), col = "red")
+```{r fig.align='center', out.height= "70%", out.width= "70%"}
+plot(data$BodyweightKg_mc ,data$TotalKg)
+abline(lm(data$TotalKg ~ data$BodyweightKg_mc), col = "red")
 ```
 
 We can now use this mean-centered column as the dependent variable.
 
 ```{r}
-lm(formula = Sepal.Length ~ SW_mean_center, data = iris)
+lm(formula = TotalKg ~ BodyweightKg_mc, data = data)
 ```
+
+Notice how the slopes are the same in both models, but in the mean-centered model the y-intercept is now the average `TotalKg`.

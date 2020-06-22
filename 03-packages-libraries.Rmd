@@ -3,6 +3,10 @@
 ## What are Packages? {-}
 R has hundreds of useful functions, but sometimes you'll want or need to use a function that's not built into R. For example, R has several built-in functions for plotting data, such as the `hist()` function:
 
+```{r include=FALSE}
+set.seed(1)
+```
+
 ```{r out.height= '70%', out.width= '70%'}
 hist(rnorm(100))
 ```
@@ -55,4 +59,4 @@ Running the code `library(tidyverse)` now allows you to use all of the functions
 
 You can check to see if you installed the `tidyverse` package and loaded it into your R session correctly by running the `ggplot` histogram code above. If you see the same plot in your R session, everything is working correctly!
 
-You might be wondering why the ggplot code worked when we loaded the `tidyverse` package and not the `ggplot2` package. This is because the `tidyverse` is a *meta-package*, which *includes* the `ggplot2` package within it (along with 7 other packages). So, if you get into the habit of loading the tidyverse meta-package at the beginning of your script, that will generally take care of everything for you, and you won't need to worry about loading many (if any) other packages into your R session.
+You might be wondering why the ggplot code worked when we loaded the `tidyverse` package and not the `ggplot2` package. This is because the `tidyverse` is a *meta-package*, which *includes* the `ggplot2` package within it (along with 7 other packages: `dplyr`, `tidyr`, `readr`, `purr`, `tibble`, `stringr`, `forcats`). So, if you get into the habit of loading the tidyverse meta-package at the beginning of your script, that will generally take care of everything for you, and you won't need to worry about loading many (if any) other packages into your R session.
