@@ -1,30 +1,109 @@
+```{r include=FALSE}
+library("scatterplot3d") 
+library(dplyr)
+```
+
 # Multiple Regression 
 
-> In this example we'll use the `lm()` function for fitting a multiple regression model with two continuous predictors, which will take the following forms: 
+> In this chapter we'll use the `lm()` function for fitting a multiple regression model with two continuous predictors, which will take the following forms: 
 
-$$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ \beta_2\left(x_i\right)\ +\ e_i$$
+$$y_i\ =\ \beta_0+\beta_1\left(X_{1i}\right)+\beta_2\left(X_{2i}\right)+e_i$$
+$$y_i\ =\ \beta_0+\beta_1\left(X_{1i}\right)+\beta_2\left(X_{2i}\right)+\beta_3\left(X_{1i}\ \cdot\ X_{2i}\right)+e_i$$
+$$y_i\ =\ \beta_0+\beta_1\left(X_i\right)+\beta_2\left(X_i^2\right)+e_i$$
 
-The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+> The first equation is the unmoderated (additive) model, the second is the moderated (multiplicative) model, and the third is the nonlinear model.
 
-## Step 1: Importing {-}
-```{r eval=FALSE}
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
 
-```
+## Importing {-}
+We'll be importing two datasets for this chapter: **age_height_weight.txt** and **data_altitude.csv**. The **age_height_weight.txt** file will be used for the unmoderated model, and the **data_altitude.csv** file will be used for the moderated and nonlinear models. 
 
-## Step 2: Viewing {-}
-```{r eval=FALSE}
-
-```
-
-## Step 3: Formatting {-}
 ```{r}
-
+data1 <- read.delim("age_height_weight.txt", sep = "")
+data2 <- read.csv("data_altitude.csv")
 ```
 
-## Step 4: Modeling {-}
+## Viewing {-}
+
+### Data for Unmoderated Model {-}
+As the name implies, the **age_height_weight.txt** file contains age, height, and weight data for several males and females. You can use the `str()` and `head()` functions to get the overall "impression" of the dataset.
+
 ```{r}
-
+str(data1)
 ```
+
+The `str()` function provides a lot of good information. We now know that the dataset was correctly imported as a data frame which consists of 19 observations of 5 variables, and we know the column names and column variable types. Additionally, the first few observations for each column is printed. But if you'd rather look at the dataset in a more standard format, you can use the `head()` function to see the first few observations:  
+
+```{r}
+head(data1)
+```
+
+We can use the `plot()` function to visualize the relationships between `Age`, `Height`, and `Weight`: 
+
+```{r}
+plot(data1[c(3,4,5)])
+# Used brackets to subset the data and select columns 3, 4, 5
+```
+
+Or, you could visualize all three variables on one graph with a 3D scatterplot:
+
+```{r}
+scatterplot3d(x = data1$Height, z = data1$Weight, y = data1$Age, 
+              main = "Weight, Age, and Height", 
+              pch = 16, highlight.3d = TRUE, type = "h", grid = TRUE, box = FALSE, 
+              xlab = "Height (in)", ylab = "Age (yrs)", zlab = "Weight (lbs)", 
+              angle = 55)
+```
+
+We can use the `hist()` function to visualize the distributions of `Age`, `Height`, and `Weight`:
+
+```{r}
+par(mfrow = c(1,3))
+hist(data1$Age)
+hist(data1$Height)
+hist(data1$Weight)
+```
+
+And you can look at the six number summary with the `summary()` function:
+
+```{r}
+summary(data1[c(3,4,5)])
+```
+
+### Data for Moderated and Nonlinear Models {-}
+The **data_altitude.csv** file contains data about an athlete's baseline VO2max, `BVO2`, and a VO2max value where the test was conducted at some altitude, `AVO2`. Again, we'll use the `str()` and `head()` functions to view the dataset: 
+
+```{r}
+str(data2)
+```
+
+```{r}
+head(data2)
+```
+
+We'll skip the visualizations for this dataset since examples were just provided for **age_height_weight.txt**.
+
+## Formatting {-}
+
+### Data for Moderated and Nonlinear Models {-}
+
+The only formatting that needs to be done is to change the unit of `altitude` from meters to kilometers, so that the axes have similar scales. Also, we'll create a column that squares all of the `alt_km` values which will be used for the nonlinear model. 
+
+```{r}
+data2 <- mutate(data2, alt_km = altitude / 1000)
+# Divide altitude values by 1000, and save values to new column
+```
+
+```{r}
+data2 <- mutate(data2, alt_km_sq = alt_km^2)
+# Square alt_km values, and save values to a new column
+```
+
+```{r}
+head(data2)
+```
+
+## Modeling {-}
 
 ### The `lm()` Function {-}
 
@@ -34,10 +113,66 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-The `lm()` (linear model) function is used for fitting linear models. This is the function we'll be using for this chapter. Notice that there are many arguments for this function, but the `formula` argument is the only argument that *needs* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+The `lm()` (linear model) function is used for fitting linear models. This is the function we'll be using for this chapter. Notice that there are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
 
-### Model 1 {-} 
-$$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ \beta_2\left(x_i\right)\ +\ e_i$$
+The `lm()` function automatically controls for shared variance, so we don't need to take any additional steps before adding the variables to the model.
 
-### Model 2 {-}
+### Unmoderated Model {-} 
+In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). For the `data` argument, you'll use the `data1` object. In the unmoderated model, the addition operator, `+`, is used between each independent variable. 
 
+```{r}
+lm(formula = Weight ~ Age + Height, data = data1)
+```
+
+The function prints out the slope and intercept for the model. To see more information about the model, the model needs to be saved as an object:
+
+```{r}
+my_model <- lm(formula = Weight ~ Age + Height, data = data1)
+```
+
+Now that we've saved the model as an object, called `my_model`, we can access a lot of information about the model. Three good functions to remember are `summary()`, `plot()`, and `attributes()`. 
+
+```{r}
+summary(my_model)
+```
+
+Now we have a nice summary print-out which includes the `F-statistic`, `Residuals`, `R-squared`, `p-value`, and more. The `plot` function can be used on the `my_model` object to view `Residuals vs Fitted`, `Normal Q-Q`, `Scale-Location` and `Residuals vs Leverage` plots.
+
+```{r}
+par(mfrow = c(2,2))
+plot(my_model)
+```
+
+The `my_model` object has attributes. Attributes can store additional information about the object, such as the model's residuals. You can find out the attributes of an object with the `attributes()` function. 
+
+```{r}
+attributes(my_model)
+```
+
+The model's `attributes` can be accessed by using a dollar sign, `$`. For example, here's a printout of the first 5 fitted values of the model:
+
+```{r}
+my_model$fitted.values[1:5]
+```
+
+### Moderated Model {-}
+In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). For the `data` argument, you'll use the `data2` object. In the moderated model, the multiplication operator, `*`, is used between each independent variable to indicate an interaction.
+
+```{r}
+my_model2 <- lm(formula = decrease ~ alt_km * BVO2, data = data2)
+```
+
+```{r}
+summary(my_model2)
+```
+
+### Nonlinear Model {-}
+In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). For the `data` argument, you'll use the `data2` object. In the nonlinear model, the addition operator, `+`, is used between each independent variable. In this example, the independent variables are te `alt_km` and `alt_km_sq` columns. 
+
+```{r}
+my_model3 <- lm(formula = decrease ~ alt_km + alt_km_sq, data = data2)
+```
+
+```{r}
+summary(my_model3)
+```

@@ -52,7 +52,7 @@ In both of these examples the result is the same: `x` is now assigned to the val
 
 ```{r}
 x <- sqrt(34 + ((12 * 2)^3 - 5))
-x # typing x by itself will print the value to the concole
+x # typing x by itself will print the value to the console
 ```
 
 **The object `x` no longer refers to 5**. We overwrote `x` and assigned it to a new value, ~117.7. 
@@ -78,6 +78,8 @@ head(iris_virginica)
 ```
 
 The code above looks much better. The filtered data has been assigned to the object `iris_virginica`, so we now have a way to reference that data, and we could use this object to analyze the virginica plants exclusively.
+
+## Dollar Signs and Brackets {-}
 
 ## Variable Types {-}
 R has several different variable types, and to manipulate your data it is good to be aware of them.
