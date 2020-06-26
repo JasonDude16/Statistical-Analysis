@@ -1,0 +1,74 @@
+```{r include=FALSE}
+library(ez)
+```
+
+# One-Way ANOVA
+
+> In this example we'll use the `ezANOVA()` function for fitting one and two sample t-test models with one continuous predictor, which will take the following form: 
+
+$$y_i\ =\ \beta_0\ +\ \beta_1\left(X_{1i}\right)\ +\ e_i$$
+
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+
+## Importing {-}
+```{r}
+data <- read.csv("data_800m.csv")
+```
+
+## Viewing {-}
+```{r}
+str(data)
+```
+
+```{r}
+head(data)
+```
+
+## Formatting {-}
+
+### Dummy Codes {-}
+
+### Contrast Codes {-}
+
+```{r eval=FALSE}
+
+```
+
+## Modeling {-}
+
+### The `ezANOVA()`Function {-}
+
+```{r, eval=FALSE}
+ezANOVA(
+    data
+    , dv
+    , wid
+    , within = NULL
+    , within_full = NULL
+    , within_covariates = NULL
+    , between = NULL
+    , between_covariates = NULL
+    , observed = NULL
+    , diff = NULL
+    , reverse_diff = FALSE
+    , type = 2
+    , white.adjust = FALSE
+    , detailed = FALSE
+    , return_aov = FALSE
+)
+```
+
+The `ezANOVA()` function 
+
+Notice that there are many arguments for this function,
+
+If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+
+### Model with `lm()` Function {-}
+
+### Model with `ezANOVA()` Funtion {-}
+
+```{r}
+ezANOVA(data, dv = VO2, wid = sudID, between = groups, detailed = TRUE,
+        return_aov = TRUE, type = 3)
+```

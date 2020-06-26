@@ -1,0 +1,112 @@
+```{r include=FALSE}
+library(dplyr)
+```
+
+# One and Two Sample t-test
+
+> In this chapter we'll use the `t.test()` function for fitting one and two sample t-test models with one categorical predictor, which will take the following form: 
+
+$$y_i\ =\ \beta_0+\beta_1\left(X_{1i}\right)+e_i$$
+
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+
+## Importing {-}
+For this chapter we'll be using three datasets: **rmr.xlsx** for the two sample indepedent t-test, **lactate_threshold.xlsx** for the two sample dependent t-test, and the third dataset for the one sample t-test will be created in R. 
+
+First we'll create the data for the one sample t-test:
+
+```{r}
+set.seed(1)
+data1 <- rnorm(n = 100, mean = 54.3, sd = 5.3)
+```
+
+The code above creates a random normal distribution of 100 samples with a mean of 54.3 and a standard deviation of 5.3, which are both arbitrary values. 
+
+And we'll import the two other datasets:
+```{r}
+data2 <- read.csv("rmr.csv")
+data3 <- read.csv("lactate_threshold.csv")
+```
+
+## Viewing {-}
+
+### Data for Two Sample Independent {-}
+The dataset for the two sample indepdentdent t-test contains resting metabolic rate values for several males and females which was collected using a metabolic cart.
+
+```{r}
+head(data2)
+```
+
+```{r}
+str(data2)
+```
+
+### Data for Two Sample Dependent {-}
+The dataset for the two sample dependent t-test contains heart rate and VO2 data at lactate threshold and ventilatory threshold for several males and females. Lactate threshold is the point at which the blood concentration of lactate begins to increase exponentially [source](https://en.wikipedia.org/wiki/Lactate_threshold). Ventilatory threshold is the point during exercise at which ventilation starts to increase at a faster rate than VO2 [source](https://en.wikipedia.org/wiki/Ventilatory_threshold).
+
+```{r}
+head(data3)
+```
+
+```{r}
+str(data3)
+```
+
+## Formatting {-}
+
+### Data for Two Sample Independent {-}
+We'll be comparing the resting metabolic rate of males and females for the independent t-test, so we need to filter the data to include only males or females, but not both. There are countless ways to do this, and one way is to split the `data2` object into a `data_M` object, which only contains data for the males, and a `data_F` object, which only contains data for the females. The `filter()` function comes from the `dplyr` package, so make sure you've loaded that library into your workspace.
+
+```{r}
+data2_M <- filter(data2, Sex == "M")
+data2_F <- filter(data2, Sex == "F")
+# Make sure you've loaded the dplyr package
+```
+
+Now the dataset has been separated into two separate objects which each contain only one sex. 
+
+```{r results='markup'}
+head(data2_M)
+head(data2_F)
+```
+
+## Modeling {-}
+
+### The `t.test()`Function {-}
+
+```{r, eval=FALSE}
+t.test(x, y = NULL,
+       alternative = c("two.sided", "less", "greater"),
+       mu = 0, paired = FALSE, var.equal = FALSE,
+       conf.level = 0.95, ...)
+```
+
+The `t.test()` function can be used for both one sample and two sample tests. For two sample tests, the observations can be either dependent or independent. Notice that there are many arguments for this function, but the `x` argument is the only argument that *needs* to be specified for one sample tests. `x` and `y` are the two arguments that need to be specified for two sample independent t-tests, and `x`, `y`, and `paired` need to be specified for dependent t-tests. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+
+### One Sample {-}
+For the one sample t-test, we need to set the `x` argument equal to the object that contains the data, which in this case is the object `data1`. If the data object contained multiple columns then you would need to specify the column to use in your analysis, but in this example the `data1` object only has the one column. The default value for the population mean, `mu`, is 0, but in this made up example we'll say `mu` is equal to 49.1.
+
+```{r}
+t.test(x = data1, mu = 49.1)
+```
+
+### Two Sample: Independent / Unpaired {-}
+The goal of this analysis is to determine if there is a difference between the resting metabolic rate of males and females, on average.
+
+The `x` and `y` arguments should be set equal to the object(s) that contain the data you want to compare. In this example, those are the `data_M` and `data_F` objects. Specifically, we want to compare the `RMR` column from each dataset, which can be selected with the dollar sign, `$`. By default, `paired` is set equal to `FALSE`, but it's written out explicitly below to make the code more clear.
+
+```{r}
+t.test(x = data2_M$RMR, y = data2_F$RMR, paired = FALSE)
+```
+
+### Two Sample: Dependent / Paired {-} 
+The goal of this analysis is to determine if lactate and ventilatory thresholds occur at the same exercise intensity, where exercise intensity is measured as VO2 consumption.
+
+The `x` and `y` arguments should be set equal to the object(s) that contain the data you want to compare, which is this example is the `data3` object. Specifically, we want to compare the `VT_VO2_abs` and `LT_VO2_abs` columns from the dataset, which can be selected with the dollar sign, `$`. By default, `paired` is set equal to `FALSE`, which needs to be changed to `TRUE`.
+
+```{r}
+t.test(x = data3$VT_VO2_abs, y = data3$LT_VO2_abs, paired = TRUE)
+```
+
+### Optional Arguments {-}
+There are additional arguments for the `t-test()` function that can be specified. By default, `alternative` is set equal to `"two.sided"`, but this can be changed to `"less"` or `"greater"`. `var.equal` is set equal to `FALSE` by default, but this can be set to `TRUE`. 0.95 is the default confidence level (`conf.level`), but this can be set to any desired confidence level.
