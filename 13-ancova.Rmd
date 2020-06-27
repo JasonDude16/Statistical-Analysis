@@ -56,10 +56,6 @@ ezANOVA(
 )
 ```
 
-The `ezANOVA()` function 
-
-Notice that there are many arguments for this function,
-
-If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+The `ezANOVA()` function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you're performing. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
 
 ### Untransformed Model {-}

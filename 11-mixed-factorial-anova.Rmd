@@ -1,5 +1,5 @@
-```{r include=FALSE}
-library(readxl)
+```{r}
+library(tidyr)
 ```
 
 # Mixed-Factorial ANOVA
@@ -12,7 +12,7 @@ $$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ e_i$$
 
 ## Importing {-}
 ```{r}
-data <- read_excel("flexibility_power.xlsx", skip = 2)
+data <- read.csv("flexibility_power.csv")
 ```
 
 ## Viewing {-}
@@ -26,6 +26,13 @@ str(data)
 
 ## Formatting {-}
 
+```{r}
+data <- pivot_longer(data = data, 
+                     cols = c("Baseline", "Post_run", "Post_stretch"),
+                     names_to = "Condition",
+                     values_to = "Power_Watts")
+```
+
 ### Orthogonal Contrast Codes {-}
 
 ```{r eval=FALSE}
@@ -33,9 +40,6 @@ str(data)
 ```
 
 ## Modeling {-}
-```{r eval=FALSE}
-
-```
 
 ### The `ezANOVA()`Function {-}
 
@@ -59,12 +63,14 @@ ezANOVA(
 )
 ```
 
-The `ezANOVA()` function 
+The `ezANOVA()` function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you're performing. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
 
-Notice that there are many arguments for this function,
+### Model {-}
 
-If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
-
-### Model with `lm()` Function {-}
-
-### Model with `ezANOVA()` Function {-}
+```{r}
+ez::ezANOVA(data, 
+            dv = Power_Watts, 
+            wid = ID, 
+            within = .(Condition),
+            between = .(Sex))
+```

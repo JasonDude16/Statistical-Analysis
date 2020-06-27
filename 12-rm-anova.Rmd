@@ -1,5 +1,4 @@
 ```{r include=FALSE}
-library(readxl)
 library(ez)
 library(tidyr)
 ```
@@ -14,7 +13,7 @@ $$y_i\ =\ \beta_0+\beta_1\left(X_{1i}\right)+\beta_2\left(X_{2i}\right)+\beta_3\
 
 ## Importing {-}
 ```{r}
-data <- read_excel("cardiovascular.xlsx", skip = 1)
+data <- read.csv("cardiovascular.csv")
 ```
 
 ## Viewing {-}
@@ -27,8 +26,11 @@ str(data)
 ```
 
 ## Formatting {-}
-```{r eval=FALSE}
-# create column of categories
+```{r}
+data <- pivot_longer(data = data, 
+                     cols = c("Rest", "MAP_T1", "MAP_T2", "MAP_T3", "MAP_T4"),
+                     names_to = "Time",
+                     values_to = "MAP")
 ```
 
 ### Nested Design {-}
@@ -63,12 +65,15 @@ ezANOVA(
 )
 ```
 
-The `ezANOVA()` function 
+The `ezANOVA()` function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you're performing. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
 
-Notice that there are many arguments for this function,
 
-If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+### Model {-}
 
-### Model with `lm()` Function {-}
+```{r}
+ez::ezANOVA(data, 
+            dv = MAP, 
+            wid = SubID, 
+            within = .(Time))
+```
 
-### Model with `ezANOVA()` Function {-}

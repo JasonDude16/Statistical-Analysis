@@ -83,7 +83,7 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-The `lm()` (linear model) function is used for fitting linear models. Notice that there are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+The `lm()` (linear model) function is used for fitting linear models. There are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
 
 Let's take a look at how we can use the `lm()` function to make two models with the same variables using a simple regression: the untransformed linear model and a mean-centered model. For both models, `TotalKg` will be the dependent variable and `BodyWeightKg` will be the independent variable. 
 

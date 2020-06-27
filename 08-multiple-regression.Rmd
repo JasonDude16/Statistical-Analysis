@@ -113,7 +113,7 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-The `lm()` (linear model) function is used for fitting linear models. This is the function we'll be using for this chapter. Notice that there are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+The `lm()` (linear model) function is used for fitting linear models. There are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
 
 The `lm()` function automatically controls for shared variance, so we don't need to take any additional steps before adding the variables to the model.
 
