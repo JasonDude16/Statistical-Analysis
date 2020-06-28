@@ -8,7 +8,7 @@ library(readxl)
 
 $$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ e_i$$
 
-> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder)), you've correctly set your working directory to the data folder (which you can learn how to do in [Chapter 4](#CH4), and run the code in the order it appears in this chapter. 
 
 ## Importing {-}
 ```{r}
@@ -20,19 +20,16 @@ data <- read_excel("measured_VO2.xlsx")
 head(data)
 ```
 
-```{r}
-str(data)
-```
+> More examples of viewing data can be found in [Chapter 5](#CH5)
 
 ## Formatting {-}
 ```{r eval=FALSE}
 
 ```
 
-## Modeling {-}
-```{r eval=FALSE}
+> More examples of formatting data can be found in [Chapter 6](#CH6)
 
-```
+## Modeling {-}
 
 ### The `ezANOVA()`Function {-}
 
@@ -56,6 +53,6 @@ ezANOVA(
 )
 ```
 
-The `ezANOVA()` function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you're performing. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+The `ezANOVA()` function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you're performing. If you'd like to learn more about functions and arguments, [Chapter 2](#CH2) covers basic programming concepts, including functions and arguments.
 
-### Untransformed Model {-}
+### Model {-}

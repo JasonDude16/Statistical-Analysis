@@ -12,7 +12,7 @@ $$y_i=\beta_0+\beta_1\left(x_i\ -\ \overline{x}\right)\ +\ e_i$$
 
 > The top equation is an untransformed model, and the bottom is a mean-centered model.
 
-> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder)), you've correctly set your working directory to the data folder (which you can learn how to do in [Chapter 4](#CH4)), and run the code in the order it appears in this chapter.
 
 > The data used in this chapter is from Kaggle: <https://www.kaggle.com/open-powerlifting/powerlifting-database>. This dataset is a snapshot of the OpenPowerlifting database as of April 2019. Powerlifting is a sport in which competitors compete to lift the most weight for their class in three separate barbell lifts: the Squat, Bench, and Deadlift.
 
@@ -59,6 +59,8 @@ And you can look at the six number summary with the `summary()` function. Notice
 summary(data[c(9,26)])
 ```
 
+> More examples of viewing data can be found in [Chapter 5](#CH5)
+
 ## Formatting {-}
 Before modeling, we need to ask ourselves a few questions. What if someone didn't perform one of the lifts? Powerlifting competitions have several event options, and we might be including in our analysis individuals who have a `TotalKg` value, but their value is only for the squat and bench press lifts, rather than all three. Also, what if a competitor didn't successfully complete a lift? That is, they competed in all three lifts, but they (likely) attempted to lift too much weight and their attempts were unsuccessful. It probably isn't a good idea to include either of these scenarios in our analysis because their `TotalKg` values wouldn't represent the summation of all three lifts, which is what we're interested in. We could use the `filter()` function from the `dplyr` package to filter the data and take care of both of these issues in one step:
 
@@ -73,6 +75,8 @@ data <- filter(data,
 
 In the code block above, the data was filtered to include only observations that had a successful squat, bench press, and deadlift, and had a `TotalKg` value. This ensures that the competitor competed in all three lifts and also had at least one successful attempt on each lift. The data is now ready for modeling. 
 
+> More examples of formatting data can be found in [Chapter 6](#CH6)
+
 ## Modeling {-}
 
 ### The `lm()` Function {-}
@@ -83,7 +87,7 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-The `lm()` (linear model) function is used for fitting linear models. There are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+The `lm()` (linear model) function is used for fitting linear models. There are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, [Chapter 2](#CH2) covers basic programming concepts, including functions and arguments.
 
 Let's take a look at how we can use the `lm()` function to make two models with the same variables using a simple regression: the untransformed linear model and a mean-centered model. For both models, `TotalKg` will be the dependent variable and `BodyWeightKg` will be the independent variable. 
 

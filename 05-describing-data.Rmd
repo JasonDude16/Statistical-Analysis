@@ -1,0 +1,39 @@
+# Describing and Visualizing Data{#CH5}
+
+## Viewing Data {-}
+```{r eval=FALSE}
+# Using the view button
+dim()
+nrow()
+ncol()
+str()
+head()
+tail()
+as.tibble()
+row.names()
+names()
+colnames()
+```
+
+## Data Summaries {-}
+```{r eval=FALSE}
+mean()
+sd()
+range()
+is.na()
+sum(is.na())
+colSums(is.na())
+summary()
+xtabs()
+table()
+apply(array, margin, ...)
+```
+
+## Visualizing Data {-}
+```{r eval=FALSE}  
+plot()
+abline()
+hist()
+boxplot()
+fourfoldplot()
+```

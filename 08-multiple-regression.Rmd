@@ -13,7 +13,7 @@ $$y_i\ =\ \beta_0+\beta_1\left(X_i\right)+\beta_2\left(X_i^2\right)+e_i$$
 
 > The first equation is the unmoderated (additive) model, the second is the moderated (multiplicative) model, and the third is the nonlinear model.
 
-> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder)), you've correctly set your working directory to the data folder (which you can learn how to do in [Chapter 4](#CH4)), and run the code in the order it appears in this chapter. 
 
 ## Importing {-}
 We'll be importing two datasets for this chapter: **age_height_weight.txt** and **data_altitude.csv**. The **age_height_weight.txt** file will be used for the unmoderated model, and the **data_altitude.csv** file will be used for the moderated and nonlinear models. 
@@ -83,6 +83,8 @@ head(data2)
 
 We'll skip the visualizations for this dataset since examples were just provided for **age_height_weight.txt**.
 
+> More examples of viewing data can be found in [Chapter 5](#CH5)
+
 ## Formatting {-}
 
 ### Data for Moderated and Nonlinear Models {-}
@@ -103,6 +105,8 @@ data2 <- mutate(data2, alt_km_sq = alt_km^2)
 head(data2)
 ```
 
+> More examples of formatting data can be found in [Chapter 6](#CH6)
+
 ## Modeling {-}
 
 ### The `lm()` Function {-}
@@ -113,7 +117,7 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-The `lm()` (linear model) function is used for fitting linear models. There are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+The `lm()` (linear model) function is used for fitting linear models. There are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, [Chapter 2](#CH2) covers basic programming concepts, including functions and arguments.
 
 The `lm()` function automatically controls for shared variance, so we don't need to take any additional steps before adding the variables to the model.
 

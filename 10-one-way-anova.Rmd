@@ -8,7 +8,7 @@ library(plyr)
 
 $$y_i\ =\ \beta_0\ +\ \beta_1\left(X_{1i}\right)\ +\ e_i$$
 
-> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16)), you've correctly set your working directory to the data folder (which you can learn how to do in Chapter 4), and run the code in the order it appears in this chapter. 
+> The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder)), you've correctly set your working directory to the data folder (which you can learn how to do in [Chapter 4](#CH4)), and run the code in the order it appears in this chapter. 
 
 ## Importing {-} 
 For this chapter we'll be using the **data_800m.csv** file. This dataset contains information about a subject's VO2max and their 800 meter run time. 
@@ -24,6 +24,8 @@ The **data_800m.csv** dataset contains information about a subject's VO2max and 
 head(data)
 ```
 
+> More examples of viewing data can be found in [Chapter 5](#CH5)
+
 ## Formatting {-}
 We'll recode the `faster`, `medium`, and `slower` categories as `-1`, `0`, `1` and `0`, `1`, `2` for the linear and quadratic codes, respectively. One easy way to do this is with the `mapvalues()` function which comes from the `plyr` package. You'll need to first install the package (`install.packages(plyr)`) and then load the library (`library(plyr)`) before using this function. 
 
@@ -37,6 +39,8 @@ data$quad.c <- mapvalues(x = data$groups,
                        to = c(0,1,2))
 ```
 
+> More examples of formatting data can be found in [Chapter 6](#CH6)
+
 ## Modeling {-}
 
 ### The `lm()` Function {-}
@@ -47,7 +51,7 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-The `lm()` (linear model) function is used for fitting linear models. Notice that there are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, **Chapter 2** covers basic programming concepts, including functions and arguments.
+The `lm()` (linear model) function is used for fitting linear models. Notice that there are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, [Chapter 2](#CH2) covers basic programming concepts, including functions and arguments.
 
 ### Model with Contrast Codes {-}
 

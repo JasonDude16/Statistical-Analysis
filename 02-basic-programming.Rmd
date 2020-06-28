@@ -1,4 +1,4 @@
-# Programming 101
+# Programming 101{#CH2}
 
 > The goal of this chapter is not to turn you into an R programmer, but to cover the most important programming concepts so that you feel more comfortable using R and are able to get up and running with your analyses as fast as possible.
 
@@ -180,6 +180,9 @@ lm(formula = mpg ~ hp, data = mtcars, subset = c(1:10))
 This is where the documentation comes in handy. You can type a question mark in front of the function you'd like to learn more about (`?factor`). If you're using RStudio, this will bring up the documentation page for that function under the help tab in the lower right pane, which will usually include a description, the arguments (and their descriptions), and example code showing how to use the function. You can also type the function into the search bar under the help tab on the lower right pane.
 
 Hopefully, though, we'll provide enough example code throughout this book that you won't need to concern yourself with all of these details. But, we can't provide examples of *everything* for *every* situation, and you'll almost certainly use functions that aren't covered in this book. This is where having a basic understanding of these topics will come in handy.
+
+## Code Formatting {-}
+As a final note, just know that the spacing in your code doesn't matter. You can type `5 * 5` or `5*5` and get the same result. You can type `mean(1:10)` or `mean(1 : 10)` and you'll get the same result. You can even type `mean (1:10)` or `mean (1 : 10)`, but you probably shouldn't because this is very unconventional. 
 
 <!--
 ## Test Your Knowledge {-}

@@ -2,7 +2,7 @@
 library(readxl)
 ```
 
-# Reading and Writing Data
+# Reading and Writing Data{#CH4}
 
 ## Setting the Working Directory {-}
 Before you start importing files, you need to set the working directory so R looks for and saves files in the correct place. "Directory" is a synonym for folder, so 'setting the working directory' really just means we need to tell R which folder we'd like to use to import data from. You can determine your current working directory with the `getwd()` function:
@@ -20,7 +20,7 @@ setwd("..")
 knitr::include_graphics("./images/r_setwd.png")
 ```
 
-There are two folders shown in the example image above. If you're following along with the folder we created for this book, which you can download [here](https://github.com/JasonDude16), then your folder setup should look the same. 
+There are two folders shown in the example image above. If you're following along with the folder we created for this book, which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder), then your folder setup should look the same. 
 
 To import files from the data folder, you would click on the data folder and then click on the **More** dropdown arrow and click **Set as Working Directory**. After doing this, you should see something in your console similar to this: `setwd("~/Your/File/Path")`, which indicates that your working directory has been changed to the listed file path. If you type and run the code `list.files()` you can see the names of the files that are in your current working directory. If you see several data files listed when you run this code, such as the **BMI_1.csv**, then you're all set. 
 
