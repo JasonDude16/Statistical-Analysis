@@ -7,14 +7,14 @@ library(dplyr)
 # Simple Regression
 > In this chapter we'll use the `lm()` function for fitting a simple regression model with one continuous predictor, which will take the following forms: 
 
-$$y_i\ =\ \beta_0\ +\ \beta_1\left(x_i\right)\ +\ e_i$$
-$$y_i=\beta_0+\beta_1\left(x_i\ -\ \overline{x}\right)\ +\ e_i$$
+$$y_i=\beta_0+\beta_1\left(X1\right)+\epsilon_i$$
+$$y_i=\beta_0+\beta_1\left(X1-\overline{X1}\right)+\epsilon_i$$
 
 > The top equation is an untransformed model, and the bottom is a mean-centered model.
 
 > The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder)), you've correctly set your working directory to the data folder (which you can learn how to do in [Chapter 4](#CH4)), and run the code in the order it appears in this chapter.
 
-> The data used in this chapter is from Kaggle: <https://www.kaggle.com/open-powerlifting/powerlifting-database>. This dataset is a snapshot of the OpenPowerlifting database as of April 2019. Powerlifting is a sport in which competitors compete to lift the most weight for their class in three separate barbell lifts: the Squat, Bench, and Deadlift.
+> The data used in this chapter is from Kaggle: <https://www.kaggle.com/open-powerlifting/powerlifting-database>. This dataset is a snapshot of the OpenPowerlifting database as of April 2019.
 
 ## Importing {-}
 The first step is importing the data. In this example we'll use the **powerlifting.csv** file in the data folder, which is a dataset that consists of competitors and their statistics at a Powerlifting competition:
@@ -35,6 +35,7 @@ The `str()` function provides a lot of good information. We now know that the da
 ```{r}
 head(data[1:9])
 # Only the first 9 columns are printed here to save space
+# By default, the first 6 observations of all columns are printed
 ```
 
 Let's hypothesize that competitors who weigh more will have a higher `TotalKg`, which is the sum of the competitor's most weight lifted on three lifts: Squat, Bench Press, and Deadlift. First, let's visualize the relationship between these variables.
@@ -53,27 +54,25 @@ hist(data$TotalKg)
 hist(data$BodyweightKg)
 ```
 
+> The code `par(mfrow = c(1,2))` above is used to print the plots as a 1 x 2 grid; the `plot()` function does not need to be used in conjuction with this piece of code.
+
 And you can look at the six number summary with the `summary()` function. Notice how the summary conveniently includes the `NA` count.
 
 ```{r}
-summary(data[c(9,26)])
+summary(data[c("TotalKg", "BodyweightKg")])
 ```
 
 > More examples of viewing data can be found in [Chapter 5](#CH5)
 
 ## Formatting {-}
-Before modeling, we need to ask ourselves a few questions. What if someone didn't perform one of the lifts? Powerlifting competitions have several event options, and we might be including in our analysis individuals who have a `TotalKg` value, but their value is only for the squat and bench press lifts, rather than all three. Also, what if a competitor didn't successfully complete a lift? That is, they competed in all three lifts, but they (likely) attempted to lift too much weight and their attempts were unsuccessful. It probably isn't a good idea to include either of these scenarios in our analysis because their `TotalKg` values wouldn't represent the summation of all three lifts, which is what we're interested in. We could use the `filter()` function from the `dplyr` package to filter the data and take care of both of these issues in one step:
+Before modeling, we need to ask ourselves a few questions. What if someone didn't perform one of the lifts? Powerlifting competitions have several event options, and we might be including in our analysis individuals who have a `TotalKg` value, but their value is only for the squat and bench press lifts, rather than all three. Also, what if a competitor didn't successfully complete a lift? That is, they competed in all three lifts, but they (likely) attempted to lift too much weight and their attempts were unsuccessful so they were disqualified. It probably isn't a good idea to include either of these scenarios in our analysis because their `TotalKg` values wouldn't represent the summation of all three lifts, which is what we're interested in. We could use the `filter()` function from the `tidyverse` package to filter the data and take care of both of these issues in one step. Make sure the `tidyverse` package is loaded before running this code:
 
 ```{r}
 # Replace the original data object with the filtered data
-data <- filter(data,
-               !is.na(Best3SquatKg), 
-               !is.na(Best3BenchKg),
-               !is.na(Best3DeadliftKg),
-               !is.na(TotalKg))
+data <- filter(data,  Event == "SBD", Place != "DQ")
 ```
 
-In the code block above, the data was filtered to include only observations that had a successful squat, bench press, and deadlift, and had a `TotalKg` value. This ensures that the competitor competed in all three lifts and also had at least one successful attempt on each lift. The data is now ready for modeling. 
+In the code block above, the data was filtered to include only competitors who competed in all three lifts, `SBD`, and they were not disqualified, `DQ`, meaning that they had at least one successful lift on all three lifts. This ensures that the `TotalKg` value is representing the same value for all competitors.
 
 > More examples of formatting data can be found in [Chapter 6](#CH6)
 
@@ -89,10 +88,10 @@ lm(formula, data, subset, weights, na.action,
 
 The `lm()` (linear model) function is used for fitting linear models. There are many arguments for this function, but the `formula` and `data`arguments are the only ones that *need* to be specified. If you'd like to learn more about functions and arguments, [Chapter 2](#CH2) covers basic programming concepts, including functions and arguments.
 
-Let's take a look at how we can use the `lm()` function to make two models with the same variables using a simple regression: the untransformed linear model and a mean-centered model. For both models, `TotalKg` will be the dependent variable and `BodyWeightKg` will be the independent variable. 
+We'll use the `lm()` function to make two models: the untransformed linear model and a mean-centered model.
 
 ### Untransformed Model {-} 
-The equation above represents the untransformed, simple regression model with one continuous predictor. For the `formula` argument, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). For the `data` argument, you'll use the `data` object.
+When using the `lm()` function, the `formula` argument is set equal to the dependent variable, followed by a tilde, `~`, and then the independent variable(s). The `data` argument is set equal to the object that contains the dataset, which in this example is the object called `data`.
 
 ```{r}
 lm(formula = TotalKg ~ BodyweightKg, data = data)
@@ -105,7 +104,7 @@ plot(data$BodyweightKg, data$TotalKg)
 abline(50.83, 5.24, col = "red")
 ```
 
-It looks like there may be a significant relationship between the two variables, but how can we be sure? The `lm()` function printed the coefficients but did not provide information about the R-squared or significance. To see this information, we need to save the model as an object, and then print the summary of the model, like so:
+It looks like there may be a significant relationship between the two variables, but how can we be sure? The `lm()` function printed the coefficients but did not provide information about the R-squared or significance. To see this information, we need to save the model as an object, and then print the summary of the model:
 
 ```{r}
 my_model <- lm(formula = TotalKg ~ BodyweightKg, data = data)
@@ -119,7 +118,9 @@ par(mfrow = c(2,2))
 plot(my_model)
 ```
 
-What else can we do with the `my_model` object? Let's take a look at the object's `attributes`:
+> The code `par(mfrow = c(2,2))` above is used to print the plots as a 2 x 2 grid; the `plot()` function does not need to be used in conjuction with this piece of code.
+
+What else can be done with the `my_model` object? Let's take a look at the object's `attributes`:
 
 ```{r}
 attributes(my_model)
@@ -142,18 +143,18 @@ data$BodyweightKg_mean <- mean(data$BodyweightKg, na.rm = TRUE)
 data$BodyweightKg_mc <- data$BodyweightKg - data$BodyweightKg_mean
 ```
 
-Let's see what it looks like:
+Here's what the new mean-centered column looks like graphically:
 
 ```{r fig.align='center', out.height= "70%", out.width= "70%"}
 plot(data$BodyweightKg_mc ,data$TotalKg)
 abline(lm(data$TotalKg ~ data$BodyweightKg_mc), col = "red")
 ```
 
-We can now use this mean-centered column as the dependent variable.
+We can now use this mean-centered column as the dependent variable in the `lm()` function.
 
 ```{r}
 my_model2 <- lm(formula = TotalKg ~ BodyweightKg_mc, data = data)
 summary(my_model2)
 ```
 
-Notice how the slopes are the same in both models, but in the mean-centered model the y-intercept is now the average `TotalKg`.
+The slopes are the same in both models, but in the mean-centered model the y-intercept is now the average `TotalKg`.

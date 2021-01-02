@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Programming 101 | _main.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Programming 101 | _main.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Programming 101 | _main.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="getting-started-with-r.html"/>
+<link rel="next" href="packages-and-libraries.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i>Resources</a></li>
+<li class="part"><span><b>I R Basics</b></span></li>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-r"><i class="fa fa-check"></i>What is R?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-r"><i class="fa fa-check"></i>Installing R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-mac-users"><i class="fa fa-check"></i>Step 4: Mac users</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-windows-users"><i class="fa fa-check"></i>Step 4: Windows users</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-r-or-rstudio"><i class="fa fa-check"></i>Opening R or RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#the-rstudio-layout"><i class="fa fa-check"></i>The RStudio Layout</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#following-along"><i class="fa fa-check"></i>Following Along</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-a-script"><i class="fa fa-check"></i>Opening a Script</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#saving-a-script"><i class="fa fa-check"></i>Saving a Script</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="CH2.html"><a href="CH2.html"><i class="fa fa-check"></i><b>2</b> Programming 101</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#running-r-code"><i class="fa fa-check"></i>Running R Code</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#r-is-a-calculator"><i class="fa fa-check"></i>R is a calculator</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#objects-and-assignment"><i class="fa fa-check"></i>Objects and Assignment</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#variable-types"><i class="fa fa-check"></i>Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#dollar-signs-and-brackets"><i class="fa fa-check"></i>Dollar Signs and Brackets</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#functions-and-arguments"><i class="fa fa-check"></i>Functions and Arguments</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#example"><i class="fa fa-check"></i>Example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#code-formatting"><i class="fa fa-check"></i>Code Formatting</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html"><i class="fa fa-check"></i><b>3</b> Packages and Libraries</a><ul>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#what-are-packages"><i class="fa fa-check"></i>What are Packages?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#installing-packages"><i class="fa fa-check"></i>Installing Packages</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#whats-a-library"><i class="fa fa-check"></i>What’s a Library?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CH4.html"><a href="CH4.html"><i class="fa fa-check"></i><b>4</b> Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#setting-the-working-directory"><i class="fa fa-check"></i>Setting the Working Directory</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#reading-data"><i class="fa fa-check"></i>Reading Data</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CH5.html"><a href="CH5.html"><i class="fa fa-check"></i><b>5</b> Describing and Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#viewing-data"><i class="fa fa-check"></i>Viewing Data</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#data-summaries"><i class="fa fa-check"></i>Data Summaries</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#visualizing-data"><i class="fa fa-check"></i>Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#scatterplot"><i class="fa fa-check"></i>Scatterplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="CH6.html"><a href="CH6.html"><i class="fa fa-check"></i><b>6</b> Formatting Data</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#merging-files"><i class="fa fa-check"></i>Merging Files</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#long-format"><i class="fa fa-check"></i>Long Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#wide-format"><i class="fa fa-check"></i>Wide Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#recoding-variables"><i class="fa fa-check"></i>Recoding Variables</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#changing-variable-types"><i class="fa fa-check"></i>Changing Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#rename-columns"><i class="fa fa-check"></i>Rename Columns</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#change-column-order"><i class="fa fa-check"></i>Change Column Order</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#good-option"><i class="fa fa-check"></i>Good Option</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#better-option"><i class="fa fa-check"></i>Better Option</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Analysis</b></span></li>
+<li class="chapter" data-level="7" data-path="simple-regression.html"><a href="simple-regression.html"><i class="fa fa-check"></i><b>7</b> Simple Regression</a><ul>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#importing"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#viewing"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#formatting"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#modeling"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="simple-regression.html#the-lm-function">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#untransformed-model"><i class="fa fa-check"></i>Untransformed Model</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#mean-centered-model"><i class="fa fa-check"></i>Mean-Centered Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#importing-1"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#viewing-1"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-unmoderated-model"><i class="fa fa-check"></i>Data for Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#formatting-1"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models-1"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modeling-1"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="multiple-regression.html#the-lm-function-1">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#unmoderated-model"><i class="fa fa-check"></i>Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#moderated-model"><i class="fa fa-check"></i>Moderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#nonlinear-model"><i class="fa fa-check"></i>Nonlinear Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html"><i class="fa fa-check"></i><b>9</b> One and Two Sample t-test</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#importing-2"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#viewing-2"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-dependent"><i class="fa fa-check"></i>Data for Two Sample Dependent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#formatting-2"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent-1"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#modeling-2"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-and-two-sample-t-test.html#the-t.testfunction">The <code>t.test()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#one-sample"><i class="fa fa-check"></i>One Sample</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-independent-unpaired"><i class="fa fa-check"></i>Two Sample: Independent / Unpaired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-dependent-paired"><i class="fa fa-check"></i>Two Sample: Dependent / Paired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#optional-arguments"><i class="fa fa-check"></i>Optional Arguments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>10</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#importing-3"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#viewing-3"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#formatting-3"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#modeling-3"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-way-anova.html#the-ezanovafunction">The <code>ezANOVA()</code>Function</a></li>
+<li><a href="one-way-anova.html#the-lm-function-2">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-dummy-codes"><i class="fa fa-check"></i>Model with Dummy Codes</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-contrast-codes"><i class="fa fa-check"></i>Model with Contrast Codes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html"><i class="fa fa-check"></i><b>11</b> Repeated Measures ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#importing-4"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#viewing-4"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#formatting-4"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#modeling-4"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="repeated-measures-anova.html#the-ezanovafunction-1">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#model"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html"><i class="fa fa-check"></i><b>12</b> Mixed-Factorial ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#importing-5"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#viewing-5"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#formatting-5"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#modeling-5"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="mixed-factorial-anova.html#the-ezanovafunction-2">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#model-1"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>13</b> Analysis of Covariance (ANCOVA)</a><ul>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#importing-6"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#viewing-6"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#modeling-6"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="analysis-of-covariance-ancova.html#the-aovfunction">The <code>aov()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#model-2"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="CH2" class="section level1">
+<h1><span class="header-section-number">2</span> Programming 101</h1>
+<blockquote>
+<p>The goal of this chapter is not to turn you into an R programmer, but to cover the most important programming concepts so that you feel more comfortable using R and are able to get up and running with your analyses as fast as possible.</p>
+</blockquote>
+<div id="running-r-code" class="section level2 unnumbered">
+<h2>Running R Code</h2>
+<p>The rest of this booklet will contain code blocks that look like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="CH2.html#cb2-1"></a><span class="co"># This is a code block, and this is an example of a comment.</span></span>
+<span id="cb2-2"><a href="CH2.html#cb2-2"></a><span class="co"># You can comment your script by using the hashtag.</span></span>
+<span id="cb2-3"><a href="CH2.html#cb2-3"></a><span class="co"># That way you can make notes to yourself and keep track of what your code </span></span>
+<span id="cb2-4"><a href="CH2.html#cb2-4"></a><span class="co"># is doing at each step.</span></span></code></pre></div>
+<p>You can copy and paste the code within the blocks into your R script to try it out for yourself; but the code above is just a comment so it won’t do anything exciting. The code blocks will often (but not always) have some sort of output printed directly below them so that you can see the results.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="CH2.html#cb3-1"></a><span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>[1] 5.5</code></pre>
+<p>In the example above, the code block consisted of code that calculated the mean of the numbers 1 through 10, and the results were printed directly below. Notice how the output is printed in black font, which is how you can distinguish the code blocks from the output blocks.</p>
+<p>You can “run” a line of code in R by pressing <strong>Cmd + Enter</strong> on a Mac and <strong>Ctrl + Enter</strong> on a Windows. For example, if you wanted to know what 75 times 82 is, you could type <code>75 * 82</code> into your script and “run” the code by using <strong>Cmd + Enter</strong> or <strong>Ctrl + Enter</strong> to get the answer. Doing this will run <strong>only</strong> the selected line of code, meaning that your cursor must be on the line you want to evaluate in order for it to work. You can also type code directly into the console and run it by hitting <strong>Enter</strong>.</p>
+<blockquote>
+<p><em>“Why would I type code directly into the console?”</em></p>
+<p>You might want to type code directly into the console when you’re performing calculations but you don’t care about saving the results. A script is like a notepad where you can save your analysis. If you needed to calculate <code>75 * 82</code>, it’s probably not essential to have that calculation saved to your notebad, so you can type it directly into the console to keep your notepad clean. That way, you won’t have to constantly delete irrelevant code and calculations from your script.</p>
+</blockquote>
+<!--
+Rather than repeatedly copying and pasting these code blocks into an R script, you can open the `Ch2-6.R` script that was included in the download folder to follow along more easily. If you haven't already, you can download the folder [here](https://github.com/JasonDude16/Statistical-Analysis-Folder). The `Ch2-6.R` is located within the `scripts` subdirectory. This script contains all of the code blocks used in chapters 2 through 6 of this book.
+-->
+</div>
+<div id="r-is-a-calculator" class="section level2 unnumbered">
+<h2>R is a calculator</h2>
+<p>Try out R’s calculator functionality by copying and pasting the code below into your R session.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="CH2.html#cb5-1"></a><span class="dv">21</span> <span class="op">+</span><span class="st"> </span><span class="dv">21</span>   <span class="co"># Addition</span></span>
+<span id="cb5-2"><a href="CH2.html#cb5-2"></a><span class="dv">43</span> <span class="op">-</span><span class="st"> </span><span class="dv">20</span>   <span class="co"># Subtraction</span></span>
+<span id="cb5-3"><a href="CH2.html#cb5-3"></a><span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span>     <span class="co"># Multiplication</span></span>
+<span id="cb5-4"><a href="CH2.html#cb5-4"></a><span class="dv">45</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>    <span class="co"># Division</span></span>
+<span id="cb5-5"><a href="CH2.html#cb5-5"></a><span class="dv">2</span> <span class="op">^</span><span class="st"> </span><span class="dv">3</span>     <span class="co"># Exponentiation</span></span>
+<span id="cb5-6"><a href="CH2.html#cb5-6"></a><span class="kw">sqrt</span>(<span class="dv">16</span>)  <span class="co"># Square root</span></span>
+<span id="cb5-7"><a href="CH2.html#cb5-7"></a></span>
+<span id="cb5-8"><a href="CH2.html#cb5-8"></a><span class="co"># R follows PEMDAS rules</span></span>
+<span id="cb5-9"><a href="CH2.html#cb5-9"></a>(((<span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)) <span class="op">-</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb5-10"><a href="CH2.html#cb5-10"></a>(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
+</div>
+<div id="objects-and-assignment" class="section level2 unnumbered">
+<h2>Objects and Assignment</h2>
+<p>One of the most basic programming concepts is <strong>assignment</strong>. Let’s say we want the letter <code>x</code> to refer to the value 5. You can do this by <em>assigning</em> <code>x</code> to the value 5 with the assignment operator, <code>&lt;-</code>, or with the equal sign operator, <code>=</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="CH2.html#cb6-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb6-2"><a href="CH2.html#cb6-2"></a>x =<span class="st"> </span><span class="dv">5</span></span></code></pre></div>
+<p>In both of these examples the result is the same: <code>x</code> is now assigned to the value 5. It’s a matter of personal preference which operator you’d like to use (<code>&lt;-</code> or <code>=</code>), but it’s best to be consistent to make your script more readable.</p>
+<p><code>x</code> is now considered an <strong>object</strong>. An object is a name used to reference a value or set of values. The object <code>x</code> refers to the value 5. Instead of just assigning the number 5 to <code>x</code>, we could perform several calculations and then assign the result to an object, like so:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="CH2.html#cb7-1"></a>x &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">34</span> <span class="op">+</span><span class="st"> </span>((<span class="dv">12</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)<span class="op">^</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span>))</span>
+<span id="cb7-2"><a href="CH2.html#cb7-2"></a>x <span class="co"># Typing x by itself, like this, will print the value to the console</span></span></code></pre></div>
+<pre><code>[1] 117.6988</code></pre>
+<p><strong>The object <code>x</code> no longer refers to 5</strong>. We overwrote <code>x</code> and assigned it to a new value, ~117.7.</p>
+<p>When analyzing data, you’ll likely need to transform the data before you can run statistical tests. You can accomplish this by transforming the data and then saving the data as a new object. Let’s look at one more example.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="CH2.html#cb9-1"></a><span class="kw">head</span>(iris)</span>
+<span id="cb9-2"><a href="CH2.html#cb9-2"></a><span class="co"># The head() function prints the first few observations from the dataset</span></span></code></pre></div>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Here’s one of R’s built-in datasets, which is called <code>iris</code> and consists of 3 flower species (<code>setosa</code>, <code>virginica</code>, <code>versicolor</code>) and their their petal characteristics. Let’s say we only wanted to include <code>virginica</code> flowers in our analysis.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="CH2.html#cb11-1"></a><span class="kw">subset</span>(iris, Species <span class="op">==</span><span class="st"> &quot;virginica&quot;</span>)</span></code></pre></div>
+<p>The code above filters the data to include only <code>virginica</code> plants, but we didn’t assign it to an object so we have no way of referencing our filtered data.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="CH2.html#cb12-1"></a>iris_virginica &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species <span class="op">==</span><span class="st"> &quot;virginica&quot;</span>)</span>
+<span id="cb12-2"><a href="CH2.html#cb12-2"></a><span class="kw">head</span>(iris_virginica)</span></code></pre></div>
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+101          6.3         3.3          6.0         2.5 virginica
+102          5.8         2.7          5.1         1.9 virginica
+103          7.1         3.0          5.9         2.1 virginica
+104          6.3         2.9          5.6         1.8 virginica
+105          6.5         3.0          5.8         2.2 virginica
+106          7.6         3.0          6.6         2.1 virginica</code></pre>
+<p>The code above looks much better. The filtered data has been assigned to the object <code>iris_virginica</code>, so we now have a way to reference that data, and we could use this object to analyze the virginica plants exclusively.</p>
+</div>
+<div id="variable-types" class="section level2 unnumbered">
+<h2>Variable Types</h2>
+<p>R has several different variable types, and to manipulate your data it is good to be aware of them.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="CH2.html#cb14-1"></a><span class="fl">0.5</span>, <span class="dv">2</span>         <span class="co"># Numeric class</span></span>
+<span id="cb14-2"><a href="CH2.html#cb14-2"></a><span class="ot">TRUE</span>, <span class="ot">FALSE</span>    <span class="co"># Logical class</span></span>
+<span id="cb14-3"><a href="CH2.html#cb14-3"></a><span class="st">&quot;hat&quot;</span>, <span class="st">&quot;dog&quot;</span>   <span class="co"># Character class</span></span>
+<span id="cb14-4"><a href="CH2.html#cb14-4"></a>5L, 12L        <span class="co"># Integer class (&quot;L&quot; stores the value as an integer)</span></span>
+<span id="cb14-5"><a href="CH2.html#cb14-5"></a><span class="dv">1</span><span class="op">+</span>0i, <span class="dv">2</span><span class="op">+</span>4i     <span class="co"># Complex class</span></span>
+<span id="cb14-6"><a href="CH2.html#cb14-6"></a><span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>    <span class="co"># Factor class (categorical variable; each level is a category)</span></span></code></pre></div>
+<p>These variable types are the basic building blocks, and all values in R belong to one of them. You may have a situation where your data is imported as <code>character</code> but you’d like to change it to <code>factor</code>, or vice versa. But first, what exactly is a <code>character</code> class and what is a <code>factor</code> class? In the code block above, the example shows that <code>"hat"</code> and <code>"dog"</code> are of the character class; this means that R will interpret these values as letters and words, and nothing more. A factor class, on the other hand, will have an extra layer of complexity. Factors will be interpreted as <em>categories</em>, and not simply words. In the code block above the example given is <code>yes</code> and <code>no</code> as being of the factor class. Let’s say you had a dataset with 100 observations and 50 observations responded to a question with “yes” and 50 with “no”. If this were a character class, you would not be able to treat “yes” and “no” as categories. In order to be treated as categories, you would need to convert the values to a factor class that has two levels: <code>yes</code> and <code>no</code>. You can easily do this with the <code>as.factor()</code> and <code>as.character()</code> functions, which will be discussed in greater detail in Chapter 6.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="CH2.html#cb15-1"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb15-2"><a href="CH2.html#cb15-2"></a>y</span></code></pre></div>
+<pre><code>[1] 1 2 3 4 5</code></pre>
+<p>When you combine values, it’s called concatenation. In the above example, <code>numeric</code> values were concatenated together and assigned to the object <code>y</code> The object <code>y</code> now refers to 5 values: <code>1, 2, 3, 4, 5</code>. When we concatenate values together like this, we create a <code>data type</code>.</p>
+</div>
+<div id="data-types" class="section level2 unnumbered">
+<h2>Data Types</h2>
+<p>R has many data types, but the only one we’ll worry about is the <code>data frame</code>. A <code>data frame</code> is usually the object that’s created when importing a data file into R. A data frame consists of columns and rows, where each column is the same length. Here’s an example of one of R’s built-in data frames called <code>mtcars</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="CH2.html#cb17-1"></a><span class="kw">head</span>(mtcars)</span></code></pre></div>
+<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>Each column within the data frame consists of only <em>one</em> variable type, and this is always the case for data frames. In the <code>mtcars</code> data frame above, all columns are numeric. Even though some may look like integers or factors, they are not. How variable types can be changed will be discussed in Chapter 6.</p>
+</div>
+<div id="dollar-signs-and-brackets" class="section level2 unnumbered">
+<h2>Dollar Signs and Brackets</h2>
+<p>When working with datasets, you’ll often want to extract/reference part of the dataset. For example, in the <code>mtcars</code> dataset above, you might want to visualize the relationship between the <code>hp</code> (horsepower) and <code>mpg</code> of cars. We need to have a way of referencing these specific columns within the dataset; this can be accomplished with brackets, <code>[]</code>, and dollar signs, <code>$</code>. Brackets and dollar signs allow you to subset the data. For example, here’s a plot of the <code>hp</code> and <code>mpg</code> relationship:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="CH2.html#cb19-1"></a><span class="kw">plot</span>(mtcars<span class="op">$</span>hp, mtcars<span class="op">$</span>mpg)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In the code above, the dollar sign was used to selected the <code>hp</code> and <code>mpg</code> columns from the <code>mpg</code> data frame. Although not the most precise definition, you can think of the dollar sign as allowing you to select part of an object. In the example above, the column was the “part” that was selected, but other “parts” can be selected as well, which you’ll see in the statistical modeling section.</p>
+<p>Similarly to the dollar sign, brackets can be used to subset:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="CH2.html#cb20-1"></a><span class="kw">head</span>(mtcars[<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>                   mpg
+Mazda RX4         21.0
+Mazda RX4 Wag     21.0
+Datsun 710        22.8
+Hornet 4 Drive    21.4
+Hornet Sportabout 18.7
+Valiant           18.1</code></pre>
+<p>In the code above, the first column of the <code>mtcars</code> dataset was selected, which is the <code>mpg</code> column (the <code>head()</code> function was also used so that only the first few observations were printed).</p>
+<p>You can use brackets to subset both the columns and the rows of a dataset:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="CH2.html#cb22-1"></a>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>[1] 21.0 21.0 22.8 21.4 18.7 18.1</code></pre>
+<p>In the code above, the first 6 rows of the first column were selected from the <code>mtcars</code> dataset.</p>
+</div>
+<div id="functions-and-arguments" class="section level2 unnumbered">
+<h2>Functions and Arguments</h2>
+<p>So far we’ve seen R as a calculator, created objects, learned about variable types and data types, and subset data. But how do we actually <em>do</em> things in R? That is, how do we manipulate data and run a statistical analysis?</p>
+<p>To do just about anything in R you use functions. What functions do in R is take a process that would normally be a hassle for the user and make it easier. For example, the <code>mean()</code> function. We’re all familiar with how the mean is calculated, and we <em>could</em> calculate this manually in R. If we wanted the mean of the numbers <code>c(1, 3, 4, 4)</code> we could simply sum the numbers and divide by n to get 3. But why do that when we can just use the <code>mean()</code> function? And that’s the basic idea of a function: to simplify things for us. The <code>lm()</code> function creates a linear model from our data, which again we <em>could</em> achieve the same result by manually performing <em>many</em> calculations, but this would be a time-consuming, arduous task, and using the <code>lm()</code> function greatly simplifies the process.</p>
+<p>Functions are great because they can simplify and streamline a process, but how do you make the function do exactly what <em>you</em> need to do in your analysis? Let’s take a look at the <code>factor()</code> function to get an idea of how to take advantage of functions and arguments.</p>
+<p>Factors are categorical variables, where each level is a category. Here is an example of character data that’s been converted to a factor with the <code>factor()</code> function:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="CH2.html#cb24-1"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>)</span>
+<span id="cb24-2"><a href="CH2.html#cb24-2"></a>y &lt;-<span class="st"> </span><span class="kw">factor</span>(y) <span class="co"># y is converted to a factor with 2 levels</span></span>
+<span id="cb24-3"><a href="CH2.html#cb24-3"></a>y</span></code></pre></div>
+<pre><code>[1] cat dog cat cat dog cat dog
+Levels: cat dog</code></pre>
+<p>In this example, two levels are created from the data: <code>cat</code> and <code>dog</code>. Let’s slightly modify this example and say that data was entered incorrectly into a column, so the column looks like this:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="CH2.html#cb26-1"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dg&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;cart&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>)</span>
+<span id="cb26-2"><a href="CH2.html#cb26-2"></a>y &lt;-<span class="st"> </span><span class="kw">factor</span>(y) </span>
+<span id="cb26-3"><a href="CH2.html#cb26-3"></a>y</span></code></pre></div>
+<pre><code>[1] cat  dg   cat  cart dog  cat  dog 
+Levels: cart cat dg dog</code></pre>
+<p>Because of the typos, we now have 4 levels–<code>cat</code>, <code>dg</code>, <code>cart</code>, <code>dog</code>– and that’s clearly not what we want. To make the most of the <code>factor()</code> function, we can make use of its <strong>arguments</strong>, which allows us to have greater control over what the function does and how it manipulates the data. We could ignore the typos by using the <code>levels</code> argument, which is a way of specifying how many levels we’re supposed to have for the data:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="CH2.html#cb28-1"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dg&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;cart&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>)</span>
+<span id="cb28-2"><a href="CH2.html#cb28-2"></a>y &lt;-<span class="st"> </span><span class="kw">factor</span>(y, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>))</span>
+<span id="cb28-3"><a href="CH2.html#cb28-3"></a>y</span></code></pre></div>
+<pre><code>[1] cat  &lt;NA&gt; cat  &lt;NA&gt; dog  cat  dog 
+Levels: cat dog</code></pre>
+<p>We’re now back to two levels, and the typos were treated as <code>NA</code>. Now let’s say we wanted to recode <code>cat</code> as <code>0</code> and <code>dog</code> as <code>1</code>. We could use the <code>labels</code> argument, which creates a new label for the corresponding level (in order):</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="CH2.html#cb30-1"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dg&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;cart&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>)</span>
+<span id="cb30-2"><a href="CH2.html#cb30-2"></a>y &lt;-<span class="st"> </span><span class="kw">factor</span>(y, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb30-3"><a href="CH2.html#cb30-3"></a>y</span></code></pre></div>
+<pre><code>[1] 0    &lt;NA&gt; 0    &lt;NA&gt; 1    0    1   
+Levels: 0 1</code></pre>
+<p>By using <code>factor()</code>’s arguments we were able to get the function to do what <em>we</em> wanted it to do, not just what it does by default. This is just one example of what makes a programming language like R so powerful!</p>
+<div id="example" class="section level3 unnumbered">
+<h3>Example</h3>
+<p>Now let’s look at a more complete example of functions and arguments with the <code>lm()</code> function.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="CH2.html#cb32-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
+<span id="cb32-2"><a href="CH2.html#cb32-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb32-3"><a href="CH2.html#cb32-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
+<p>Above is the <code>lm()</code> function used for fitting linear models. The function has many arguments, but most of the arguments have default values; what this means is that you do not need to assign a value to that argument in order for the function to work. For example, in this function the default <code>method</code> argument is set to <code>qr</code>: <code>method = "qr"</code>. This means that when you use the <code>lm()</code> function, the <code>method</code> will be set to <code>qr</code> even if you don’t explicitly set it to <code>qr</code>; hence, <code>qr</code> is the default (which is referring to <a href="https://en.wikipedia.org/wiki/QR_decomposition">QR Decomposition</a>, in case you were curious). <strong>The idea of a default argument is very important point, because the default arguments for a function can impact the way the function behaves without the user being aware of it.</strong> Keep this in mind if you’re using a function and the results are not what you’d expect them to be.</p>
+<p>In addition to arguments that have default values, there are also arguments which are optional. In the <code>lm()</code> function above, <code>subset</code>, <code>weights</code>, <code>na.action</code>, and <code>offset</code> are all optional arguments. Unsurprisingly, this means that these arguments do not <em>need</em> to be used, but they can be.</p>
+<p>We can now see why the code below is valid, even though there are many arguments that were not specified.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="CH2.html#cb33-1"></a><span class="kw">lm</span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars)</span></code></pre></div>
+<p>We can also see why this code below is valid. The <code>subset</code> argument is optional, and here we used it to specify that we only want to include the first 10 observations in our model.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="CH2.html#cb34-1"></a><span class="kw">lm</span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars, <span class="dt">subset =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</span></code></pre></div>
+<blockquote>
+<p><em>“But how do I know what the arguments are for a given function, what they do, which arguments have default values, which ones are optional, and which ones I need to specify?”</em></p>
+<p>This is where the documentation comes in handy. You can type a question mark in front of the function you’d like to learn more about (<code>?factor</code>). If you’re using RStudio, this will bring up the documentation page for that function under the help tab in the lower right pane, which will usually include a description, the arguments (and their descriptions), and example code showing how to use the function. You can also type the function into the search bar under the help tab on the lower right pane.</p>
+<p>Hopefully, though, we’ll provide enough example code throughout this book that you won’t need to concern yourself with all of these details. But, we can’t provide examples of <em>everything</em> for <em>every</em> situation, and you’ll almost certainly use functions that aren’t covered in this book. This is where having a basic understanding of these topics will come in handy.</p>
+</blockquote>
+</div>
+</div>
+<div id="code-formatting" class="section level2 unnumbered">
+<h2>Code Formatting</h2>
+<p>As a final note, just know that the spacing in your code doesn’t matter. You can type <code>5 * 5</code> or <code>5*5</code> and get the same result. You can type <code>mean(1:10)</code> or <code>mean(1 : 10)</code> and you’ll get the same result. You can even type <code>mean (1:10)</code> or <code>mean (1 : 10)</code>, but you probably shouldn’t because this is very unconventional.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-started-with-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="packages-and-libraries.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -23,7 +23,7 @@ ggplot(tibble::tibble(rnorm = rnorm(100, mean = -1)), aes(x = rnorm)) +
                  alpha = .7) +
     geom_density(fill = "red", alpha = .7) + 
     theme_bw() +
-    labs(title = "A Colorful Histogram Example") + 
+    labs(title = "A Colorful Distribution Example") + 
     xlab("Random Normal Distribution") +
     ylab("Density") +
     theme(panel.grid.minor.y = element_blank(),
@@ -55,7 +55,7 @@ library(tidyverse)
 
 Running the code `library(tidyverse)` now allows you to use all of the functions that come bundled with the `tidyverse` package (which is a lot!). 
 
-* Pro tip: It's best practice to load your desired package with the `library()` function at the very beginning of your R script; that way it's loaded *before* the rest of your code is ran.
+> Pro tip: It's best practice to load your desired package with the `library()` function at the very beginning of your R script; that way it's loaded *before* the rest of your code is ran.
 
 You can check to see if you installed the `tidyverse` package and loaded it into your R session correctly by running the `ggplot` histogram code above. If you see the same plot in your R session, everything is working correctly!
 

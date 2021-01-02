@@ -7,7 +7,7 @@ library(tidyr)
 
 > In this example we'll use the `ezANOVA()` function for fitting a Repeated-Measures ANOVA model, which will take the following form: 
 
-$$y_i\ =\ \beta_0+\beta_1\left(X_{1i}\right)+\beta_2\left(X_{2i}\right)+\beta_3\left(X_{3i}\right)+e_i$$
+$$y_i=\beta_0+\beta_1\left(X1_L\right)+\beta_2\left(X1_Q\right)+U_i+\epsilon_{ij}$$
 
 > The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder)), you've correctly set your working directory to the data folder (which you can learn how to do in [Chapter 4](#CH4)), and run the code in the order it appears in this chapter. 
 
@@ -75,4 +75,4 @@ ez::ezANOVA(data = data,
             within = .(Time))
 ```
 
-Notice the formatting in the code above. When using the `within` argument, you need to use a period and parentheses, `.()` when listing the column. You can list additional columns for both of these arguments by separating each column with a comma: `within = .(Time, Column2)`.
+Notice the formatting in the code above. When using the `within` and `between` arguments, you need to use a period and parentheses, `.()`, when listing the column. You can list additional columns for both of these arguments by separating each column with a comma: `within = .(Time, Column2)`.

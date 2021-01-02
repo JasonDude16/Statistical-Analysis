@@ -3,6 +3,7 @@ library(readxl)
 ```
 
 # Reading and Writing Data{#CH4}
+> In this chapter we'll work through a few examples of reading and writing data. If you'd like to follow along with the examples, you can download the folder for this book [here](https://github.com/JasonDude16/Statistical-Analysis-Folder). After downloading and unzipping the folder, <b>open the file that ends with the extension `.Rproj`.</b> This will set your initial working directory to the correct folder, which is important for following along in the section below.
 
 ## Setting the Working Directory {-}
 Before you start importing files, you need to set the working directory so R looks for and saves files in the correct place. "Directory" is a synonym for folder, so 'setting the working directory' really just means we need to tell R which folder we'd like to use to import data from. You can determine your current working directory with the `getwd()` function:
@@ -20,23 +21,27 @@ setwd("..")
 knitr::include_graphics("./images/r_setwd.png")
 ```
 
-There are two folders shown in the example image above. If you're following along with the folder we created for this book, which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder), then your folder setup should look the same. 
+There are two folders shown in the example image above. If you're following along with the folder we created for this book, then your folder setup should look the same. 
 
-To import files from the data folder, you would click on the data folder and then click on the **More** dropdown arrow and click **Set as Working Directory**. After doing this, you should see something in your console similar to this: `setwd("~/Your/File/Path")`, which indicates that your working directory has been changed to the listed file path. If you type and run the code `list.files()` you can see the names of the files that are in your current working directory. If you see several data files listed when you run this code, such as the **BMI_1.csv**, then you're all set. 
+To import files from the data folder, you would click on the data folder and then click on the **More** dropdown arrow and click **Set as Working Directory**. After doing this, you should see something in your console similar to this: `setwd("~/Your/File/Path")`, which indicates that your working directory has been changed to the listed file path. If you type and run the code `list.files()` you can see the names of the files that are in your current working directory. If you're following along with the folder provided, you should see several data files listed when you run this code, such as the **BMI_1.csv**. 
 
-Changing your working directory only *temporarily* changes it for your current R session. It does *not* permanently change it. It's best practice to add the code `setwd("~/Your/File/Path")`, which is the same code that's printed to the console, to the beginning of your R script so that you do not have to manually set your working directory every time you open your R script. 
-
-> Note: The code in the rest of this chapter will only work if you are following along with the folder for this book and have correctly set the working directory to the data folder. 
+Changing the working directory only *temporarily* changes it for your current R session. It does *not* permanently change it. Fir this reason, it's a good idea to add the code `setwd("~/Your/File/Path")`, which is the same code that's printed to the console, to the beginning of your R script so that you do not have to manually set your working directory every time you open your R script. 
 
 ## Reading Data {-}
-Once the working directory has correctly been set, importing data files is easy. There's a file in the data folder named **BMI_1.csv**, and we can import it with the `read.csv()` function:
+<div style="background-color:lightyellow;">
+
+><b>The code in the rest of this chapter will only work if you are following along with the folder for this book and have correctly set the working directory to the data folder (see above).</b>
+
+</div>
+
+Once the working directory has correctly been set, importing data files is easy. There's a file in the data folder named **BMI_1.csv**. A `.csv` file is a comma separated value file, which, as the name implies, consists of values separated by a comma. We can import the **BMI_1.csv** file with the `read.csv()` function:
 
 ```{r}
 data_csv <- read.csv("BMI_1.csv")
 # Don't forget to assign the csv file to an object
 ```
 
-And if the **BMI_1.csv** was instead a .txt or .xlsx / .xls (excel) file, we could use the `read.delim()` and `read_excel()` functions, respectively:
+And if the **BMI_1.csv** was instead a .txt file (tab delimited file) or .xlsx / .xls (Excel) file, we could use the `read.delim()` and `read_excel()` functions, respectively:
 
 ```{r}
 # txt file
@@ -55,7 +60,7 @@ After you've imported your data you can view it with the `head()` function:
 head(data_xlsx)
 ```
 
-The three import functions above have many arguments that you can change if the data is not imported in the format you were expecting. For example, txt files can be formatted in different ways; sometimes the data is delimited with a tab, or it may be delimited with a semicolon. If your txt file is not separated by a tab, you can change the `sep` argument to indicate how it is separated (the default argument for `sep` is `"\t"`, which means separated by a tab).
+The three import functions above have many arguments that you can change if the data is not imported in the format you were expecting. For example, txt files can be formatted in different ways; sometimes the data is delimited with a tab, or it may be delimited with a semicolon. If your txt file is not separated by a tab, you can change the `sep` argument (which is short for separator) to indicate how it is separated (the default argument for `sep` is `"\t"`, which means separated by a tab).
 
 Here's an example where the txt file is not delimited by a tab, so it gets imported incorrectly:
 

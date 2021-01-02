@@ -7,9 +7,9 @@ library(dplyr)
 
 > In this chapter we'll use the `lm()` function for fitting a multiple regression model with two continuous predictors, which will take the following forms: 
 
-$$y_i\ =\ \beta_0+\beta_1\left(X_{1i}\right)+\beta_2\left(X_{2i}\right)+e_i$$
-$$y_i\ =\ \beta_0+\beta_1\left(X_{1i}\right)+\beta_2\left(X_{2i}\right)+\beta_3\left(X_{1i}\ \cdot\ X_{2i}\right)+e_i$$
-$$y_i\ =\ \beta_0+\beta_1\left(X_i\right)+\beta_2\left(X_i^2\right)+e_i$$
+$$y_i=\beta_0+\beta_1\left(X1\right)+\beta_2\left(X2\right)+\epsilon_i$$
+$$y_i=\beta_0+\beta_1\left(X1\right)+\beta_2\left(X2\right)+\beta_3\left(X1\ \cdot\ X2\right)+\epsilon_i$$
+$$y_i\ =\ \beta_0+\beta_1\left(X1\right)+\beta_2\left(X1^2\right)+\epsilon_i$$
 
 > The first equation is the unmoderated (additive) model, the second is the moderated (multiplicative) model, and the third is the nonlinear model.
 
@@ -41,8 +41,8 @@ head(data1)
 We can use the `plot()` function to visualize the relationships between `Age`, `Height`, and `Weight`: 
 
 ```{r}
-plot(data1[c(3,4,5)])
 # Used brackets to subset the data and select columns 3, 4, 5
+plot(data1[c(3,4,5)])
 ```
 
 Or, you could visualize all three variables on one graph with a 3D scatterplot:
@@ -64,6 +64,8 @@ hist(data1$Height)
 hist(data1$Weight)
 ```
 
+> The code `par(mfrow = c(2,2))` above is used to print the plots as a 2 x 2 grid; the `plot()` function does not need to be used in conjuction with this piece of code.
+
 And you can look at the six number summary with the `summary()` function:
 
 ```{r}
@@ -71,7 +73,7 @@ summary(data1[c(3,4,5)])
 ```
 
 ### Data for Moderated and Nonlinear Models {-}
-The **data_altitude.csv** file contains data about an athlete's baseline VO2max, `BVO2`, and a VO2max value where the test was conducted at some altitude, `AVO2`. Again, we'll use the `str()` and `head()` functions to view the dataset: 
+The **data_altitude.csv** file contains data about an athlete's baseline VO2max, `BVO2`, and a VO2max value where the test was conducted at some altitude, `AVO2`. We'll use the `str()` and `head()` functions to view the dataset: 
 
 ```{r}
 str(data2)
@@ -81,15 +83,12 @@ str(data2)
 head(data2)
 ```
 
-We'll skip the visualizations for this dataset since examples were just provided for **age_height_weight.txt**.
-
 > More examples of viewing data can be found in [Chapter 5](#CH5)
 
 ## Formatting {-}
 
 ### Data for Moderated and Nonlinear Models {-}
-
-The only formatting that needs to be done is to change the unit of `altitude` from meters to kilometers, so that the axes have similar scales. Also, we'll create a column that squares all of the `alt_km` values which will be used for the nonlinear model. 
+The only formatting that needs to be done is to change the unit of `altitude` from meters to kilometers, so that the axes have similar scales. Also, we'll create a column that squares all of the `alt_km` values which will be used for the nonlinear model. To accomplish this, we can use the `mutate()` function which comes from the `tidyverse` package. Make sure the `tidyverse` package is loaded before running this code: 
 
 ```{r}
 data2 <- mutate(data2, alt_km = altitude / 1000)
@@ -121,8 +120,10 @@ The `lm()` (linear model) function is used for fitting linear models. There are 
 
 The `lm()` function automatically controls for shared variance, so we don't need to take any additional steps before adding the variables to the model.
 
+We'll use the `lm()` function to make three models: an unmoderated model, a moderated model, and a nonlinear model.
+
 ### Unmoderated Model {-} 
-In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). For the `data` argument, you'll use the `data1` object. In the unmoderated model, the addition operator, `+`, is used between each independent variable. 
+In the `lm()` function, the dependent variable is listed first, followed by a tilde, `~`, and then the independent variable(s). The `data` argument is set equal to the object that contains the dataset, which in this example is the object called `data1`. In the unmoderated model, the addition operator, `+`, is used between each independent variable. 
 
 ```{r}
 lm(formula = Weight ~ Age + Height, data = data1)
@@ -147,6 +148,8 @@ par(mfrow = c(2,2))
 plot(my_model)
 ```
 
+> The code `par(mfrow = c(2,2))` above is used to print the plots as a 2 x 2 grid; the `plot()` function does not need to be used in conjuction with this piece of code.
+
 The `my_model` object has attributes. Attributes can store additional information about the object, such as the model's residuals. You can find out the attributes of an object with the `attributes()` function. 
 
 ```{r}
@@ -160,7 +163,7 @@ my_model$fitted.values[1:5]
 ```
 
 ### Moderated Model {-}
-In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). For the `data` argument, you'll use the `data2` object. In the moderated model, the multiplication operator, `*`, is used between each independent variable to indicate an interaction.
+In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). The `data` argument is set equal to the object that contains the dataset, which in this example is the object called `data2`. In the moderated model, the multiplication operator, `*`, is used between each independent variable to indicate an interaction.
 
 ```{r}
 my_model2 <- lm(formula = decrease ~ alt_km * BVO2, data = data2)
@@ -171,7 +174,7 @@ summary(my_model2)
 ```
 
 ### Nonlinear Model {-}
-In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). For the `data` argument, you'll use the `data2` object. In the nonlinear model, the addition operator, `+`, is used between each independent variable. In this example, the independent variables are te `alt_km` and `alt_km_sq` columns. 
+In the `lm()` function, the dependent variable is listed first, followed by a tilda, `~`, and then the independent variable(s). The `data` argument is set equal to the object that contains the dataset, which in this example is the object called `data2`. In the nonlinear model, the addition operator, `+`, is used between each independent variable. In this example, the independent variables are the `alt_km` and `alt_km_sq` columns. 
 
 ```{r}
 my_model3 <- lm(formula = decrease ~ alt_km + alt_km_sq, data = data2)

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 One-Way ANOVA | _main.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 One-Way ANOVA | _main.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 One-Way ANOVA | _main.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="one-and-two-sample-t-test.html"/>
+<link rel="next" href="repeated-measures-anova.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i>Resources</a></li>
+<li class="part"><span><b>I R Basics</b></span></li>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-r"><i class="fa fa-check"></i>What is R?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-r"><i class="fa fa-check"></i>Installing R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-mac-users"><i class="fa fa-check"></i>Step 4: Mac users</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-windows-users"><i class="fa fa-check"></i>Step 4: Windows users</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-r-or-rstudio"><i class="fa fa-check"></i>Opening R or RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#the-rstudio-layout"><i class="fa fa-check"></i>The RStudio Layout</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#following-along"><i class="fa fa-check"></i>Following Along</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-a-script"><i class="fa fa-check"></i>Opening a Script</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#saving-a-script"><i class="fa fa-check"></i>Saving a Script</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="CH2.html"><a href="CH2.html"><i class="fa fa-check"></i><b>2</b> Programming 101</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#running-r-code"><i class="fa fa-check"></i>Running R Code</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#r-is-a-calculator"><i class="fa fa-check"></i>R is a calculator</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#objects-and-assignment"><i class="fa fa-check"></i>Objects and Assignment</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#variable-types"><i class="fa fa-check"></i>Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#dollar-signs-and-brackets"><i class="fa fa-check"></i>Dollar Signs and Brackets</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#functions-and-arguments"><i class="fa fa-check"></i>Functions and Arguments</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#example"><i class="fa fa-check"></i>Example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#code-formatting"><i class="fa fa-check"></i>Code Formatting</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html"><i class="fa fa-check"></i><b>3</b> Packages and Libraries</a><ul>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#what-are-packages"><i class="fa fa-check"></i>What are Packages?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#installing-packages"><i class="fa fa-check"></i>Installing Packages</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#whats-a-library"><i class="fa fa-check"></i>What’s a Library?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CH4.html"><a href="CH4.html"><i class="fa fa-check"></i><b>4</b> Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#setting-the-working-directory"><i class="fa fa-check"></i>Setting the Working Directory</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#reading-data"><i class="fa fa-check"></i>Reading Data</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CH5.html"><a href="CH5.html"><i class="fa fa-check"></i><b>5</b> Describing and Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#viewing-data"><i class="fa fa-check"></i>Viewing Data</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#data-summaries"><i class="fa fa-check"></i>Data Summaries</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#visualizing-data"><i class="fa fa-check"></i>Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#scatterplot"><i class="fa fa-check"></i>Scatterplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="CH6.html"><a href="CH6.html"><i class="fa fa-check"></i><b>6</b> Formatting Data</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#merging-files"><i class="fa fa-check"></i>Merging Files</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#long-format"><i class="fa fa-check"></i>Long Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#wide-format"><i class="fa fa-check"></i>Wide Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#recoding-variables"><i class="fa fa-check"></i>Recoding Variables</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#changing-variable-types"><i class="fa fa-check"></i>Changing Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#rename-columns"><i class="fa fa-check"></i>Rename Columns</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#change-column-order"><i class="fa fa-check"></i>Change Column Order</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#good-option"><i class="fa fa-check"></i>Good Option</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#better-option"><i class="fa fa-check"></i>Better Option</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Analysis</b></span></li>
+<li class="chapter" data-level="7" data-path="simple-regression.html"><a href="simple-regression.html"><i class="fa fa-check"></i><b>7</b> Simple Regression</a><ul>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#importing"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#viewing"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#formatting"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#modeling"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="simple-regression.html#the-lm-function">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#untransformed-model"><i class="fa fa-check"></i>Untransformed Model</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#mean-centered-model"><i class="fa fa-check"></i>Mean-Centered Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#importing-1"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#viewing-1"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-unmoderated-model"><i class="fa fa-check"></i>Data for Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#formatting-1"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models-1"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modeling-1"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="multiple-regression.html#the-lm-function-1">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#unmoderated-model"><i class="fa fa-check"></i>Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#moderated-model"><i class="fa fa-check"></i>Moderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#nonlinear-model"><i class="fa fa-check"></i>Nonlinear Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html"><i class="fa fa-check"></i><b>9</b> One and Two Sample t-test</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#importing-2"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#viewing-2"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-dependent"><i class="fa fa-check"></i>Data for Two Sample Dependent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#formatting-2"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent-1"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#modeling-2"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-and-two-sample-t-test.html#the-t.testfunction">The <code>t.test()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#one-sample"><i class="fa fa-check"></i>One Sample</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-independent-unpaired"><i class="fa fa-check"></i>Two Sample: Independent / Unpaired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-dependent-paired"><i class="fa fa-check"></i>Two Sample: Dependent / Paired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#optional-arguments"><i class="fa fa-check"></i>Optional Arguments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>10</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#importing-3"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#viewing-3"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#formatting-3"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#modeling-3"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-way-anova.html#the-ezanovafunction">The <code>ezANOVA()</code>Function</a></li>
+<li><a href="one-way-anova.html#the-lm-function-2">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-dummy-codes"><i class="fa fa-check"></i>Model with Dummy Codes</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-contrast-codes"><i class="fa fa-check"></i>Model with Contrast Codes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html"><i class="fa fa-check"></i><b>11</b> Repeated Measures ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#importing-4"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#viewing-4"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#formatting-4"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#modeling-4"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="repeated-measures-anova.html#the-ezanovafunction-1">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#model"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html"><i class="fa fa-check"></i><b>12</b> Mixed-Factorial ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#importing-5"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#viewing-5"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#formatting-5"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#modeling-5"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="mixed-factorial-anova.html#the-ezanovafunction-2">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#model-1"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>13</b> Analysis of Covariance (ANCOVA)</a><ul>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#importing-6"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#viewing-6"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#modeling-6"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="analysis-of-covariance-ancova.html#the-aovfunction">The <code>aov()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#model-2"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="one-way-anova" class="section level1">
+<h1><span class="header-section-number">10</span> One-Way ANOVA</h1>
+<blockquote>
+<p>In this chapter we’ll use the <code>lm()</code> and <code>ezANOVA()</code> functions for fitting a one-way ANOVA model with dummy codes and contrast codes, which will take the following form:</p>
+</blockquote>
+<p><span class="math display">\[y_i=\beta_0+\beta_1\left(X1_L\right)+\beta_2\left(X1_Q\right)+\epsilon_i\]</span></p>
+<blockquote>
+<p>The code in this chapter only works if you’re following along with the Github folder for this book (which you can download <a href="https://github.com/JasonDude16/Statistical-Analysis-Folder">here</a>), you’ve correctly set your working directory to the data folder (which you can learn how to do in <a href="CH4.html#CH4">Chapter 4</a>), and run the code in the order it appears in this chapter.</p>
+</blockquote>
+<div id="importing-3" class="section level2 unnumbered">
+<h2>Importing</h2>
+<p>For this chapter we’ll be using the <strong>data_800m.csv</strong> file. This dataset contains information about a subject’s VO2max and their 800 meter run time.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="one-way-anova.html#cb236-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_800m.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="viewing-3" class="section level2 unnumbered">
+<h2>Viewing</h2>
+<p>The <strong>data_800m.csv</strong> dataset contains information about a subject’s VO2max and their 800 meter run time. Base off of that run time, they were categorized as <code>faster</code>, <code>medium</code>, or <code>slower</code>.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="one-way-anova.html#cb237-1"></a><span class="kw">head</span>(data)</span></code></pre></div>
+<pre><code>  subID   VO2 time groups
+1  s001 74.00  116 faster
+2  s002 68.00  117 faster
+3  s003 70.50  119 faster
+4  s004 61.00  121 faster
+5  s005 73.25  121 faster
+6  s006 68.25  122 faster</code></pre>
+<blockquote>
+<p>More examples of viewing data can be found in <a href="CH5.html#CH5">Chapter 5</a></p>
+</blockquote>
+</div>
+<div id="formatting-3" class="section level2 unnumbered">
+<h2>Formatting</h2>
+<p>There’s no formatting that <em>needs</em> to be done for this dataset. By default, R will create dummy codes for categorical variables. Lambda 1 and Lambda 2 will be assigned the codes <code>0,1,0</code> and <code>0,0,1</code>. However, we could create a set of contrast codes to analyze linear and quadratic effects. We’ll recode the <code>faster</code>, <code>medium</code>, and <code>slower</code> categories as <code>-1</code>, <code>0</code>, <code>1</code> and <code>0</code>, <code>1</code>, <code>2</code> for the linear and quadratic codes, respectively. One easy way to do this is with the <code>mapvalues()</code> function which comes from the <code>plyr</code> package. You’ll first need to install the package (<code>install.packages(plyr)</code>) and then load the library (<code>library(plyr)</code>) before using this function.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="one-way-anova.html#cb239-1"></a>data<span class="op">$</span>lin.c &lt;-<span class="st"> </span><span class="kw">mapvalues</span>(<span class="dt">x =</span> data<span class="op">$</span>groups, </span>
+<span id="cb239-2"><a href="one-way-anova.html#cb239-2"></a>                        <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;faster&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;slower&quot;</span>),</span>
+<span id="cb239-3"><a href="one-way-anova.html#cb239-3"></a>                        <span class="dt">to =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb239-4"><a href="one-way-anova.html#cb239-4"></a></span>
+<span id="cb239-5"><a href="one-way-anova.html#cb239-5"></a>data<span class="op">$</span>quad.c &lt;-<span class="st"> </span><span class="kw">mapvalues</span>(<span class="dt">x =</span> data<span class="op">$</span>groups, </span>
+<span id="cb239-6"><a href="one-way-anova.html#cb239-6"></a>                         <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;faster&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;slower&quot;</span>),</span>
+<span id="cb239-7"><a href="one-way-anova.html#cb239-7"></a>                         <span class="dt">to =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>))</span></code></pre></div>
+<blockquote>
+<p>More examples of formatting data can be found in <a href="CH6.html#CH6">Chapter 6</a></p>
+</blockquote>
+</div>
+<div id="modeling-3" class="section level2 unnumbered">
+<h2>Modeling</h2>
+<div id="the-ezanovafunction" class="section level3 unnumbered">
+<h3>The <code>ezANOVA()</code>Function</h3>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="one-way-anova.html#cb240-1"></a><span class="kw">ezANOVA</span>(</span>
+<span id="cb240-2"><a href="one-way-anova.html#cb240-2"></a>    data</span>
+<span id="cb240-3"><a href="one-way-anova.html#cb240-3"></a>    , dv</span>
+<span id="cb240-4"><a href="one-way-anova.html#cb240-4"></a>    , wid</span>
+<span id="cb240-5"><a href="one-way-anova.html#cb240-5"></a>    , <span class="dt">within =</span> <span class="ot">NULL</span></span>
+<span id="cb240-6"><a href="one-way-anova.html#cb240-6"></a>    , <span class="dt">within_full =</span> <span class="ot">NULL</span></span>
+<span id="cb240-7"><a href="one-way-anova.html#cb240-7"></a>    , <span class="dt">within_covariates =</span> <span class="ot">NULL</span></span>
+<span id="cb240-8"><a href="one-way-anova.html#cb240-8"></a>    , <span class="dt">between =</span> <span class="ot">NULL</span></span>
+<span id="cb240-9"><a href="one-way-anova.html#cb240-9"></a>    , <span class="dt">between_covariates =</span> <span class="ot">NULL</span></span>
+<span id="cb240-10"><a href="one-way-anova.html#cb240-10"></a>    , <span class="dt">observed =</span> <span class="ot">NULL</span></span>
+<span id="cb240-11"><a href="one-way-anova.html#cb240-11"></a>    , <span class="dt">diff =</span> <span class="ot">NULL</span></span>
+<span id="cb240-12"><a href="one-way-anova.html#cb240-12"></a>    , <span class="dt">reverse_diff =</span> <span class="ot">FALSE</span></span>
+<span id="cb240-13"><a href="one-way-anova.html#cb240-13"></a>    , <span class="dt">type =</span> <span class="dv">2</span></span>
+<span id="cb240-14"><a href="one-way-anova.html#cb240-14"></a>    , <span class="dt">white.adjust =</span> <span class="ot">FALSE</span></span>
+<span id="cb240-15"><a href="one-way-anova.html#cb240-15"></a>    , <span class="dt">detailed =</span> <span class="ot">FALSE</span></span>
+<span id="cb240-16"><a href="one-way-anova.html#cb240-16"></a>    , <span class="dt">return_aov =</span> <span class="ot">FALSE</span></span>
+<span id="cb240-17"><a href="one-way-anova.html#cb240-17"></a>)</span></code></pre></div>
+<p>The <code>ezANOVA()</code> function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you’re performing. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
+</div>
+<div id="the-lm-function-2" class="section level3 unnumbered">
+<h3>The <code>lm()</code> Function</h3>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="one-way-anova.html#cb241-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
+<span id="cb241-2"><a href="one-way-anova.html#cb241-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb241-3"><a href="one-way-anova.html#cb241-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
+<p>The <code>lm()</code> (linear model) function is used for fitting linear models. Notice that there are many arguments for this function, but the <code>formula</code> and <code>data</code>arguments are the only ones that <em>need</em> to be specified. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
+</div>
+<div id="model-with-dummy-codes" class="section level3 unnumbered">
+<h3>Model with Dummy Codes</h3>
+<p>By default, the <code>lm()</code> and <code>ezANOVA()</code> functions use the dummy codes <code>0</code>, <code>1</code>, <code>0</code> and <code>0</code>, <code>0</code>, <code>1</code> for three categories. In the formatting section we created contrast codes, but in this example we will not use those contrast codes. We’ll let the function create dummy codes for us.</p>
+<p>In this example we’ll use the <code>ezANOVA()</code> function. We need to specify the <code>data</code>, <code>dv</code>, <code>wid</code>, <code>between</code>, and <code>type</code> arguments. You can also set <code>detailed</code> and <code>return_aov</code> to <code>TRUE</code> for a more comprehensive output. The <code>data</code> argument is set equal to the entire dataset, the <code>dv</code> argument, which is short for dependent variable, is set equal to the column of the dependent variable. The <code>wid</code> argument is set equal to the column that contains the variable specifying the case/Ss identifier; usually the <code>subID</code> column, or equivalent. The <code>between</code> argument is set equal to the between-subjects factor(s), which in this case is the <code>groups</code> column.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="one-way-anova.html#cb242-1"></a>ez<span class="op">::</span><span class="kw">ezANOVA</span>(<span class="dt">data =</span> data, </span>
+<span id="cb242-2"><a href="one-way-anova.html#cb242-2"></a>            <span class="dt">dv =</span> VO2, </span>
+<span id="cb242-3"><a href="one-way-anova.html#cb242-3"></a>            <span class="dt">wid =</span> subID, </span>
+<span id="cb242-4"><a href="one-way-anova.html#cb242-4"></a>            <span class="dt">between =</span> .(groups),</span>
+<span id="cb242-5"><a href="one-way-anova.html#cb242-5"></a>            <span class="dt">type =</span> <span class="dv">3</span>,</span>
+<span id="cb242-6"><a href="one-way-anova.html#cb242-6"></a>            <span class="dt">detailed =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb242-7"><a href="one-way-anova.html#cb242-7"></a>            <span class="dt">return_aov =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>$ANOVA
+       Effect DFn DFd       SSn      SSd           F            p p&lt;.05
+1 (Intercept)   1  18 82657.440 398.9286 3729.574754 2.528806e-22     *
+2      groups   2  18   398.756 398.9286    8.996106 1.956932e-03     *
+        ges
+1 0.9951969
+2 0.4998918
+
+$`Levene&#39;s Test for Homogeneity of Variance`
+  DFn DFd      SSn      SSd         F         p p&lt;.05
+1   2  18 18.05357 168.1071 0.9665392 0.3992852      
+
+$aov
+Call:
+   aov(formula = formula(aov_formula), data = data)
+
+Terms:
+                  groups Residuals
+Sum of Squares  398.7560  398.9286
+Deg. of Freedom        2        18
+
+Residual standard error: 4.707728
+Estimated effects may be unbalanced</code></pre>
+<p>Notice the formatting in the code above. When using the <code>between</code> and <code>within</code> arguments, you need to use a period and parentheses, <code>.()</code>, when listing the column. You can list additional columns for both of these arguments by separating each column with a comma: <code>between = .(groups, Column2)</code>.</p>
+</div>
+<div id="model-with-contrast-codes" class="section level3 unnumbered">
+<h3>Model with Contrast Codes</h3>
+<p>Rather than using the default dummy codes, we can use the set of contrast codes that were created in the formatting section above. We’ll use the <code>lm()</code> function to implement this model.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="one-way-anova.html#cb244-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> VO2 <span class="op">~</span><span class="st"> </span>lin.c <span class="op">+</span><span class="st"> </span>quad.c, <span class="dt">data =</span> data)</span>
+<span id="cb244-2"><a href="one-way-anova.html#cb244-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = VO2 ~ lin.c + quad.c, data = data)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-7.964 -1.750 -0.500  2.250  8.286 
+
+Coefficients: (1 not defined because of singularities)
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   57.964      1.779  32.576  &lt; 2e-16 ***
+lin.c0         3.786      2.516   1.504 0.149817    
+lin.c1        10.536      2.516   4.187 0.000554 ***
+quad.c2           NA         NA      NA       NA    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 4.708 on 18 degrees of freedom
+Multiple R-squared:  0.4999,    Adjusted R-squared:  0.4443 
+F-statistic: 8.996 on 2 and 18 DF,  p-value: 0.001957</code></pre>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="one-way-anova.html#cb246-1"></a><span class="kw">Anova</span>(my_model, <span class="dt">type =</span> <span class="st">&quot;III&quot;</span>, <span class="dt">singular.ok =</span> T)</span></code></pre></div>
+<pre><code>Anova Table (Type III tests)
+
+Response: VO2
+          Sum Sq Df F values    Pr(&gt;F)    
+lin.c     388.50  1    17.53 0.0005542 ***
+quad.c      0.00  0                       
+Residuals 398.93 18                       
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>For comparison purposes, here’s what the model printout looks like with the dummy codes using the <code>lm()</code> function:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="one-way-anova.html#cb248-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(VO2 <span class="op">~</span><span class="st"> </span>groups, <span class="dt">data =</span> data))</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = VO2 ~ groups, data = data)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-7.964 -1.750 -0.500  2.250  8.286 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    68.500      1.779  38.497  &lt; 2e-16 ***
+groupsmedium   -6.750      2.516  -2.682 0.015209 *  
+groupsslower  -10.536      2.516  -4.187 0.000554 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 4.708 on 18 degrees of freedom
+Multiple R-squared:  0.4999,    Adjusted R-squared:  0.4443 
+F-statistic: 8.996 on 2 and 18 DF,  p-value: 0.001957</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="one-and-two-sample-t-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="repeated-measures-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

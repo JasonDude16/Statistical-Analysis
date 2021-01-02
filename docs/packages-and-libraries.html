@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Packages and Libraries | _main.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Packages and Libraries | _main.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Packages and Libraries | _main.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="CH2.html"/>
+<link rel="next" href="CH4.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i>Resources</a></li>
+<li class="part"><span><b>I R Basics</b></span></li>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-r"><i class="fa fa-check"></i>What is R?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-r"><i class="fa fa-check"></i>Installing R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-mac-users"><i class="fa fa-check"></i>Step 4: Mac users</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-windows-users"><i class="fa fa-check"></i>Step 4: Windows users</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-r-or-rstudio"><i class="fa fa-check"></i>Opening R or RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#the-rstudio-layout"><i class="fa fa-check"></i>The RStudio Layout</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#following-along"><i class="fa fa-check"></i>Following Along</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-a-script"><i class="fa fa-check"></i>Opening a Script</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#saving-a-script"><i class="fa fa-check"></i>Saving a Script</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="CH2.html"><a href="CH2.html"><i class="fa fa-check"></i><b>2</b> Programming 101</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#running-r-code"><i class="fa fa-check"></i>Running R Code</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#r-is-a-calculator"><i class="fa fa-check"></i>R is a calculator</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#objects-and-assignment"><i class="fa fa-check"></i>Objects and Assignment</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#variable-types"><i class="fa fa-check"></i>Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#dollar-signs-and-brackets"><i class="fa fa-check"></i>Dollar Signs and Brackets</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#functions-and-arguments"><i class="fa fa-check"></i>Functions and Arguments</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#example"><i class="fa fa-check"></i>Example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#code-formatting"><i class="fa fa-check"></i>Code Formatting</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html"><i class="fa fa-check"></i><b>3</b> Packages and Libraries</a><ul>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#what-are-packages"><i class="fa fa-check"></i>What are Packages?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#installing-packages"><i class="fa fa-check"></i>Installing Packages</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#whats-a-library"><i class="fa fa-check"></i>What’s a Library?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CH4.html"><a href="CH4.html"><i class="fa fa-check"></i><b>4</b> Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#setting-the-working-directory"><i class="fa fa-check"></i>Setting the Working Directory</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#reading-data"><i class="fa fa-check"></i>Reading Data</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CH5.html"><a href="CH5.html"><i class="fa fa-check"></i><b>5</b> Describing and Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#viewing-data"><i class="fa fa-check"></i>Viewing Data</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#data-summaries"><i class="fa fa-check"></i>Data Summaries</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#visualizing-data"><i class="fa fa-check"></i>Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#scatterplot"><i class="fa fa-check"></i>Scatterplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="CH6.html"><a href="CH6.html"><i class="fa fa-check"></i><b>6</b> Formatting Data</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#merging-files"><i class="fa fa-check"></i>Merging Files</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#long-format"><i class="fa fa-check"></i>Long Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#wide-format"><i class="fa fa-check"></i>Wide Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#recoding-variables"><i class="fa fa-check"></i>Recoding Variables</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#changing-variable-types"><i class="fa fa-check"></i>Changing Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#rename-columns"><i class="fa fa-check"></i>Rename Columns</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#change-column-order"><i class="fa fa-check"></i>Change Column Order</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#good-option"><i class="fa fa-check"></i>Good Option</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#better-option"><i class="fa fa-check"></i>Better Option</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Analysis</b></span></li>
+<li class="chapter" data-level="7" data-path="simple-regression.html"><a href="simple-regression.html"><i class="fa fa-check"></i><b>7</b> Simple Regression</a><ul>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#importing"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#viewing"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#formatting"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#modeling"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="simple-regression.html#the-lm-function">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#untransformed-model"><i class="fa fa-check"></i>Untransformed Model</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#mean-centered-model"><i class="fa fa-check"></i>Mean-Centered Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#importing-1"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#viewing-1"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-unmoderated-model"><i class="fa fa-check"></i>Data for Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#formatting-1"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models-1"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modeling-1"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="multiple-regression.html#the-lm-function-1">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#unmoderated-model"><i class="fa fa-check"></i>Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#moderated-model"><i class="fa fa-check"></i>Moderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#nonlinear-model"><i class="fa fa-check"></i>Nonlinear Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html"><i class="fa fa-check"></i><b>9</b> One and Two Sample t-test</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#importing-2"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#viewing-2"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-dependent"><i class="fa fa-check"></i>Data for Two Sample Dependent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#formatting-2"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent-1"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#modeling-2"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-and-two-sample-t-test.html#the-t.testfunction">The <code>t.test()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#one-sample"><i class="fa fa-check"></i>One Sample</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-independent-unpaired"><i class="fa fa-check"></i>Two Sample: Independent / Unpaired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-dependent-paired"><i class="fa fa-check"></i>Two Sample: Dependent / Paired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#optional-arguments"><i class="fa fa-check"></i>Optional Arguments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>10</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#importing-3"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#viewing-3"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#formatting-3"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#modeling-3"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-way-anova.html#the-ezanovafunction">The <code>ezANOVA()</code>Function</a></li>
+<li><a href="one-way-anova.html#the-lm-function-2">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-dummy-codes"><i class="fa fa-check"></i>Model with Dummy Codes</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-contrast-codes"><i class="fa fa-check"></i>Model with Contrast Codes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html"><i class="fa fa-check"></i><b>11</b> Repeated Measures ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#importing-4"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#viewing-4"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#formatting-4"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#modeling-4"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="repeated-measures-anova.html#the-ezanovafunction-1">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#model"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html"><i class="fa fa-check"></i><b>12</b> Mixed-Factorial ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#importing-5"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#viewing-5"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#formatting-5"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#modeling-5"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="mixed-factorial-anova.html#the-ezanovafunction-2">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#model-1"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>13</b> Analysis of Covariance (ANCOVA)</a><ul>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#importing-6"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#viewing-6"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#modeling-6"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="analysis-of-covariance-ancova.html#the-aovfunction">The <code>aov()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#model-2"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="packages-and-libraries" class="section level1">
+<h1><span class="header-section-number">3</span> Packages and Libraries</h1>
+<div id="what-are-packages" class="section level2 unnumbered">
+<h2>What are Packages?</h2>
+<p>R has hundreds of useful functions, but sometimes you’ll want or need to use a function that’s not built into R. For example, R has several built-in functions for plotting data, such as the <code>hist()</code> function:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="packages-and-libraries.html#cb35-1"></a><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
+<p>And that works fine if you want to quickly analyze your data, but that graph is certainly not publication quality. You could spruce up the plot by installing a <strong>package</strong> that contains functions for creating much more aesthetically pleasing plots, such as the <code>ggplot2</code> package.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="packages-and-libraries.html#cb36-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb36-2"><a href="packages-and-libraries.html#cb36-2"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb36-3"><a href="packages-and-libraries.html#cb36-3"></a><span class="kw">ggplot</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">rnorm =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">-1</span>)), <span class="kw">aes</span>(<span class="dt">x =</span> rnorm)) <span class="op">+</span></span>
+<span id="cb36-4"><a href="packages-and-libraries.html#cb36-4"></a><span class="st">    </span><span class="kw">geom_density</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">rnorm =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">1</span>)), </span>
+<span id="cb36-5"><a href="packages-and-libraries.html#cb36-5"></a>                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> rnorm), </span>
+<span id="cb36-6"><a href="packages-and-libraries.html#cb36-6"></a>                 <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb36-7"><a href="packages-and-libraries.html#cb36-7"></a>                 <span class="dt">alpha =</span> <span class="fl">.7</span>) <span class="op">+</span></span>
+<span id="cb36-8"><a href="packages-and-libraries.html#cb36-8"></a><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.7</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb36-9"><a href="packages-and-libraries.html#cb36-9"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb36-10"><a href="packages-and-libraries.html#cb36-10"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A Colorful Distribution Example&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb36-11"><a href="packages-and-libraries.html#cb36-11"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Random Normal Distribution&quot;</span>) <span class="op">+</span></span>
+<span id="cb36-12"><a href="packages-and-libraries.html#cb36-12"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="op">+</span></span>
+<span id="cb36-13"><a href="packages-and-libraries.html#cb36-13"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor.y =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb36-14"><a href="packages-and-libraries.html#cb36-14"></a>          <span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb36-15"><a href="packages-and-libraries.html#cb36-15"></a>          <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb36-16"><a href="packages-and-libraries.html#cb36-16"></a>          <span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb36-17"><a href="packages-and-libraries.html#cb36-17"></a>          <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>, <span class="dt">family =</span> <span class="st">&quot;serif&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
+<p>The <code>ggplot2</code> package is simply a collection of R code and functions, created by an R user, that allows you to make highly customizable plots like the one above without too much difficulty.</p>
+</div>
+<div id="installing-packages" class="section level2 unnumbered">
+<h2>Installing Packages</h2>
+<p>There are many packages that you can install to make data analysis easier. One package that we’ll use frequently throughout this book is the <code>tidyverse</code> package. The <code>tidyverse</code> package is actually a collection of packages bundled together– a meta-package. You can install the <code>tidyverse</code> with the following line of code:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="packages-and-libraries.html#cb37-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb37-2"><a href="packages-and-libraries.html#cb37-2"></a><span class="co"># You only need to install a package once</span></span></code></pre></div>
+</div>
+<div id="whats-a-library" class="section level2 unnumbered">
+<h2>What’s a Library?</h2>
+<p>Once you install a package it becomes part of your “library”. Your library is a collection of all the packages that are installed on your computer. If you click on the “packages” tab in the lower right pane, you can see a list of all the packages that are currently installed. This is your library. Notice how the header says “System Library”.</p>
+</div>
+<div id="loading-packages" class="section level2 unnumbered">
+<h2>Loading Packages</h2>
+<p>Packages only need to be <em>installed</em> once, but they need to be <em>loaded</em> every time you start an R session. Loading a package puts it into the working memory; that way R knows you want to use those functions from those packages. You can load a package with the <code>library()</code> function:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="packages-and-libraries.html#cb38-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>Running the code <code>library(tidyverse)</code> now allows you to use all of the functions that come bundled with the <code>tidyverse</code> package (which is a lot!).</p>
+<blockquote>
+<p>Pro tip: It’s best practice to load your desired package with the <code>library()</code> function at the very beginning of your R script; that way it’s loaded <em>before</em> the rest of your code is ran.</p>
+</blockquote>
+<p>You can check to see if you installed the <code>tidyverse</code> package and loaded it into your R session correctly by running the <code>ggplot</code> histogram code above. If you see the same plot in your R session, everything is working correctly!</p>
+<p>You might be wondering why the ggplot code worked when we loaded the <code>tidyverse</code> package and not the <code>ggplot2</code> package. This is because the <code>tidyverse</code> is a <em>meta-package</em>, which <em>includes</em> the <code>ggplot2</code> package within it (along with 7 other packages: <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purr</code>, <code>tibble</code>, <code>stringr</code>, <code>forcats</code>). So, if you get into the habit of loading the tidyverse meta-package at the beginning of your script, that will generally take care of everything for you, and you won’t need to worry about loading many (if any) other packages into your R session.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="CH2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="CH4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

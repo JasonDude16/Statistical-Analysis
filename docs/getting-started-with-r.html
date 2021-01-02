@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Getting Started with R | _main.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Getting Started with R | _main.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Getting Started with R | _main.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="resources.html"/>
+<link rel="next" href="CH2.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i>Resources</a></li>
+<li class="part"><span><b>I R Basics</b></span></li>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-r"><i class="fa fa-check"></i>What is R?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-r"><i class="fa fa-check"></i>Installing R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-mac-users"><i class="fa fa-check"></i>Step 4: Mac users</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-windows-users"><i class="fa fa-check"></i>Step 4: Windows users</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-r-or-rstudio"><i class="fa fa-check"></i>Opening R or RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#the-rstudio-layout"><i class="fa fa-check"></i>The RStudio Layout</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#following-along"><i class="fa fa-check"></i>Following Along</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-a-script"><i class="fa fa-check"></i>Opening a Script</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#saving-a-script"><i class="fa fa-check"></i>Saving a Script</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="CH2.html"><a href="CH2.html"><i class="fa fa-check"></i><b>2</b> Programming 101</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#running-r-code"><i class="fa fa-check"></i>Running R Code</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#r-is-a-calculator"><i class="fa fa-check"></i>R is a calculator</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#objects-and-assignment"><i class="fa fa-check"></i>Objects and Assignment</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#variable-types"><i class="fa fa-check"></i>Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#dollar-signs-and-brackets"><i class="fa fa-check"></i>Dollar Signs and Brackets</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#functions-and-arguments"><i class="fa fa-check"></i>Functions and Arguments</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#example"><i class="fa fa-check"></i>Example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#code-formatting"><i class="fa fa-check"></i>Code Formatting</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html"><i class="fa fa-check"></i><b>3</b> Packages and Libraries</a><ul>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#what-are-packages"><i class="fa fa-check"></i>What are Packages?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#installing-packages"><i class="fa fa-check"></i>Installing Packages</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#whats-a-library"><i class="fa fa-check"></i>What’s a Library?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CH4.html"><a href="CH4.html"><i class="fa fa-check"></i><b>4</b> Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#setting-the-working-directory"><i class="fa fa-check"></i>Setting the Working Directory</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#reading-data"><i class="fa fa-check"></i>Reading Data</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CH5.html"><a href="CH5.html"><i class="fa fa-check"></i><b>5</b> Describing and Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#viewing-data"><i class="fa fa-check"></i>Viewing Data</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#data-summaries"><i class="fa fa-check"></i>Data Summaries</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#visualizing-data"><i class="fa fa-check"></i>Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#scatterplot"><i class="fa fa-check"></i>Scatterplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="CH6.html"><a href="CH6.html"><i class="fa fa-check"></i><b>6</b> Formatting Data</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#merging-files"><i class="fa fa-check"></i>Merging Files</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#long-format"><i class="fa fa-check"></i>Long Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#wide-format"><i class="fa fa-check"></i>Wide Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#recoding-variables"><i class="fa fa-check"></i>Recoding Variables</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#changing-variable-types"><i class="fa fa-check"></i>Changing Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#rename-columns"><i class="fa fa-check"></i>Rename Columns</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#change-column-order"><i class="fa fa-check"></i>Change Column Order</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#good-option"><i class="fa fa-check"></i>Good Option</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#better-option"><i class="fa fa-check"></i>Better Option</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Analysis</b></span></li>
+<li class="chapter" data-level="7" data-path="simple-regression.html"><a href="simple-regression.html"><i class="fa fa-check"></i><b>7</b> Simple Regression</a><ul>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#importing"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#viewing"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#formatting"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#modeling"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="simple-regression.html#the-lm-function">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#untransformed-model"><i class="fa fa-check"></i>Untransformed Model</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#mean-centered-model"><i class="fa fa-check"></i>Mean-Centered Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#importing-1"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#viewing-1"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-unmoderated-model"><i class="fa fa-check"></i>Data for Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#formatting-1"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models-1"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modeling-1"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="multiple-regression.html#the-lm-function-1">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#unmoderated-model"><i class="fa fa-check"></i>Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#moderated-model"><i class="fa fa-check"></i>Moderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#nonlinear-model"><i class="fa fa-check"></i>Nonlinear Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html"><i class="fa fa-check"></i><b>9</b> One and Two Sample t-test</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#importing-2"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#viewing-2"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-dependent"><i class="fa fa-check"></i>Data for Two Sample Dependent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#formatting-2"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent-1"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#modeling-2"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-and-two-sample-t-test.html#the-t.testfunction">The <code>t.test()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#one-sample"><i class="fa fa-check"></i>One Sample</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-independent-unpaired"><i class="fa fa-check"></i>Two Sample: Independent / Unpaired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-dependent-paired"><i class="fa fa-check"></i>Two Sample: Dependent / Paired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#optional-arguments"><i class="fa fa-check"></i>Optional Arguments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>10</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#importing-3"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#viewing-3"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#formatting-3"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#modeling-3"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-way-anova.html#the-ezanovafunction">The <code>ezANOVA()</code>Function</a></li>
+<li><a href="one-way-anova.html#the-lm-function-2">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-dummy-codes"><i class="fa fa-check"></i>Model with Dummy Codes</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-contrast-codes"><i class="fa fa-check"></i>Model with Contrast Codes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html"><i class="fa fa-check"></i><b>11</b> Repeated Measures ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#importing-4"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#viewing-4"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#formatting-4"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#modeling-4"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="repeated-measures-anova.html#the-ezanovafunction-1">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#model"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html"><i class="fa fa-check"></i><b>12</b> Mixed-Factorial ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#importing-5"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#viewing-5"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#formatting-5"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#modeling-5"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="mixed-factorial-anova.html#the-ezanovafunction-2">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#model-1"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>13</b> Analysis of Covariance (ANCOVA)</a><ul>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#importing-6"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#viewing-6"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#modeling-6"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="analysis-of-covariance-ancova.html#the-aovfunction">The <code>aov()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#model-2"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="getting-started-with-r" class="section level1">
+<h1><span class="header-section-number">1</span> Getting Started with R</h1>
+<blockquote>
+<p>This chapter will walk through the steps of getting started with R and RStudio. <span style="background-color:lightyellow"><b>At the end of the chapter, we’ll provide a link where you can download a folder that includes all of the code and data that’s used in this guidebook.</b></span></p>
+</blockquote>
+<div id="what-is-r" class="section level2 unnumbered">
+<h2>What is R?</h2>
+<p>R is an open-source, free software environment for data manipulation and statistical computing. Here is an excerpt from the R website (<a href="https://www.r-project.org" class="uri">https://www.r-project.org</a>):</p>
+<blockquote>
+<p><em>The term “environment” is intended to characterize R as a fully planned and coherent system, rather than an incremental accretion of very specific and inflexible tools, as is frequently the case with other data analysis software.</em></p>
+</blockquote>
+<p>A programming language offers more flexibility than other data analysis tools like Excel and SPSS, but the benefit of flexibility comes with the cost of complexity. The learning curve of R is steeper than Excel and SPSS, but once you get the hang of it, R can streamline and simplify many tasks. Have you ever needed to copy and paste many data files together into one “master” file? This method is both error-prone and time-consuming. A task like this can be accomplished in a few lines of code in R, and the code can then used as a template for performing the same kind of task in the future. This is just one example, but R can be used for many other time-consuming tasks like this. The sky is the limit!</p>
+</div>
+<div id="installing-r" class="section level2 unnumbered">
+<h2>Installing R</h2>
+<div id="step-1" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Go to the R website (<a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>) and click on the <strong>download R</strong> link that’s circled below.</p>
+<p><img src="images/r_website.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="step-2" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>You’ll then be redirected to a page that looks like this. If you you scroll down you’ll see several USA locations listed. Click on one of those links (it doesn’t matter which one you choose. For example, I chose the St. Louis location).</p>
+<p><img src="images/r_mirror.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="step-3" class="section level3 unnumbered">
+<h3>Step 3</h3>
+<p>Now click on the download link that is relevant to your operating system.</p>
+<p><img src="images/r_download.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="step-4-mac-users" class="section level3 unnumbered">
+<h3>Step 4: Mac users</h3>
+<p>If you’re a mac user, you’ll see this screen next. The version of R you download will depend on which version of software your mac is running. At the time of writing this, the latest R release is <strong>R 4.0.0</strong> which is for mac 10.13 OS (High Sierra) and higher. If you have an older version of mac software, you can download an older version of R from the same page.</p>
+<p><img src="images/r_download_mac.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="step-4-windows-users" class="section level3 unnumbered">
+<h3>Step 4: Windows users</h3>
+<p>If you’re a windows user you’ll see this screen next, where you’ll want to click on the “install R for the first time” link.</p>
+<p><img src="images/r_download_win1.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<p>You can then download R by clicking on this link. The exact version will likely be different than the one shown here.</p>
+<p><img src="images/r_download_win2.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="what-is-rstudio" class="section level2 unnumbered">
+<h2>What is RStudio?</h2>
+<p>Simply put, RStudio IDE is an environment that makes working with R much less painful. “IDE” stands for integrated development environment. Without RStudio, R looks something like this:</p>
+<p><img src="images/r_base.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<p>As you can see it’s a bit disorganized. The RStudio IDE cleans up the R interface so that it’s much cleaner and easier to work with, like this:</p>
+<p><img src="images/r_rstudio.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<p>You don’t <em>need</em> to use RStudio, but we highly recommend that you do because it significantly improves the user experience, especially for new users.</p>
+</div>
+<div id="installing-rstudio" class="section level2 unnumbered">
+<h2>Installing RStudio</h2>
+<p>Go to the RStudio website (<a href="https://rstudio.com/" class="uri">https://rstudio.com/</a>) and click the download button. Then scroll down and click on the download link that is relevant to your operating system.</p>
+<p><img src="images/rstudio_download.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="opening-r-or-rstudio" class="section level2 unnumbered">
+<h2>Opening R or RStudio</h2>
+<p>If you decided not to download RStudio, then you’ll work with R by opening the R application. It’s perfectly fine to do this, but just know that you’ll be on your own! The rest of this book will assume you’ve installed RStudio, and we’ll occasionally make references that are specific to the RStudio interface.</p>
+<p>If you downloaded RStudio, you’ll work with R by opening RStudio. In this case, you should <em>not</em> open R, because RStudio is simply an interface for R; by using RStudio you are simultaneously using R. So, if you were to open both R and RStudio, you would be starting two separate R sessions, which is not what you want to do. Hopefully that makes sense.</p>
+<p>Now would be a good time to open RStudio and start following along.</p>
+</div>
+<div id="the-rstudio-layout" class="section level2 unnumbered">
+<h2>The RStudio Layout</h2>
+<p>By default, RStudio uses the 4 pane layout shown below.</p>
+<p><img src="images/rstudio_panes.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><p><strong>Pane A</strong>: This is where you write your scripts. You can think of a script like a notepad, where you can write your code and then save it for later.</p></li>
+<li><p><strong>Pane B</strong>: This is where your code is evaluated, and specifically it is evaluated under the <code>Console</code> tab (you can ignore the <code>Terminal</code> tab). For example, if you wanted to calculate the mean of 3 numbers, like this <code>mean(c(12, 32, 15))</code>, the result, 19.7, would be displayed in this pane under the <code>Console</code> tab. You can also <em>write</em> code here. For example, you could write <code>mean(c(12, 32, 15))</code> directly into the console (instead of in Pane A), but keep in mind that <strong>any code that is typed here will not be saved.</strong></p></li>
+<li><p><strong>Pane C</strong>: This pane has several tabs, but the only one that really matters is the <code>Enironment</code> tab (if you don’t see a <code>Build</code> or <code>Git</code> tab, that’s okay). The <code>Environment</code> tab is where you can view your data and the objects you create, which will make more sense as you progress through the book.</p></li>
+<li><p><strong>Pane D</strong>: In this pane you can view files, plots, install packages, get help with R functions and more.</p></li>
+</ul>
+</div>
+<div id="following-along" class="section level2 unnumbered">
+<h2>Following Along</h2>
+<p>We wanted to make it as easy as possible to follow along with this guidebook, so we created a folder that contains all of the data and code that’s used throughout the chapters, which can be downloaded <a href="https://github.com/JasonDude16/Statistical-Analysis-Folder">here</a>. After clicking on the link, you should be redirected to a page that has a green “<strong>Clone or download</strong>” button, shown below.</p>
+<p><img src="images/github.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<p>You can then click on the dropdown arrow on the green button and click <strong>Download ZIP</strong>. Next, find the folder on your computer, unzip it, and move it to a convenient location (such as your Desktop). If you currently have an R session open, go ahead and close it. After you’ve closed your current R session, open the file within the folder that ends with the extension <strong>.Rproj</strong>. After you click on the <strong>Rproj</strong> file, RStudio should open and you should see a screen similar to the one below.</p>
+<blockquote>
+<p>By opening the .Rproj file, we opened an R project. There’s nothing particularly “special” about an R project; all it really does is set the working directory to the correct location, which will make more sense after reading Chapter 4.</p>
+</blockquote>
+<p><img src="images/rstudio-project.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="opening-a-script" class="section level2 unnumbered">
+<h2>Opening a Script</h2>
+<p>You can open a script in R by clicking on the dropdown arrow next to the white piece of paper with a green plus sign that’s located in the upper left corner. Then click on <strong>R Script</strong>.</p>
+<p><img src="images/rstudio-script.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<p>You should now see a new pane added to the upper left section of your screen, which is the R script.</p>
+<p><img src="images/rstudio-script2.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<p>Let’s add a comment to the script so it’s no longer blank. Try copying and pasting the following lines into the script:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started-with-r.html#cb1-1"></a><span class="co"># This is my first R script</span></span>
+<span id="cb1-2"><a href="getting-started-with-r.html#cb1-2"></a><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span> </span></code></pre></div>
+<p><code># This is my first R script</code> is simply a comment, which is denoted by the hashtag. <code>10 * 10</code> will be evaluated once the code has been ran. You can run the code by pressing <strong>Ctrl + Enter</strong> on a Windows or <strong>Cmd + Enter</strong> on a Mac. Doing this will run <strong>only</strong> the selected line of code, meaning that your cursor must be on the line you want to evaluate in order for it to work. To run the code <code>10 * 10</code>, place your cursor before or after the expression (or you can highlight the expression) and press <strong>Ctrl/Cmd + Enter</strong>. You should see <code>[1] 100</code> printed to the console (lower left pane).</p>
+</div>
+<div id="saving-a-script" class="section level2 unnumbered">
+<h2>Saving a Script</h2>
+<p>You can save a script by clicking on <code>File &gt; Save as</code>, and navigating to the folder you’d like to save it in. It doesn’t matter too much where you choose to save a script, but it’s good practice to create a <code>scripts</code> folder and save it there. Let’s say you’re performing an analysis related to VO2 max. A good folder setup would be creating a main folder called <code>VO2max_Analysis</code> (or something like that) and then create a <code>scripts</code> folder and <code>data</code> folder within that folder, which will of course contain your R scripts and data, respectively.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="resources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="CH2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

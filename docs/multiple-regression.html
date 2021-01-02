@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Multiple Regression | _main.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Multiple Regression | _main.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Multiple Regression | _main.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simple-regression.html"/>
+<link rel="next" href="one-and-two-sample-t-test.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i>Resources</a></li>
+<li class="part"><span><b>I R Basics</b></span></li>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-r"><i class="fa fa-check"></i>What is R?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-r"><i class="fa fa-check"></i>Installing R</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-mac-users"><i class="fa fa-check"></i>Step 4: Mac users</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#step-4-windows-users"><i class="fa fa-check"></i>Step 4: Windows users</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-r-or-rstudio"><i class="fa fa-check"></i>Opening R or RStudio</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#the-rstudio-layout"><i class="fa fa-check"></i>The RStudio Layout</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#following-along"><i class="fa fa-check"></i>Following Along</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#opening-a-script"><i class="fa fa-check"></i>Opening a Script</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#saving-a-script"><i class="fa fa-check"></i>Saving a Script</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="CH2.html"><a href="CH2.html"><i class="fa fa-check"></i><b>2</b> Programming 101</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#running-r-code"><i class="fa fa-check"></i>Running R Code</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#r-is-a-calculator"><i class="fa fa-check"></i>R is a calculator</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#objects-and-assignment"><i class="fa fa-check"></i>Objects and Assignment</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#variable-types"><i class="fa fa-check"></i>Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#dollar-signs-and-brackets"><i class="fa fa-check"></i>Dollar Signs and Brackets</a></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#functions-and-arguments"><i class="fa fa-check"></i>Functions and Arguments</a><ul>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#example"><i class="fa fa-check"></i>Example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH2.html"><a href="CH2.html#code-formatting"><i class="fa fa-check"></i>Code Formatting</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html"><i class="fa fa-check"></i><b>3</b> Packages and Libraries</a><ul>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#what-are-packages"><i class="fa fa-check"></i>What are Packages?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#installing-packages"><i class="fa fa-check"></i>Installing Packages</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#whats-a-library"><i class="fa fa-check"></i>What’s a Library?</a></li>
+<li class="chapter" data-level="" data-path="packages-and-libraries.html"><a href="packages-and-libraries.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CH4.html"><a href="CH4.html"><i class="fa fa-check"></i><b>4</b> Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#setting-the-working-directory"><i class="fa fa-check"></i>Setting the Working Directory</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#reading-data"><i class="fa fa-check"></i>Reading Data</a></li>
+<li class="chapter" data-level="" data-path="CH4.html"><a href="CH4.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CH5.html"><a href="CH5.html"><i class="fa fa-check"></i><b>5</b> Describing and Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#viewing-data"><i class="fa fa-check"></i>Viewing Data</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#data-summaries"><i class="fa fa-check"></i>Data Summaries</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#visualizing-data"><i class="fa fa-check"></i>Visualizing Data</a><ul>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#scatterplot"><i class="fa fa-check"></i>Scatterplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#barplot"><i class="fa fa-check"></i>Barplot</a></li>
+<li class="chapter" data-level="" data-path="CH5.html"><a href="CH5.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="CH6.html"><a href="CH6.html"><i class="fa fa-check"></i><b>6</b> Formatting Data</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#merging-files"><i class="fa fa-check"></i>Merging Files</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#long-format"><i class="fa fa-check"></i>Long Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#wide-format"><i class="fa fa-check"></i>Wide Format</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#recoding-variables"><i class="fa fa-check"></i>Recoding Variables</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#changing-variable-types"><i class="fa fa-check"></i>Changing Variable Types</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#rename-columns"><i class="fa fa-check"></i>Rename Columns</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#change-column-order"><i class="fa fa-check"></i>Change Column Order</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#good-option"><i class="fa fa-check"></i>Good Option</a></li>
+<li class="chapter" data-level="" data-path="CH6.html"><a href="CH6.html#better-option"><i class="fa fa-check"></i>Better Option</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Analysis</b></span></li>
+<li class="chapter" data-level="7" data-path="simple-regression.html"><a href="simple-regression.html"><i class="fa fa-check"></i><b>7</b> Simple Regression</a><ul>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#importing"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#viewing"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#formatting"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#modeling"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="simple-regression.html#the-lm-function">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#untransformed-model"><i class="fa fa-check"></i>Untransformed Model</a></li>
+<li class="chapter" data-level="" data-path="simple-regression.html"><a href="simple-regression.html#mean-centered-model"><i class="fa fa-check"></i>Mean-Centered Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#importing-1"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#viewing-1"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-unmoderated-model"><i class="fa fa-check"></i>Data for Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#formatting-1"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#data-for-moderated-and-nonlinear-models-1"><i class="fa fa-check"></i>Data for Moderated and Nonlinear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modeling-1"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="multiple-regression.html#the-lm-function-1">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#unmoderated-model"><i class="fa fa-check"></i>Unmoderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#moderated-model"><i class="fa fa-check"></i>Moderated Model</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#nonlinear-model"><i class="fa fa-check"></i>Nonlinear Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html"><i class="fa fa-check"></i><b>9</b> One and Two Sample t-test</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#importing-2"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#viewing-2"><i class="fa fa-check"></i>Viewing</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-dependent"><i class="fa fa-check"></i>Data for Two Sample Dependent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#formatting-2"><i class="fa fa-check"></i>Formatting</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#data-for-two-sample-independent-1"><i class="fa fa-check"></i>Data for Two Sample Independent</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#modeling-2"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-and-two-sample-t-test.html#the-t.testfunction">The <code>t.test()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#one-sample"><i class="fa fa-check"></i>One Sample</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-independent-unpaired"><i class="fa fa-check"></i>Two Sample: Independent / Unpaired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#two-sample-dependent-paired"><i class="fa fa-check"></i>Two Sample: Dependent / Paired</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-t-test.html"><a href="one-and-two-sample-t-test.html#optional-arguments"><i class="fa fa-check"></i>Optional Arguments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>10</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#importing-3"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#viewing-3"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#formatting-3"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#modeling-3"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="one-way-anova.html#the-ezanovafunction">The <code>ezANOVA()</code>Function</a></li>
+<li><a href="one-way-anova.html#the-lm-function-2">The <code>lm()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-dummy-codes"><i class="fa fa-check"></i>Model with Dummy Codes</a></li>
+<li class="chapter" data-level="" data-path="one-way-anova.html"><a href="one-way-anova.html#model-with-contrast-codes"><i class="fa fa-check"></i>Model with Contrast Codes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html"><i class="fa fa-check"></i><b>11</b> Repeated Measures ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#importing-4"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#viewing-4"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#formatting-4"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#modeling-4"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="repeated-measures-anova.html#the-ezanovafunction-1">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="repeated-measures-anova.html"><a href="repeated-measures-anova.html#model"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html"><i class="fa fa-check"></i><b>12</b> Mixed-Factorial ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#importing-5"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#viewing-5"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#formatting-5"><i class="fa fa-check"></i>Formatting</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#modeling-5"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="mixed-factorial-anova.html#the-ezanovafunction-2">The <code>ezANOVA()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="mixed-factorial-anova.html"><a href="mixed-factorial-anova.html#model-1"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>13</b> Analysis of Covariance (ANCOVA)</a><ul>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#importing-6"><i class="fa fa-check"></i>Importing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#viewing-6"><i class="fa fa-check"></i>Viewing</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#modeling-6"><i class="fa fa-check"></i>Modeling</a><ul>
+<li><a href="analysis-of-covariance-ancova.html#the-aovfunction">The <code>aov()</code>Function</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-covariance-ancova.html"><a href="analysis-of-covariance-ancova.html#model-2"><i class="fa fa-check"></i>Model</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multiple-regression" class="section level1">
+<h1><span class="header-section-number">8</span> Multiple Regression</h1>
+<blockquote>
+<p>In this chapter we’ll use the <code>lm()</code> function for fitting a multiple regression model with two continuous predictors, which will take the following forms:</p>
+</blockquote>
+<p><span class="math display">\[y_i=\beta_0+\beta_1\left(X1\right)+\beta_2\left(X2\right)+\epsilon_i\]</span>
+<span class="math display">\[y_i=\beta_0+\beta_1\left(X1\right)+\beta_2\left(X2\right)+\beta_3\left(X1\ \cdot\ X2\right)+\epsilon_i\]</span>
+<span class="math display">\[y_i\ =\ \beta_0+\beta_1\left(X1\right)+\beta_2\left(X1^2\right)+\epsilon_i\]</span></p>
+<blockquote>
+<p>The first equation is the unmoderated (additive) model, the second is the moderated (multiplicative) model, and the third is the nonlinear model.</p>
+</blockquote>
+<blockquote>
+<p>The code in this chapter only works if you’re following along with the Github folder for this book (which you can download <a href="https://github.com/JasonDude16/Statistical-Analysis-Folder">here</a>), you’ve correctly set your working directory to the data folder (which you can learn how to do in <a href="CH4.html#CH4">Chapter 4</a>), and run the code in the order it appears in this chapter.</p>
+</blockquote>
+<div id="importing-1" class="section level2 unnumbered">
+<h2>Importing</h2>
+<p>We’ll be importing two datasets for this chapter: <strong>age_height_weight.txt</strong> and <strong>data_altitude.csv</strong>. The <strong>age_height_weight.txt</strong> file will be used for the unmoderated model, and the <strong>data_altitude.csv</strong> file will be used for the moderated and nonlinear models.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="multiple-regression.html#cb179-1"></a>data1 &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;age_height_weight.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb179-2"><a href="multiple-regression.html#cb179-2"></a>data2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_altitude.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="viewing-1" class="section level2 unnumbered">
+<h2>Viewing</h2>
+<div id="data-for-unmoderated-model" class="section level3 unnumbered">
+<h3>Data for Unmoderated Model</h3>
+<p>As the name implies, the <strong>age_height_weight.txt</strong> file contains age, height, and weight data for several males and females. You can use the <code>str()</code> and <code>head()</code> functions to get the overall “impression” of the dataset.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="multiple-regression.html#cb180-1"></a><span class="kw">str</span>(data1)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   19 obs. of  5 variables:
+ $ Name  : chr  &quot;Alfred&quot; &quot;Alice&quot; &quot;Barbara&quot; &quot;Carol&quot; ...
+ $ Sex   : chr  &quot;M&quot; &quot;F&quot; &quot;F&quot; &quot;F&quot; ...
+ $ Age   : int  14 13 13 14 14 12 12 15 13 12 ...
+ $ Height: num  69 56.5 65.3 62.8 63.5 57.3 59.8 62.5 62.5 59 ...
+ $ Weight: num  112 84 98 102 102 ...</code></pre>
+<p>The <code>str()</code> function provides a lot of good information. We now know that the dataset was correctly imported as a data frame which consists of 19 observations of 5 variables, and we know the column names and column variable types. Additionally, the first few observations for each column is printed. But if you’d rather look at the dataset in a more standard format, you can use the <code>head()</code> function to see the first few observations:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="multiple-regression.html#cb182-1"></a><span class="kw">head</span>(data1)</span></code></pre></div>
+<pre><code>     Name Sex Age Height Weight
+1  Alfred   M  14   69.0  112.5
+2   Alice   F  13   56.5   84.0
+3 Barbara   F  13   65.3   98.0
+4   Carol   F  14   62.8  102.5
+5   Henry   M  14   63.5  102.5
+6   James   M  12   57.3   83.0</code></pre>
+<p>We can use the <code>plot()</code> function to visualize the relationships between <code>Age</code>, <code>Height</code>, and <code>Weight</code>:</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="multiple-regression.html#cb184-1"></a><span class="co"># Used brackets to subset the data and select columns 3, 4, 5</span></span>
+<span id="cb184-2"><a href="multiple-regression.html#cb184-2"></a><span class="kw">plot</span>(data1[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-138-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Or, you could visualize all three variables on one graph with a 3D scatterplot:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="multiple-regression.html#cb185-1"></a><span class="kw">scatterplot3d</span>(<span class="dt">x =</span> data1<span class="op">$</span>Height, <span class="dt">z =</span> data1<span class="op">$</span>Weight, <span class="dt">y =</span> data1<span class="op">$</span>Age, </span>
+<span id="cb185-2"><a href="multiple-regression.html#cb185-2"></a>              <span class="dt">main =</span> <span class="st">&quot;Weight, Age, and Height&quot;</span>, </span>
+<span id="cb185-3"><a href="multiple-regression.html#cb185-3"></a>              <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">highlight.3d =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>, <span class="dt">grid =</span> <span class="ot">TRUE</span>, <span class="dt">box =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb185-4"><a href="multiple-regression.html#cb185-4"></a>              <span class="dt">xlab =</span> <span class="st">&quot;Height (in)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="dt">zlab =</span> <span class="st">&quot;Weight (lbs)&quot;</span>, </span>
+<span id="cb185-5"><a href="multiple-regression.html#cb185-5"></a>              <span class="dt">angle =</span> <span class="dv">55</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can use the <code>hist()</code> function to visualize the distributions of <code>Age</code>, <code>Height</code>, and <code>Weight</code>:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="multiple-regression.html#cb186-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb186-2"><a href="multiple-regression.html#cb186-2"></a><span class="kw">hist</span>(data1<span class="op">$</span>Age)</span>
+<span id="cb186-3"><a href="multiple-regression.html#cb186-3"></a><span class="kw">hist</span>(data1<span class="op">$</span>Height)</span>
+<span id="cb186-4"><a href="multiple-regression.html#cb186-4"></a><span class="kw">hist</span>(data1<span class="op">$</span>Weight)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="672" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>The code <code>par(mfrow = c(2,2))</code> above is used to print the plots as a 2 x 2 grid; the <code>plot()</code> function does not need to be used in conjuction with this piece of code.</p>
+</blockquote>
+<p>And you can look at the six number summary with the <code>summary()</code> function:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="multiple-regression.html#cb187-1"></a><span class="kw">summary</span>(data1[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</span></code></pre></div>
+<pre><code>      Age            Height          Weight      
+ Min.   :11.00   Min.   :51.30   Min.   : 50.50  
+ 1st Qu.:12.00   1st Qu.:58.25   1st Qu.: 84.25  
+ Median :13.00   Median :62.80   Median : 99.50  
+ Mean   :13.32   Mean   :62.34   Mean   :100.03  
+ 3rd Qu.:14.50   3rd Qu.:65.90   3rd Qu.:112.25  
+ Max.   :16.00   Max.   :72.00   Max.   :150.00  </code></pre>
+</div>
+<div id="data-for-moderated-and-nonlinear-models" class="section level3 unnumbered">
+<h3>Data for Moderated and Nonlinear Models</h3>
+<p>The <strong>data_altitude.csv</strong> file contains data about an athlete’s baseline VO2max, <code>BVO2</code>, and a VO2max value where the test was conducted at some altitude, <code>AVO2</code>. We’ll use the <code>str()</code> and <code>head()</code> functions to view the dataset:</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="multiple-regression.html#cb189-1"></a><span class="kw">str</span>(data2)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   105 obs. of  5 variables:
+ $ subID   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ altitude: int  2300 2300 2500 3200 4340 2660 4300 5400 5400 5400 ...
+ $ BVO2    : num  74 72.4 44.6 57.3 45.1 ...
+ $ AVO2    : num  61.4 60 42.1 52.5 36.9 ...
+ $ decrease: num  -12.6 -12.4 -2.5 -4.8 -8.2 ...</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="multiple-regression.html#cb191-1"></a><span class="kw">head</span>(data2)</span></code></pre></div>
+<pre><code>  subID altitude  BVO2  AVO2 decrease
+1     1     2300 74.00 61.42   -12.58
+2     2     2300 72.40 60.00   -12.40
+3     3     2500 44.60 42.10    -2.50
+4     4     3200 57.30 52.50    -4.80
+5     5     4340 45.10 36.90    -8.20
+6     6     2660 44.13 38.45    -5.68</code></pre>
+<blockquote>
+<p>More examples of viewing data can be found in <a href="CH5.html#CH5">Chapter 5</a></p>
+</blockquote>
+</div>
+</div>
+<div id="formatting-1" class="section level2 unnumbered">
+<h2>Formatting</h2>
+<div id="data-for-moderated-and-nonlinear-models-1" class="section level3 unnumbered">
+<h3>Data for Moderated and Nonlinear Models</h3>
+<p>The only formatting that needs to be done is to change the unit of <code>altitude</code> from meters to kilometers, so that the axes have similar scales. Also, we’ll create a column that squares all of the <code>alt_km</code> values which will be used for the nonlinear model. To accomplish this, we can use the <code>mutate()</code> function which comes from the <code>tidyverse</code> package. Make sure the <code>tidyverse</code> package is loaded before running this code:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="multiple-regression.html#cb193-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(data2, <span class="dt">alt_km =</span> altitude <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</span>
+<span id="cb193-2"><a href="multiple-regression.html#cb193-2"></a><span class="co"># Divide altitude values by 1000, and save values to new column</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="multiple-regression.html#cb194-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(data2, <span class="dt">alt_km_sq =</span> alt_km<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb194-2"><a href="multiple-regression.html#cb194-2"></a><span class="co"># Square alt_km values, and save values to a new column</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="multiple-regression.html#cb195-1"></a><span class="kw">head</span>(data2)</span></code></pre></div>
+<pre><code>  subID altitude  BVO2  AVO2 decrease alt_km alt_km_sq
+1     1     2300 74.00 61.42   -12.58   2.30    5.2900
+2     2     2300 72.40 60.00   -12.40   2.30    5.2900
+3     3     2500 44.60 42.10    -2.50   2.50    6.2500
+4     4     3200 57.30 52.50    -4.80   3.20   10.2400
+5     5     4340 45.10 36.90    -8.20   4.34   18.8356
+6     6     2660 44.13 38.45    -5.68   2.66    7.0756</code></pre>
+<blockquote>
+<p>More examples of formatting data can be found in <a href="CH6.html#CH6">Chapter 6</a></p>
+</blockquote>
+</div>
+</div>
+<div id="modeling-1" class="section level2 unnumbered">
+<h2>Modeling</h2>
+<div id="the-lm-function-1" class="section level3 unnumbered">
+<h3>The <code>lm()</code> Function</h3>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="multiple-regression.html#cb197-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
+<span id="cb197-2"><a href="multiple-regression.html#cb197-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb197-3"><a href="multiple-regression.html#cb197-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
+<p>The <code>lm()</code> (linear model) function is used for fitting linear models. There are many arguments for this function, but the <code>formula</code> and <code>data</code>arguments are the only ones that <em>need</em> to be specified. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
+<p>The <code>lm()</code> function automatically controls for shared variance, so we don’t need to take any additional steps before adding the variables to the model.</p>
+<p>We’ll use the <code>lm()</code> function to make three models: an unmoderated model, a moderated model, and a nonlinear model.</p>
+</div>
+<div id="unmoderated-model" class="section level3 unnumbered">
+<h3>Unmoderated Model</h3>
+<p>In the <code>lm()</code> function, the dependent variable is listed first, followed by a tilde, <code>~</code>, and then the independent variable(s). The <code>data</code> argument is set equal to the object that contains the dataset, which in this example is the object called <code>data1</code>. In the unmoderated model, the addition operator, <code>+</code>, is used between each independent variable.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="multiple-regression.html#cb198-1"></a><span class="kw">lm</span>(<span class="dt">formula =</span> Weight <span class="op">~</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>Height, <span class="dt">data =</span> data1)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = Weight ~ Age + Height, data = data1)
+
+Coefficients:
+(Intercept)          Age       Height  
+   -141.224        1.278        3.597  </code></pre>
+<p>The function prints out the slope and intercept for the model. To see more information about the model, the model needs to be saved as an object:</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="multiple-regression.html#cb200-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> Weight <span class="op">~</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>Height, <span class="dt">data =</span> data1)</span></code></pre></div>
+<p>Now that we’ve saved the model as an object, called <code>my_model</code>, we can access a lot of information about the model. Three good functions to remember are <code>summary()</code>, <code>plot()</code>, and <code>attributes()</code>.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="multiple-regression.html#cb201-1"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = Weight ~ Age + Height, data = data1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.962  -6.010  -0.067   7.553  20.796 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -141.2238    33.3831  -4.230 0.000637 ***
+Age            1.2784     3.1101   0.411 0.686492    
+Height         3.5970     0.9055   3.973 0.001093 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 11.51 on 16 degrees of freedom
+Multiple R-squared:  0.7729,    Adjusted R-squared:  0.7445 
+F-statistic: 27.23 on 2 and 16 DF,  p-value: 7.074e-06</code></pre>
+<p>Now we have a nice summary print-out which includes the <code>F-statistic</code>, <code>Residuals</code>, <code>R-squared</code>, <code>p-value</code>, and more. The <code>plot</code> function can be used on the <code>my_model</code> object to view <code>Residuals vs Fitted</code>, <code>Normal Q-Q</code>, <code>Scale-Location</code> and <code>Residuals vs Leverage</code> plots.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="multiple-regression.html#cb203-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb203-2"><a href="multiple-regression.html#cb203-2"></a><span class="kw">plot</span>(my_model)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>The code <code>par(mfrow = c(2,2))</code> above is used to print the plots as a 2 x 2 grid; the <code>plot()</code> function does not need to be used in conjuction with this piece of code.</p>
+</blockquote>
+<p>The <code>my_model</code> object has attributes. Attributes can store additional information about the object, such as the model’s residuals. You can find out the attributes of an object with the <code>attributes()</code> function.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="multiple-regression.html#cb204-1"></a><span class="kw">attributes</span>(my_model)</span></code></pre></div>
+<pre><code>$names
+ [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+ [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+ [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;        
+
+$class
+[1] &quot;lm&quot;</code></pre>
+<p>The model’s <code>attributes</code> can be accessed by using a dollar sign, <code>$</code>. For example, here’s a printout of the first 5 fitted values of the model:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="multiple-regression.html#cb206-1"></a>my_model<span class="op">$</span>fitted.values[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>        1         2         3         4         5 
+124.86856  78.62734 110.28117 102.56700 105.08492 </code></pre>
+</div>
+<div id="moderated-model" class="section level3 unnumbered">
+<h3>Moderated Model</h3>
+<p>In the <code>lm()</code> function, the dependent variable is listed first, followed by a tilda, <code>~</code>, and then the independent variable(s). The <code>data</code> argument is set equal to the object that contains the dataset, which in this example is the object called <code>data2</code>. In the moderated model, the multiplication operator, <code>*</code>, is used between each independent variable to indicate an interaction.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="multiple-regression.html#cb208-1"></a>my_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> decrease <span class="op">~</span><span class="st"> </span>alt_km <span class="op">*</span><span class="st"> </span>BVO2, <span class="dt">data =</span> data2)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="multiple-regression.html#cb209-1"></a><span class="kw">summary</span>(my_model2)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = decrease ~ alt_km * BVO2, data = data2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.2307 -1.4511 -0.1014  1.2200  6.9343 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  8.51588    3.01436   2.825 0.005697 ** 
+alt_km      -0.11323    1.00029  -0.113 0.910097    
+BVO2        -0.10874    0.05266  -2.065 0.041512 *  
+alt_km:BVO2 -0.07448    0.01849  -4.027 0.000109 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 2.432 on 101 degrees of freedom
+Multiple R-squared:  0.8488,    Adjusted R-squared:  0.8443 
+F-statistic:   189 on 3 and 101 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="nonlinear-model" class="section level3 unnumbered">
+<h3>Nonlinear Model</h3>
+<p>In the <code>lm()</code> function, the dependent variable is listed first, followed by a tilda, <code>~</code>, and then the independent variable(s). The <code>data</code> argument is set equal to the object that contains the dataset, which in this example is the object called <code>data2</code>. In the nonlinear model, the addition operator, <code>+</code>, is used between each independent variable. In this example, the independent variables are the <code>alt_km</code> and <code>alt_km_sq</code> columns.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="multiple-regression.html#cb211-1"></a>my_model3 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> decrease <span class="op">~</span><span class="st"> </span>alt_km <span class="op">+</span><span class="st"> </span>alt_km_sq, <span class="dt">data =</span> data2)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="multiple-regression.html#cb212-1"></a><span class="kw">summary</span>(my_model3)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = decrease ~ alt_km + alt_km_sq, data = data2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.3091 -2.4191  0.9296  2.4161  7.0271 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)  -2.2708     1.5327  -1.482   0.1415  
+alt_km       -0.6921     1.0994  -0.630   0.5304  
+alt_km_sq    -0.4532     0.1766  -2.567   0.0117 *
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 3.687 on 102 degrees of freedom
+Multiple R-squared:  0.6491,    Adjusted R-squared:  0.6422 
+F-statistic: 94.35 on 2 and 102 DF,  p-value: &lt; 2.2e-16</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simple-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="one-and-two-sample-t-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

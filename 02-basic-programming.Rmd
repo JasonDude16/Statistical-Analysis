@@ -12,7 +12,9 @@ The rest of this booklet will contain code blocks that look like this:
 # is doing at each step.
 ```
 
-You can copy and paste the code within the blocks to your R session to try it out for yourself; but the code above is just a comment so it won't do anything exciting! The code blocks will often (but not always) have some sort of output printed directly below them so that you can see the results. For example:
+You can copy and paste the code within the blocks into your R script to try it out for yourself; but the code above is just a comment so it won't do anything exciting. The code blocks will often (but not always) have some sort of output printed directly below them so that you can see the results. 
+
+For example:
 
 ```{r}
 mean(1:10)
@@ -20,7 +22,15 @@ mean(1:10)
 
 In the example above, the code block consisted of code that calculated the mean of the numbers 1 through 10, and the results were printed directly below. Notice how the output is printed in black font, which is how you can distinguish the code blocks from the output blocks.
 
-You can "run" a line of code in R by pressing **Cmd + Enter** on a Mac and **Ctr + Enter** on a Windows. For example, if you wanted to know what 75 times 82 is, you could type `75 * 82` into your script and "run" the code by using **Cmd + Enter**  or **Ctr + Enter** to get the answer. Or, if you're typing code directly into the console, you can run the code by hitting **Enter**.
+You can "run" a line of code in R by pressing **Cmd + Enter** on a Mac and **Ctrl + Enter** on a Windows. For example, if you wanted to know what 75 times 82 is, you could type `75 * 82` into your script and "run" the code by using **Cmd + Enter**  or **Ctrl + Enter** to get the answer. Doing this will run **only** the selected line of code, meaning that your cursor must be on the line you want to evaluate in order for it to work. You can also type code directly into the console and run it by hitting **Enter**.
+
+>*"Why would I type code directly into the console?"*
+>
+>You might want to type code directly into the console when you're performing calculations but you don't care about saving the results. A script is like a notepad where you can save your analysis. If you needed to calculate `75 * 82`, it's probably not essential to have that calculation saved to your notebad, so you can type it directly into the console to keep your notepad clean. That way, you won't have to constantly delete irrelevant code and calculations from your script.
+
+<!--
+Rather than repeatedly copying and pasting these code blocks into an R script, you can open the `Ch2-6.R` script that was included in the download folder to follow along more easily. If you haven't already, you can download the folder [here](https://github.com/JasonDude16/Statistical-Analysis-Folder). The `Ch2-6.R` is located within the `scripts` subdirectory. This script contains all of the code blocks used in chapters 2 through 6 of this book.
+-->
 
 ## R is a calculator {-}
 Try out R's calculator functionality by copying and pasting the code below into your R session.
@@ -52,7 +62,7 @@ In both of these examples the result is the same: `x` is now assigned to the val
 
 ```{r}
 x <- sqrt(34 + ((12 * 2)^3 - 5))
-x # typing x by itself will print the value to the console
+x # Typing x by itself, like this, will print the value to the console
 ```
 
 **The object `x` no longer refers to 5**. We overwrote `x` and assigned it to a new value, ~117.7. 
@@ -79,8 +89,6 @@ head(iris_virginica)
 
 The code above looks much better. The filtered data has been assigned to the object `iris_virginica`, so we now have a way to reference that data, and we could use this object to analyze the virginica plants exclusively.
 
-## Dollar Signs and Brackets {-}
-
 ## Variable Types {-}
 R has several different variable types, and to manipulate your data it is good to be aware of them.
 
@@ -93,14 +101,14 @@ TRUE, FALSE    # Logical class
 "yes", "no"    # Factor class (categorical variable; each level is a category)
 ```
 
-These variable types are the basic building blocks, and all values in R belong to one of them. You may have a situation where your data is imported as `character` but you'd like to change it to `factor`, or vice versa. You can easily do this with the `as.factor()` and `as.character()` functions, which we'll talk more about in Chapter 5. 
+These variable types are the basic building blocks, and all values in R belong to one of them. You may have a situation where your data is imported as `character` but you'd like to change it to `factor`, or vice versa. But first, what exactly is a `character` class and what is a `factor` class? In the code block above, the example shows that `"hat"` and `"dog"` are of the character class; this means that R will interpret these values as letters and words, and nothing more. A factor class, on the other hand, will have an extra layer of complexity. Factors will be interpreted as *categories*, and not simply words. In the code block above the example given is `yes` and `no` as being of the factor class. Let's say you had a dataset with 100 observations and 50 observations responded to a question with "yes" and 50 with "no". If this were a character class, you would not be able to treat "yes" and "no" as categories. In order to be treated as categories, you would need to convert the values to a factor class that has two levels: `yes` and `no`. You can easily do this with the `as.factor()` and `as.character()` functions, which will be discussed in greater detail in Chapter 6. 
 
 ```{r}
 y <- c(1,2,3,4,5)
 y
 ```
 
-When you add multiple values together, it's called concatenation. In the above example, `numeric` values were concatenated together and assigned to the object `y` The object `y` now refers to 5 values: `1, 2, 3, 4, 5`. When we concatenate values together like this, we create a `data type`.
+When you combine values, it's called concatenation. In the above example, `numeric` values were concatenated together and assigned to the object `y` The object `y` now refers to 5 values: `1, 2, 3, 4, 5`. When we concatenate values together like this, we create a `data type`.
 
 ## Data Types {-}
 R has many data types, but the only one we'll worry about is the `data frame`. A `data frame` is usually the object that's created when importing a data file into R. A data frame consists of columns and rows, where each column is the same length. Here's an example of one of R's built-in data frames called `mtcars`:
@@ -109,12 +117,39 @@ R has many data types, but the only one we'll worry about is the `data frame`. A
 head(mtcars)
 ```
 
+Each column within the data frame consists of only *one* variable type, and this is always the case for data frames. In the `mtcars` data frame above, all columns are numeric. Even though some may look like integers or factors, they are not. How variable types can be changed will be discussed in Chapter 6.
+
+## Dollar Signs and Brackets {-}
+When working with datasets, you'll often want to extract/reference part of the dataset. For example, in the `mtcars` dataset above, you might want to visualize the relationship between the `hp` (horsepower) and `mpg` of cars. We need to have a way of referencing these specific columns within the dataset; this can be accomplished with brackets, `[]`, and dollar signs, `$`. Brackets and dollar signs allow you to subset the data. For example, here's a plot of the `hp` and `mpg` relationship:
+
+```{r}
+plot(mtcars$hp, mtcars$mpg)
+```
+
+In the code above, the dollar sign was used to selected the `hp` and `mpg` columns from the `mpg` data frame. Although not the most precise definition, you can think of the dollar sign as allowing you to select part of an object. In the example above, the column was the "part" that was selected, but other "parts" can be selected as well, which you'll see in the statistical modeling section.
+
+Similarly to the dollar sign, brackets can be used to subset:
+
+```{r}
+head(mtcars[1])
+```
+
+In the code above, the first column of the `mtcars` dataset was selected, which is the `mpg` column (the `head()` function was also used so that only the first few observations were printed).
+
+You can use brackets to subset both the columns and the rows of a dataset:
+
+```{r}
+mtcars[1:6, 1]
+```
+
+In the code above, the first 6 rows of the first column were selected from the `mtcars` dataset. 
+
 ## Functions and Arguments {-}
-So far we've seen R as a calculator, created objects, and learned about variable types and data types. But how we we actually *do* things in R? That is, how do we manipulate data and run a statistical analysis? 
+So far we've seen R as a calculator, created objects, learned about variable types and data types, and subset data. But how do we actually *do* things in R? That is, how do we manipulate data and run a statistical analysis? 
 
 To do just about anything in R you use functions. What functions do in R is take a process that would normally be a hassle for the user and make it easier. For example, the `mean()` function. We're all familiar with how the mean is calculated, and we *could* calculate this manually in R. If we wanted the mean of the numbers `c(1, 3, 4, 4)` we could simply sum the numbers and divide by n to get 3. But why do that when we can just use the `mean()` function? And that's the basic idea of a function: to simplify things for us. The `lm()` function creates a linear model from our data, which again we *could* achieve the same result by manually performing *many* calculations, but this would be a time-consuming, arduous task, and using the `lm()` function greatly simplifies the process. 
 
-Functions are great because they can simplify and streamline a process, but how do you make the function do exactly what *you* need to do in your analysis? Let's take a look at the `factor()` function to get an indea of how to take advantage of functions and arguments. 
+Functions are great because they can simplify and streamline a process, but how do you make the function do exactly what *you* need to do in your analysis? Let's take a look at the `factor()` function to get an idea of how to take advantage of functions and arguments. 
 
 Factors are categorical variables, where each level is a category. Here is an example of character data that's been converted to a factor with the `factor()` function:
 
@@ -124,7 +159,7 @@ y <- factor(y) # y is converted to a factor with 2 levels
 y
 ```
 
-In this example, two levels are created from the data: `cat` and `dog`. Let's slighly modify this example and say that data was entered incorrectly into a column, so the column looks like this:
+In this example, two levels are created from the data: `cat` and `dog`. Let's slightly modify this example and say that data was entered incorrectly into a column, so the column looks like this:
 
 ```{r}
 y <- c("cat", "dg", "cat", "cart", "dog", "cat", "dog")
@@ -148,7 +183,7 @@ y <- factor(y, levels = c("cat", "dog"), labels = c(0, 1))
 y
 ```
 
-By using `factor()`'s arguments we were able to get the function to do what *we* wanted it to do, not just what it does by default. This is what makes R so powerful!
+By using `factor()`'s arguments we were able to get the function to do what *we* wanted it to do, not just what it does by default. This is just one example of what makes a programming language like R so powerful!
 
 ### Example {-}
 Now let's look at a more complete example of functions and arguments with the `lm()` function.
@@ -159,11 +194,11 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-Above is the `lm()` function used for fitting linear models. The function has many arguments, but most of the arguments have default values; what this means is that you do not need to assign a value to that argument in order for the function to work. For example, in this function the default `method` argument is set to `qr`: `method = "qr"`. This means that when you use the `lm()` function, the `method` will be set to `qr` even if you don't explicitly set it to `qr`; hence, `qr` is the default (which is referring to [QR Decomposition](https://en.wikipedia.org/wiki/QR_decomposition), in case you were curious).
+Above is the `lm()` function used for fitting linear models. The function has many arguments, but most of the arguments have default values; what this means is that you do not need to assign a value to that argument in order for the function to work. For example, in this function the default `method` argument is set to `qr`: `method = "qr"`. This means that when you use the `lm()` function, the `method` will be set to `qr` even if you don't explicitly set it to `qr`; hence, `qr` is the default (which is referring to [QR Decomposition](https://en.wikipedia.org/wiki/QR_decomposition), in case you were curious). **The idea of a default argument is very important point, because the default arguments for a function can impact the way the function behaves without the user being aware of it.** Keep this in mind if you're using a function and the results are not what you'd expect them to be. 
 
-In addition to arguments that have default values, there are also arguments which are optional. In the `lm()` function above, `subset`, `weights`, `na.action`, and `offset` are all optional arguments. Unsurpringly, this means that these arguments do not *need* to be used, but they can be. 
+In addition to arguments that have default values, there are also arguments which are optional. In the `lm()` function above, `subset`, `weights`, `na.action`, and `offset` are all optional arguments. Unsurprisingly, this means that these arguments do not *need* to be used, but they can be. 
 
-We can now see why the code below is valid, even though there are many arguments that we didn't specify.
+We can now see why the code below is valid, even though there are many arguments that were not specified.
 
 ```{r eval=FALSE}
 lm(formula = mpg ~ hp, data = mtcars)
@@ -175,15 +210,11 @@ We can also see why this code below is valid. The `subset` argument is optional,
 lm(formula = mpg ~ hp, data = mtcars, subset = c(1:10))
 ```
 
-> *But how do I know what the arguments are for a given function, what they do, which arguments have default values, which ones are optional, and which ones I need to specify?*
-
-This is where the documentation comes in handy. You can type a question mark in front of the function you'd like to learn more about (`?factor`). If you're using RStudio, this will bring up the documentation page for that function under the help tab in the lower right pane, which will usually include a description, the arguments (and their descriptions), and example code showing how to use the function. You can also type the function into the search bar under the help tab on the lower right pane.
-
-Hopefully, though, we'll provide enough example code throughout this book that you won't need to concern yourself with all of these details. But, we can't provide examples of *everything* for *every* situation, and you'll almost certainly use functions that aren't covered in this book. This is where having a basic understanding of these topics will come in handy.
+>*"But how do I know what the arguments are for a given function, what they do, which arguments have default values, which ones are optional, and which ones I need to specify?"*
+>
+>This is where the documentation comes in handy. You can type a question mark in front of the function you'd like to learn more about (`?factor`). If you're using RStudio, this will bring up the documentation page for that function under the help tab in the lower right pane, which will usually include a description, the arguments (and their descriptions), and example code showing how to use the function. You can also type the function into the search bar under the help tab on the lower right pane.
+>
+>Hopefully, though, we'll provide enough example code throughout this book that you won't need to concern yourself with all of these details. But, we can't provide examples of *everything* for *every* situation, and you'll almost certainly use functions that aren't covered in this book. This is where having a basic understanding of these topics will come in handy.
 
 ## Code Formatting {-}
 As a final note, just know that the spacing in your code doesn't matter. You can type `5 * 5` or `5*5` and get the same result. You can type `mean(1:10)` or `mean(1 : 10)` and you'll get the same result. You can even type `mean (1:10)` or `mean (1 : 10)`, but you probably shouldn't because this is very unconventional. 
-
-<!--
-## Test Your Knowledge {-}
--->

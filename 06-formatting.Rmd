@@ -1,12 +1,11 @@
 ```{r include=FALSE}
 library(tidyr)
-library(magrittr)
 library(dplyr)
 ```
 
 # Formatting Data{#CH6}
 
-> This chapter will cover: missing data, merging data files, changing variable types, recoding varibles, data transformation and tidy data principles. 
+> This chapter will cover: merging data files, long and wide format, recoding varibles, changing variable types, column renaming and arrangement, and data manipulation. The intention is to briefly cover some of the most common tasks that are performed in R. There are many resources that cover these topics and more in much greater depth (and with better explanation), such as Roger D. Peng's [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) and [R for Data Science](https://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham.
 
 > The code in this chapter only works if you're following along with the Github folder for this book (which you can download [here](https://github.com/JasonDude16/Statistical-Analysis-Folder)), correctly set your working directory to the data folder (which you can learn how to do in [Chapter 4](#CH4)), and run the code in the order it appears in this chapter. 
 
@@ -27,7 +26,7 @@ newData <- rbind(data1, data2, data3)
 dim(newData)
 ```
 
-As you can see the last printout shows the dimensions are 60 x 2, which means the three datasets were successfully combined.
+As you can see the last printout shows the dimensions are 60 rows by 2 columns, which means the three data frames were successfully combined.
 
 Let's say you have two files with *different* column names and want to combine them side-by-side. For example, you might have a data file that contains `subID`, `age` and `sex`, and another file contains `height` and `weight` data. These columns can be added into one dataset with the `cbind()` function. 
 
@@ -52,6 +51,8 @@ newData <- cbind(data1, data2)
 head(newData)
 ```
 
+It is important to note that the `rbind()` function is only useful when binding two datasets that have *all* of the same column names *and they're in the same order*. Similarly, the `cbind()` function is only useful when combining data with the same number of rows. If this is not the case, you can use the `merge` function for more complex joining operations. Type `merge` into the search bar under the help tab in RStudio to learn more about the function, or run the code `?base::merge`.
+
 ## Long Format {-}
 Putting data in long format increases the number of rows and decreases the number of columns in a data frame. In the health sciences, this often means that one row corresponds to one observation (at one point in time). If your data is not in long format, you can change it to long format with the `pivot_longer()` function, which comes from the tidyverse package.
 
@@ -74,7 +75,7 @@ head(data_VO2_long)
 ```
 
 ## Wide Format {-}
-Putting data in wide format increases the number of columns in a data frame. In the health sciences, this often means that one row will contain multiple points in time; this is how the **data_VO2.csv** was formatted before we converted it to long format. We can now change it back into wide format with the `pivot_wider()` function, which also comes from the tidyverse package.
+Putting data in wide format increases the number of columns in a data frame. In the health sciences, this often means that one row will contain multiple points in time; this is how the **data_VO2.csv** was formatted before we converted it to long format. We can now change it back into wide format with the `pivot_wider()` function, which also comes from the `tidyverse` package.
 
 ```{r}
 # Make sure the tidyverse package is loaded 
@@ -83,86 +84,6 @@ data_VO2_wide <- pivot_wider(data = data_VO2_long,
                              values_from = "VO2_max")
 head(data_VO2_wide)
 ```
-
-## Missing Data {-}
-Missing data can be handled in many different ways, and selecting the most appropriate method is beyond the scope of this book. Instead, we'll only cover how to find and omit observations with missing data. 
-
-First we'll create a data frame in R that contains `NA` values:
-
-```{r}
-data <- data.frame(Col1 = c(NA, 1, 21, 34, NA), 
-                   Col2 = c(23, 34, 34, 12, 56),
-                   Col3 = c(NA, 2, 12, 43, 12))
-data
-```
-
-You can use the `is.na()` function to assess if a value is missing in a data frame or not. For example: 
-
-```{r}
-is.na(data)
-# Missing values in data frame
-```
-
-What you get in return is `TRUE` and `FALSE` values. If the value is `TRUE`, that means there is an `NA` value in that location. This might not be particularly helpful, though, if you have a large data frame. Instead, it might be more useful to have the count of `NA` values returned. To do this, we could use the `is.na()` function wrapped inside of a `sum()` function: 
-
-```{r}
-sum(is.na(data))
-# Sum of missing values in data frame
-```
-
-You might want to know how many `NA` values are in a specific column rather than the entire dataset. Selecting just one column from a data frame is a very common task, and one way you can do this is with the dollar sign, `$`:
-
-```{r}
-sum(is.na(data$Col1))
-# Sum of missing values in Col1 
-```
-
-A quick way to get the missing values for all columns of a data frame is with the `colSums()` function:
-
-```{r}
-colSums(is.na(data))
-```
-
-You can omit all missing values in a data frame with the `na.omit()` function:
-
-```{r}
-na.omit(data)
-```
-
-The "opposite" of the `na.omit()` function would be finding and listing all the rows that *do* contain missing values, and that's what the code below accomplishes:
-
-```{r}
-data[!complete.cases(data), ]
-```
-
-A couple things need to be explained first to understand the code above. First, brackets, `[ ]`, are used to subset in R. For example, if you wanted the 5th row and 3rd column returned from a data frame, you could do this by subsetting the data frame like so: `data[5,3]`. The first item within the bracket refers to the row number, and the second number refers to the column number. If you don't put any numbers within the brackets, `data[,]`, then *everything* is selected (the entire data frame). Going back to the example above, you can see that the `data` is being subsetted by the rows. `complete.cases()` is a function similar to `na.omit()`, where the `NA` values are not included. Notice that there is an exclamation point, `!`, in front of the function. This means that instead of returning the cases that are complete, what's being returned is the cases that are *not* complete from the data frame. So, we're subsetting `data` by its rows, where the *incomplete* cases are returned, and all the columns are selected. If that was confusing, that's okay! If there's one thing to take away from this, it's that you can use the brackets for subsetting. 
-
-> Note: You might have noticed that you can select a column in R like this `data$Col3`, and also like this `data[ ,3]`. There are almost always multiple ways to accomplish something in R, and both ways work equally well.
-
-Let's try computing the mean for the first column of the `data` object which contains missing values:
-
-```{r}
-mean(data$Col1)
-```
-
-As you can see, `NA` is returned. This is because `Col1` contains missing values. Luckily the `mean()` function has an `na.rm` argument, which stands for 'not available, remove'. We can set this argument to `TRUE`, so that missing values will be removed when computing the mean: 
-
-```{r}
-mean(data$Col1, na.rm = TRUE)
-```
-
-### Mean imputation {-}
-Rather than omitting missing values from analysis with the `na.omit()` function, you could perform mean inputation.
-
-```{r}
-df <- data.frame(col1 = c(2.5, 4.2, 3.2, NA))
-df$col1[is.na(df$col)] <- mean(df$col, na.rm = TRUE)
-df
-```
-
-In the code above, a data frame is created that has one column, and the fourth value is an `NA`. The `NA` is then replaced with the average of the other three numbers. 
-
-> We are not suggesting that you use mean imputation when your dataset contains missing values, but merely demonstrating how this can be done in R. 
 
 ## Recoding Variables {-}
 One of the easiest ways to recode/fix factors in R is with the `factor()` function. We'll use the **SubID_Age_Sex.csv** dataset that was used earlier:
@@ -204,15 +125,17 @@ data_VO2_F <- filter(data_VO2, Sex == "F")
 
 data_VO2_F <- 
 mutate(data_VO2, VO2_max_cat = ifelse(VO2_max < 22.8, "Very Poor",
-                              ifelse(VO2_max >= 22.8 & VO2_max <= 26.9, "Poor", 
-                              ifelse(VO2_max >= 27.0 & VO2_max <= 31.4, "Fair",
-                              ifelse(VO2_max >= 31.5 & VO2_max <= 35.6, "Good",
-                              ifelse(VO2_max >= 35.7 & VO2_max <= 40.0, "Excellent",
+                               ifelse(VO2_max >= 22.8 & VO2_max <= 26.9, "Poor", 
+                               ifelse(VO2_max >= 27.0 & VO2_max <= 31.4, "Fair",
+                               ifelse(VO2_max >= 31.5 & VO2_max <= 35.6, "Good",
+                               ifelse(VO2_max >= 35.7 & VO2_max <= 40.0, "Excellent",
                                      "Superior"))))))
 head(data_VO2_F)
 ```
 
-In the code above, the data was filtered to only include females. Notice that there are two equals signs `==` within the `filter()` function. If you only add one equals sign here you'll get an error, and errors like this can be very difficult to find! After filtering, the data frame was assigned to the object `data_VO2_F`. Next, the `mutate()` function was used to create a new column called `VO2_max_cat` (cat for category). Then, the `ifelse()` function was used to assign a category based on the subject's VO2_max. The first line reads, "If the VO2_max is less than 22.8, assign it the value "Very Poor"." The last category, `Superior`, is assigned if the value does not meet any of the other conditions, which in this case is all values greater than 40.0. 
+In the code above, the data were filtered to only include females. Notice that there are two equals signs `==` within the `filter()` function. This is because two equals signs is used to represent a logical statement. The first line of code above is filtering the data to only include females: `Sex == "F"`. This is a logical statement where we are saying we only want to include the data where `Sex == "F"` is true. If you were to add only one equals sign here you'd get an error, and errors like this can be very difficult to find! 
+
+After filtering, the data frame was assigned to the object `data_VO2_F`. Next, the `mutate()` function was used to create a new column called `VO2_max_cat` (cat for category). Then, the `ifelse()` function was used to assign a category based on the subject's VO2_max. The first line reads, "If the VO2_max is less than 22.8, assign it the value "Very Poor"." The last category, `Superior`, is assigned if the value does not meet any of the other conditions, which in this case is all values greater than 40.0. 
 
 Now we can repeat the same process for males:
 
@@ -232,45 +155,184 @@ head(data_VO2_M)
 
 If you wanted the data frames to be combined back into one data frame that included both males and females, you could use the `rbind()`  function. 
 
-You might want to recode certain values as `NA` if you know the values are either impossible or very unrealistic. Here's an example were `Age` data is collected, and values less than 0 or greater than 120 are recoded as `NA`. Notice the vertical bar in the code. The vertical bar (also called the pipe) means `or`. So the code below reads, "If `Age` is less than 0 or greater than 120, assign it the value `NA`."  
+You might want to recode certain values as `NA` if you know the observed values are impossible. Here's an example where `Age` data is collected, and values less than 0 or greater than 130 are recoded as `NA`. Notice the vertical bar in the code. The vertical bar means `or`. So the code below reads, "If `Age` is less than 0 or greater than 130, assign the value `NA` to it."  
 
 ```{r}
 df <- data.frame(Age = c(1546, 43, 23, 56, -64))
-df$Age[df$Age < 0 | df$Age > 120] <- NA
+df$Age[df$Age < 0 | df$Age > 130] <- NA
 df
 ```
 
 ## Changing Variable Types {-}
-```{r eval=FALSE}
-class()
-as.numeric()
-as.integer()
-as.character()
-as.factor()
+As discussed briefly in [Chapter 2](#CH2), there are several variable types in R, and the variable type of the data will affect the operations that you can and cannot perform on that data. For example, if the data is of the character class, you cannot calculate the mean with the `mean()` function.
+
+Let's say you have 10 values consisting of zeros and ones, where the ones are intended to represent `TRUE` and zeros are intended to represent `FALSE`. 
+
+```{r}
+values <- c(0, 0, 1, 0, 1, 1, 1, 1, 0, 0)
+```
+
+Unfortunately, R has no way of knowing that you want the zeros and ones to represent `FALSE` and `TRUE`. R will initially interpret the values exactly as they are, as numeric zeros and ones. You can find out the class of the object with the `class()` function:
+
+```{r}
+class(values)
+```
+
+As expected, the values are numeric. We can coerce the values to the logical class, so that the zeros are `FALSE` and ones are `TRUE`:
+
+```{r}
+as.logical(values)
+```
+
+Now let's check the class of the object:
+
+```{r}
+class(values)
+```
+
+Notice that the class is still the same. That's because we didn't overwrite the `values` object, which is what we need to do in order to permanently change the object:
+
+```{r}
+values <- as.logical(values)
+class(values)
+```
+
+R can only perform a coercion that makes sense. 
+
+```{r}
+words <- "Can this sentence be coverted to a different class?"
+as.numeric(words)
+as.integer(words)
+as.logical(words)
+as.factor(words)
+```
+As you can see in the example above, the sentence (which is of the character class) could not successfully be converted to a numeric, integer, or logical class. Doing so produced `NAs` in each case. The sentence *could*, however, be converted to a factor class. Although not at all sensible in this situation, it is possible because the string of characters can be represented as a categorical variable. 
+
+Here's one more example using the `mtcars` data frame, which consists of 11 columns that are all of the numeric class:
+
+```{r}
+str(mtcars)
+```
+
+It would make more sense to represent the `cyl` (cylinder) as a factor in most situations, since the data are not continuous and there are only 3 possible cylinder sizes in the data frame: 
+
+```{r}
+mtcars$cyl <- as.factor(mtcars$cyl)
+mtcars$cyl
 ```
 
 ## Rename Columns {-}
-```{r eval=FALSE}
-colnames()
+Renaming columns is a very common task. Before renaming the columns, you might want to print all of the column names to the screen so you can look at them. This can be done with the `colnames()` function:
+
+```{r}
+colnames(mtcars)
 ```
+
+Let's say that we wanted to be abundantly clear about the column names of the mtcars data frame. Instead of `mpg` as the first column name, let's rename it to `miles_per_gallon`.
+
+```{r}
+colnames(mtcars)[1] <- "miles_per_gallon" 
+colnames(mtcars)
+```
+
+The brackets were used to select the first item of column names, which in this case was `mpg`. If you wanted to rename multiple columns, you could do this in one step:
+
+```{r}
+colnames(mtcars)[c(2, 4, 6)] <- c("cylinder", "horsepower", "weight")
+colnames(mtcars)
+```
+
+Columns 2, 4, and 6 were selected with the concatenate function (`c()`) and the names `cylinder`, `horsepower`, and `weight` were assigned to those column names, respectively. 
 
 ## Change Column Order {-}
-```{r eval=FALSE}
-# Reorder by column name
-data <- data[c("A", "B", "C")]
+You can change the order of columns in a data frame by subsetting with brackets and then using the concatenate function to change the order, like so:
 
-# Reorder by column index
-df[,c(1,2,3,4)]
+```{r eval=FALSE}
+iris <- iris[c(5, 1:4)]
+iris
 ```
 
-## Data Transformation {-}
-```{r eval=FALSE}
-select()
-filter()
-mutate()
-arrange()
-group_by()
-summarise()
+The fifth column in the `iris` data frame, `Species`, is now listed first instead of last. 
+
+## Data Manipulation {-}
+In this section we'll provide a few examples of data transformation using the `tidyverse` package. Make sure you have the `tidyverse` library loaded before using the functions listed below: 
+
+1. `select()`: pick variables (columns) by their names
+2. `filter()`: select observations by their values
+3. `mutate()`: create new variables (column) with functions of existing variables
+4. `arrange()`: Reorder the rows 
+5. `summarise()`: collapse many values down to a single summary
+6. `group_by()`: change the scope of a function to operate on a group
+
+In the **Recoding Variables** section above we've already seen how data can easily be filtered with the `filter()` function from the `tidyverse` package. There might be situations where you need to do more than simply filtering the data. Maybe you'd like to filter the data, group it by some grouping variable, and then summarize the data based off of the grouping and filtering. This, and much more, can be done with some of the functions in the `tidyverse` package. 
+
+Let's look at an example where we'd like to perform several transformations to the  **BMI_1.csv** and **SubID_Age_Sex.csv** data frames. Earlier we combined these data frames into a new object called `newData`, which is the object we'll be manipulating. Make sure to run the code below if you haven't already.
+
+```{r}
+data1 <- read.csv("SubID_Age_Sex.csv")
+data2 <- read.csv("BMI_1.csv")
+newData <- cbind(data1, data2)
+head(newData)
 ```
 
-## Dealing with Dates {-}
+Let's say we wanted to calculate the BMI of males only, and then arrange the data so that the highest BMI values are listed first. First we'd need to filter the data to include only males, then convert height and weight to metric values, then calculate BMI, then arrange the data in descending order according to BMI. We'll use the `filter()`, `mutate()`, and `arrange()` functions to do this.
+
+### Good Option {-}
+Here is one option of how the desired transformation could be accomplished. The code is readable, but several objects had to be created as intermediate steps, which is not ideal. 
+
+```{r}
+newData1 <- filter(newData, sex == "M")
+newData2 <- mutate(newData1, weight_kg = weight / 2.2,
+                             height_m = height * .0254,
+                             bmi = weight_kg / height_m^2)
+newData3 <- arrange(newData2, desc(bmi))
+newData3
+```
+
+This way of doing things is just fine, but it's not very efficient. Data manipulation often involves many steps, and it would be quite the hassle to create a new object for every step in the process, and then use that new object for further manipulation. Thankfully, there's a better way to do this.
+
+### Better Option {-}
+The code below is as readable as the last, and new objects did not have to be created in the process, making it the better option. In this code, the data was filtered to include only males, `weight_kg` and `height_m` columns were added, `bmi` was then calculated using those two columns, and the data was arranged so that the highest BMI values were listed first.
+
+```{r}
+newData %>% 
+    filter(sex == "M") %>% 
+    mutate(weight_kg = weight / 2.2,
+           height_m = height * .0254,
+           bmi = weight_kg / height_m^2) %>% 
+    arrange(desc(bmi))
+```
+
+This was all accomplished without creating new objects thanks to the pipe operator, `%>%`. Think of the pipe as the word "then". For example, take the `newData` object *then* `filter` to include only males, *then* `mutate` to calculate BMI values, *then* `arrange` the data. 
+
+Here's another example that utilizes the other three functions: `select`, `group_by`, and `summarise`. We'll be using the `data_VO2` object created earlier. Make sure to run the code below if you haven't already.
+
+```{r}
+data_VO2 <- read.csv("data_VO2_long.csv")
+data_VO2$Sex <- rep(c(rep("M", 4), rep("F", 4)), 10)
+head(data_VO2)
+```
+
+In this example, we want to select all columns except for the `SubID` column, group the observations by `Time` and `Sex`, perform a summary statistic where we calculate the average `VO2_max` based on that grouping, and count the number of observations in each grouping.   
+
+```{r}
+data_VO2 %>% 
+    select(!SubID) %>% 
+    group_by(Time, Sex) %>% 
+    summarise(VO2_max_avg = mean(VO2_max),
+              count = n())
+```
+
+In the `select()` function the `SubID` column was *not* selected, which is indicated by the exclamation point, `!`. The data was then grouped by `Time` and `Sex`, and the `summarise()` function was used to create a new column called `VO2_max_avg`, which was computed as the average VO2_max *for each of the unique groups*. A `count` column was also created with the `n()` function, which counted the observations in each grouping.  
+
+We've shown that the `arrange()` function can be used to reorder rows of numeric data by descending (or ascending) values; it can also be used to arrange factors, like the `Sex` column. Here's the same code as above, except that the data is arranged by `Sex` instead of `Time`:
+
+```{r}
+data_VO2 %>% 
+    select(!SubID) %>% 
+    group_by(Time, Sex) %>% 
+    summarise(VO2_max_avg = mean(VO2_max)) %>% 
+    arrange(Sex)
+```
+
+These data manipulation functions are far more comprehensive than what's shown here. To see more examples of these functions and in much greater detail, check out the Data Transformation chapter in *R for Data Science*, which you can read [here](https://r4ds.had.co.nz/transform.html).
