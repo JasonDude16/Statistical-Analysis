@@ -1,7 +1,7 @@
 # (PART) R Basics {-} 
 
 # Getting Started with R
->This chapter will walk through the steps of getting started with R and RStudio. <span style="background-color:lightyellow"><b>At the end of the chapter, we'll provide a link where you can download a folder that includes all of the code and data that's used in this guidebook.</b></span>
+>This chapter will walk through the steps of getting started with R and RStudio. <span style="background-color:lightyellow"><b>At the end of the chapter, we will provide a link where you can download a folder that includes all of the code and data that is used in this guidebook.</b></span>
 
 ## What is R? {-}
 R is an open-source, free software environment for data manipulation and statistical computing. Here is an excerpt from the R website (<https://www.r-project.org>):
@@ -88,9 +88,7 @@ knitr::include_graphics("./images/rstudio_download.png")
 ## Opening R or RStudio {-}
 If you decided not to download RStudio, then you'll work with R by opening the R application. It's perfectly fine to do this, but just know that you'll be on your own! The rest of this book will assume you've installed RStudio, and we'll occasionally make references that are specific to the RStudio interface.
 
-If you downloaded RStudio, you'll work with R by opening RStudio. In this case, you should *not* open R, because RStudio is simply an interface for R; by using RStudio you are simultaneously using R. So, if you were to open both R and RStudio, you would be starting two separate R sessions, which is not what you want to do. Hopefully that makes sense. 
-
-Now would be a good time to open RStudio and start following along. 
+If you downloaded RStudio, you'll work with R by opening RStudio. In this case, you should *not* open R, because RStudio is simply an interface for R; by using RStudio you are simultaneously using R. So, if you were to open both R and RStudio, you would be starting two separate R sessions, which is not what you want to do. Hopefully that makes sense, but to be abundantly clear: **RStudio is the *only* application you need to open when using R**. Now would be a good time to open RStudio and start following along. 
 
 ## The RStudio Layout {-}
 By default, RStudio uses the 4 pane layout shown below.
@@ -102,23 +100,25 @@ knitr::include_graphics("./images/rstudio_panes.png")
 
 * **Pane A**: This is where you write your scripts. You can think of a script like a notepad, where you can write your code and then save it for later.
 
-* **Pane B**: This is where your code is evaluated, and specifically it is evaluated under the `Console` tab (you can ignore the `Terminal` tab). For example, if you wanted to calculate the mean of 3 numbers, like this `mean(c(12, 32, 15))`, the result, `r {round(mean(c(12, 32, 15)), digits=1)}`, would be displayed in this pane under the `Console` tab. You can also *write* code here. For example, you could write `mean(c(12, 32, 15))` directly into the console (instead of in Pane A), but keep in mind that **any code that is typed here will not be saved.**
+* **Pane B**: This is where your code is evaluated, and specifically it is evaluated under the `Console` tab (you can ignore the `Terminal` tab). What does it mean to 'evaluate' code? Let's say you wanted to calculate the mean of 3 numbers, which could be done like this in R: `mean(c(12, 32, 15))`. We then *evaluate* the code to get the answer. The result, `r {round(mean(c(12, 32, 15)), digits=1)}`, would be displayed in Pane B under the `Console` tab. You can also *write* code here. For example, you could write `mean(c(12, 32, 15))` directly into the console (instead of in Pane A), but keep in mind that **any code that is typed here will not be saved.**
 
-* **Pane C**: This pane has several tabs, but the only one that really matters is the `Enironment` tab (if you don't see a `Build` or `Git` tab, that's okay). The `Environment` tab is where you can view your data and the objects you create, which will make more sense as you progress through the book.
+* **Pane C**: This pane has several tabs, but the most important for our purposes is the `Enironment` tab (if you don't see a `Build` or `Git` tab, that's okay). The `Environment` tab is where you can view your data and the objects you create, which will make more sense as you progress through the book.
 
-* **Pane D**: In this pane you can view files, plots, install packages, get help with R functions and more. 
+* **Pane D**: In this pane you can view files, plots, install packages, get help with R functions, and more. The `help` tab is *very* useful when learning how to use R; this is where you can learn about any function you may want to use by viewing the provided documentation (which is very good in R!).
 
 ## Following Along {-}
-We wanted to make it as easy as possible to follow along with this guidebook, so we created a folder that contains all of the data and code that's used throughout the chapters, which can be downloaded [here](https://github.com/JasonDude16/Statistical-Analysis-Folder). After clicking on the link, you should be redirected to a page that has a green "**Clone or download**" button, shown below. 
+We wanted to make it as easy as possible to follow along with this guidebook, so we created a folder that contains all of the data and code that's used throughout the chapters, which can be downloaded [here](https://github.com/JasonDude16/Statistical-Analysis-Folder). After clicking on the link, you should be redirected to a page that has a green "Clone or download" button, shown below. 
+
+> Note: since writing this guidebook, the GitHub website has changed slightly. At the time of this update, the green button says "Code". Aside from this, the instructions are still the same <br>.
 
 ```{r echo=FALSE, cache=TRUE, out.height= '80%', out.width= '80%', fig.align='center'}
 setwd("..")
 knitr::include_graphics("./images/github.png")
 ```
 
-You can then click on the dropdown arrow on the green button and click **Download ZIP**. Next, find the folder on your computer, unzip it, and move it to a convenient location (such as your Desktop). If you currently have an R session open, go ahead and close it. After you've closed your current R session, open the file within the folder that ends with the extension **.Rproj**. After you click on the **Rproj** file, RStudio should open and you should see a screen similar to the one below.
+You can then click on the dropdown arrow on the green button and click **Download ZIP**. Next, find the folder on your computer, unzip it, and move it to a convenient location (such as your Desktop). If you currently have RStudio open, go ahead and close it. After you've closed RStudio, open the file within the folder that ends with the extension **.Rproj**. After you click on the **Rproj** file, RStudio should open and you should see a screen similar to the one below.
 
-> By opening the .Rproj file, we opened an R project. There's nothing particularly "special" about an R project; all it really does is set the working directory to the correct location, which will make more sense after reading Chapter 4. 
+> By opening the .Rproj file, we opened an R project. There's nothing particularly "special" about an R project; all it really does is set the working directory to the correct location, which will make more sense after reading Chapter 4. Doing this will ensure the code in the following chapters will work as expected. 
 
 ```{r echo=FALSE, cache=TRUE, out.height= '80%', out.width= '80%', fig.align='center'}
 setwd("..")
@@ -147,7 +147,7 @@ Let's add a comment to the script so it's no longer blank. Try copying and pasti
 10 * 10 
 ```
 
-`# This is my first R script` is simply a comment, which is denoted by the hashtag. `10 * 10` will be evaluated once the code has been ran. You can run the code by pressing **Ctrl + Enter** on a Windows or **Cmd + Enter** on a Mac. Doing this will run **only** the selected line of code, meaning that your cursor must be on the line you want to evaluate in order for it to work. To run the code `10 * 10`, place your cursor before or after the expression (or you can highlight the expression) and press **Ctrl/Cmd + Enter**. You should see `[1] 100` printed to the console (lower left pane).
+`# This is my first R script` is simply a comment, which is denoted by the hashtag. `10 * 10`, which is code that will multiply the numbers `10` and `10`, will be evaluated once the code has been ran. You can run the code by pressing **Ctrl + Enter** on a Windows or **Cmd + Enter** on a Mac. Doing this will run **only** the selected line of code, meaning that your cursor must be on the line you want to evaluate in order for it to work. To run the code `10 * 10`, place your cursor before or after the expression (or you can highlight the expression) and press **Ctrl/Cmd + Enter**. You should see `[1] 100` printed to the console (lower left pane).
 
 ## Saving a Script {-}
-You can save a script by clicking on `File > Save as`, and navigating to the folder you'd like to save it in. It doesn't matter too much where you choose to save a script, but it's good practice to create a `scripts` folder and save it there. Let's say you're performing an analysis related to VO2 max. A good folder setup would be creating a main folder called `VO2max_Analysis` (or something like that) and then create a `scripts` folder and `data` folder within that folder, which will of course contain your R scripts and data, respectively.
+You can save a script by clicking on `File > Save as`, and navigating to the folder you'd like to save it in. It doesn't matter too much where you choose to save a script, but it's good practice to create a `scripts` folder and save it there. Let's say you're performing an analysis related to VO2 max. A good folder setup would be creating a main folder called `VO2max_Analysis` (or something like that) and then create a `scripts` folder and `data` folder within that folder, which will contain your R scripts and data, respectively.

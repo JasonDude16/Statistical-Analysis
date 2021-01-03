@@ -309,12 +309,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="importing-3" class="section level2 unnumbered">
 <h2>Importing</h2>
 <p>For this chapter we’ll be using the <strong>data_800m.csv</strong> file. This dataset contains information about a subject’s VO2max and their 800 meter run time.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="one-way-anova.html#cb236-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_800m.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="one-way-anova.html#cb237-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_800m.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="viewing-3" class="section level2 unnumbered">
 <h2>Viewing</h2>
 <p>The <strong>data_800m.csv</strong> dataset contains information about a subject’s VO2max and their 800 meter run time. Base off of that run time, they were categorized as <code>faster</code>, <code>medium</code>, or <code>slower</code>.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="one-way-anova.html#cb237-1"></a><span class="kw">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="one-way-anova.html#cb238-1"></a><span class="kw">head</span>(data)</span></code></pre></div>
 <pre><code>  subID   VO2 time groups
 1  s001 74.00  116 faster
 2  s002 68.00  117 faster
@@ -329,13 +329,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="formatting-3" class="section level2 unnumbered">
 <h2>Formatting</h2>
 <p>There’s no formatting that <em>needs</em> to be done for this dataset. By default, R will create dummy codes for categorical variables. Lambda 1 and Lambda 2 will be assigned the codes <code>0,1,0</code> and <code>0,0,1</code>. However, we could create a set of contrast codes to analyze linear and quadratic effects. We’ll recode the <code>faster</code>, <code>medium</code>, and <code>slower</code> categories as <code>-1</code>, <code>0</code>, <code>1</code> and <code>0</code>, <code>1</code>, <code>2</code> for the linear and quadratic codes, respectively. One easy way to do this is with the <code>mapvalues()</code> function which comes from the <code>plyr</code> package. You’ll first need to install the package (<code>install.packages(plyr)</code>) and then load the library (<code>library(plyr)</code>) before using this function.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="one-way-anova.html#cb239-1"></a>data<span class="op">$</span>lin.c &lt;-<span class="st"> </span><span class="kw">mapvalues</span>(<span class="dt">x =</span> data<span class="op">$</span>groups, </span>
-<span id="cb239-2"><a href="one-way-anova.html#cb239-2"></a>                        <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;faster&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;slower&quot;</span>),</span>
-<span id="cb239-3"><a href="one-way-anova.html#cb239-3"></a>                        <span class="dt">to =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb239-4"><a href="one-way-anova.html#cb239-4"></a></span>
-<span id="cb239-5"><a href="one-way-anova.html#cb239-5"></a>data<span class="op">$</span>quad.c &lt;-<span class="st"> </span><span class="kw">mapvalues</span>(<span class="dt">x =</span> data<span class="op">$</span>groups, </span>
-<span id="cb239-6"><a href="one-way-anova.html#cb239-6"></a>                         <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;faster&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;slower&quot;</span>),</span>
-<span id="cb239-7"><a href="one-way-anova.html#cb239-7"></a>                         <span class="dt">to =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="one-way-anova.html#cb240-1"></a>data<span class="op">$</span>lin.c &lt;-<span class="st"> </span><span class="kw">mapvalues</span>(<span class="dt">x =</span> data<span class="op">$</span>groups, </span>
+<span id="cb240-2"><a href="one-way-anova.html#cb240-2"></a>                        <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;faster&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;slower&quot;</span>),</span>
+<span id="cb240-3"><a href="one-way-anova.html#cb240-3"></a>                        <span class="dt">to =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb240-4"><a href="one-way-anova.html#cb240-4"></a></span>
+<span id="cb240-5"><a href="one-way-anova.html#cb240-5"></a>data<span class="op">$</span>quad.c &lt;-<span class="st"> </span><span class="kw">mapvalues</span>(<span class="dt">x =</span> data<span class="op">$</span>groups, </span>
+<span id="cb240-6"><a href="one-way-anova.html#cb240-6"></a>                         <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;faster&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;slower&quot;</span>),</span>
+<span id="cb240-7"><a href="one-way-anova.html#cb240-7"></a>                         <span class="dt">to =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>))</span></code></pre></div>
 <blockquote>
 <p>More examples of formatting data can be found in <a href="CH6.html#CH6">Chapter 6</a></p>
 </blockquote>
@@ -344,43 +344,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Modeling</h2>
 <div id="the-ezanovafunction" class="section level3 unnumbered">
 <h3>The <code>ezANOVA()</code>Function</h3>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="one-way-anova.html#cb240-1"></a><span class="kw">ezANOVA</span>(</span>
-<span id="cb240-2"><a href="one-way-anova.html#cb240-2"></a>    data</span>
-<span id="cb240-3"><a href="one-way-anova.html#cb240-3"></a>    , dv</span>
-<span id="cb240-4"><a href="one-way-anova.html#cb240-4"></a>    , wid</span>
-<span id="cb240-5"><a href="one-way-anova.html#cb240-5"></a>    , <span class="dt">within =</span> <span class="ot">NULL</span></span>
-<span id="cb240-6"><a href="one-way-anova.html#cb240-6"></a>    , <span class="dt">within_full =</span> <span class="ot">NULL</span></span>
-<span id="cb240-7"><a href="one-way-anova.html#cb240-7"></a>    , <span class="dt">within_covariates =</span> <span class="ot">NULL</span></span>
-<span id="cb240-8"><a href="one-way-anova.html#cb240-8"></a>    , <span class="dt">between =</span> <span class="ot">NULL</span></span>
-<span id="cb240-9"><a href="one-way-anova.html#cb240-9"></a>    , <span class="dt">between_covariates =</span> <span class="ot">NULL</span></span>
-<span id="cb240-10"><a href="one-way-anova.html#cb240-10"></a>    , <span class="dt">observed =</span> <span class="ot">NULL</span></span>
-<span id="cb240-11"><a href="one-way-anova.html#cb240-11"></a>    , <span class="dt">diff =</span> <span class="ot">NULL</span></span>
-<span id="cb240-12"><a href="one-way-anova.html#cb240-12"></a>    , <span class="dt">reverse_diff =</span> <span class="ot">FALSE</span></span>
-<span id="cb240-13"><a href="one-way-anova.html#cb240-13"></a>    , <span class="dt">type =</span> <span class="dv">2</span></span>
-<span id="cb240-14"><a href="one-way-anova.html#cb240-14"></a>    , <span class="dt">white.adjust =</span> <span class="ot">FALSE</span></span>
-<span id="cb240-15"><a href="one-way-anova.html#cb240-15"></a>    , <span class="dt">detailed =</span> <span class="ot">FALSE</span></span>
-<span id="cb240-16"><a href="one-way-anova.html#cb240-16"></a>    , <span class="dt">return_aov =</span> <span class="ot">FALSE</span></span>
-<span id="cb240-17"><a href="one-way-anova.html#cb240-17"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="one-way-anova.html#cb241-1"></a><span class="kw">ezANOVA</span>(</span>
+<span id="cb241-2"><a href="one-way-anova.html#cb241-2"></a>    data</span>
+<span id="cb241-3"><a href="one-way-anova.html#cb241-3"></a>    , dv</span>
+<span id="cb241-4"><a href="one-way-anova.html#cb241-4"></a>    , wid</span>
+<span id="cb241-5"><a href="one-way-anova.html#cb241-5"></a>    , <span class="dt">within =</span> <span class="ot">NULL</span></span>
+<span id="cb241-6"><a href="one-way-anova.html#cb241-6"></a>    , <span class="dt">within_full =</span> <span class="ot">NULL</span></span>
+<span id="cb241-7"><a href="one-way-anova.html#cb241-7"></a>    , <span class="dt">within_covariates =</span> <span class="ot">NULL</span></span>
+<span id="cb241-8"><a href="one-way-anova.html#cb241-8"></a>    , <span class="dt">between =</span> <span class="ot">NULL</span></span>
+<span id="cb241-9"><a href="one-way-anova.html#cb241-9"></a>    , <span class="dt">between_covariates =</span> <span class="ot">NULL</span></span>
+<span id="cb241-10"><a href="one-way-anova.html#cb241-10"></a>    , <span class="dt">observed =</span> <span class="ot">NULL</span></span>
+<span id="cb241-11"><a href="one-way-anova.html#cb241-11"></a>    , <span class="dt">diff =</span> <span class="ot">NULL</span></span>
+<span id="cb241-12"><a href="one-way-anova.html#cb241-12"></a>    , <span class="dt">reverse_diff =</span> <span class="ot">FALSE</span></span>
+<span id="cb241-13"><a href="one-way-anova.html#cb241-13"></a>    , <span class="dt">type =</span> <span class="dv">2</span></span>
+<span id="cb241-14"><a href="one-way-anova.html#cb241-14"></a>    , <span class="dt">white.adjust =</span> <span class="ot">FALSE</span></span>
+<span id="cb241-15"><a href="one-way-anova.html#cb241-15"></a>    , <span class="dt">detailed =</span> <span class="ot">FALSE</span></span>
+<span id="cb241-16"><a href="one-way-anova.html#cb241-16"></a>    , <span class="dt">return_aov =</span> <span class="ot">FALSE</span></span>
+<span id="cb241-17"><a href="one-way-anova.html#cb241-17"></a>)</span></code></pre></div>
 <p>The <code>ezANOVA()</code> function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you’re performing. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
 </div>
 <div id="the-lm-function-2" class="section level3 unnumbered">
 <h3>The <code>lm()</code> Function</h3>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="one-way-anova.html#cb241-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
-<span id="cb241-2"><a href="one-way-anova.html#cb241-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb241-3"><a href="one-way-anova.html#cb241-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="one-way-anova.html#cb242-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
+<span id="cb242-2"><a href="one-way-anova.html#cb242-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb242-3"><a href="one-way-anova.html#cb242-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
 <p>The <code>lm()</code> (linear model) function is used for fitting linear models. Notice that there are many arguments for this function, but the <code>formula</code> and <code>data</code>arguments are the only ones that <em>need</em> to be specified. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
 </div>
 <div id="model-with-dummy-codes" class="section level3 unnumbered">
 <h3>Model with Dummy Codes</h3>
 <p>By default, the <code>lm()</code> and <code>ezANOVA()</code> functions use the dummy codes <code>0</code>, <code>1</code>, <code>0</code> and <code>0</code>, <code>0</code>, <code>1</code> for three categories. In the formatting section we created contrast codes, but in this example we will not use those contrast codes. We’ll let the function create dummy codes for us.</p>
 <p>In this example we’ll use the <code>ezANOVA()</code> function. We need to specify the <code>data</code>, <code>dv</code>, <code>wid</code>, <code>between</code>, and <code>type</code> arguments. You can also set <code>detailed</code> and <code>return_aov</code> to <code>TRUE</code> for a more comprehensive output. The <code>data</code> argument is set equal to the entire dataset, the <code>dv</code> argument, which is short for dependent variable, is set equal to the column of the dependent variable. The <code>wid</code> argument is set equal to the column that contains the variable specifying the case/Ss identifier; usually the <code>subID</code> column, or equivalent. The <code>between</code> argument is set equal to the between-subjects factor(s), which in this case is the <code>groups</code> column.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="one-way-anova.html#cb242-1"></a>ez<span class="op">::</span><span class="kw">ezANOVA</span>(<span class="dt">data =</span> data, </span>
-<span id="cb242-2"><a href="one-way-anova.html#cb242-2"></a>            <span class="dt">dv =</span> VO2, </span>
-<span id="cb242-3"><a href="one-way-anova.html#cb242-3"></a>            <span class="dt">wid =</span> subID, </span>
-<span id="cb242-4"><a href="one-way-anova.html#cb242-4"></a>            <span class="dt">between =</span> .(groups),</span>
-<span id="cb242-5"><a href="one-way-anova.html#cb242-5"></a>            <span class="dt">type =</span> <span class="dv">3</span>,</span>
-<span id="cb242-6"><a href="one-way-anova.html#cb242-6"></a>            <span class="dt">detailed =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb242-7"><a href="one-way-anova.html#cb242-7"></a>            <span class="dt">return_aov =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="one-way-anova.html#cb243-1"></a>ez<span class="op">::</span><span class="kw">ezANOVA</span>(<span class="dt">data =</span> data, </span>
+<span id="cb243-2"><a href="one-way-anova.html#cb243-2"></a>            <span class="dt">dv =</span> VO2, </span>
+<span id="cb243-3"><a href="one-way-anova.html#cb243-3"></a>            <span class="dt">wid =</span> subID, </span>
+<span id="cb243-4"><a href="one-way-anova.html#cb243-4"></a>            <span class="dt">between =</span> .(groups),</span>
+<span id="cb243-5"><a href="one-way-anova.html#cb243-5"></a>            <span class="dt">type =</span> <span class="dv">3</span>,</span>
+<span id="cb243-6"><a href="one-way-anova.html#cb243-6"></a>            <span class="dt">detailed =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb243-7"><a href="one-way-anova.html#cb243-7"></a>            <span class="dt">return_aov =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>$ANOVA
        Effect DFn DFd       SSn      SSd           F            p p&lt;.05
 1 (Intercept)   1  18 82657.440 398.9286 3729.574754 2.528806e-22     *
@@ -409,8 +409,8 @@ Estimated effects may be unbalanced</code></pre>
 <div id="model-with-contrast-codes" class="section level3 unnumbered">
 <h3>Model with Contrast Codes</h3>
 <p>Rather than using the default dummy codes, we can use the set of contrast codes that were created in the formatting section above. We’ll use the <code>lm()</code> function to implement this model.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="one-way-anova.html#cb244-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> VO2 <span class="op">~</span><span class="st"> </span>lin.c <span class="op">+</span><span class="st"> </span>quad.c, <span class="dt">data =</span> data)</span>
-<span id="cb244-2"><a href="one-way-anova.html#cb244-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="one-way-anova.html#cb245-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> VO2 <span class="op">~</span><span class="st"> </span>lin.c <span class="op">+</span><span class="st"> </span>quad.c, <span class="dt">data =</span> data)</span>
+<span id="cb245-2"><a href="one-way-anova.html#cb245-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = VO2 ~ lin.c + quad.c, data = data)
@@ -431,7 +431,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 4.708 on 18 degrees of freedom
 Multiple R-squared:  0.4999,    Adjusted R-squared:  0.4443 
 F-statistic: 8.996 on 2 and 18 DF,  p-value: 0.001957</code></pre>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="one-way-anova.html#cb246-1"></a><span class="kw">Anova</span>(my_model, <span class="dt">type =</span> <span class="st">&quot;III&quot;</span>, <span class="dt">singular.ok =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="one-way-anova.html#cb247-1"></a><span class="kw">Anova</span>(my_model, <span class="dt">type =</span> <span class="st">&quot;III&quot;</span>, <span class="dt">singular.ok =</span> T)</span></code></pre></div>
 <pre><code>Anova Table (Type III tests)
 
 Response: VO2
@@ -442,7 +442,7 @@ Residuals 398.93 18
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>For comparison purposes, here’s what the model printout looks like with the dummy codes using the <code>lm()</code> function:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="one-way-anova.html#cb248-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(VO2 <span class="op">~</span><span class="st"> </span>groups, <span class="dt">data =</span> data))</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="one-way-anova.html#cb249-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(VO2 <span class="op">~</span><span class="st"> </span>groups, <span class="dt">data =</span> data))</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = VO2 ~ groups, data = data)

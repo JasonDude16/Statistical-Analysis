@@ -309,12 +309,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="importing-4" class="section level2 unnumbered">
 <h2>Importing</h2>
 <p>We’ll be using the <strong>cardiovascular.csv</strong> file for this example.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="repeated-measures-anova.html#cb250-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;cardiovascular.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="repeated-measures-anova.html#cb251-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;cardiovascular.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="viewing-4" class="section level2 unnumbered">
 <h2>Viewing</h2>
 <p>This dataset contains mean arterial pressure values of subjects during <code>Rest</code> and at four time points while exercising, <code>MAP_T1:T4</code>. The time points were spaced equally apart and correspond to a linearly increasing exercise workload on a treadmill.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="repeated-measures-anova.html#cb251-1"></a><span class="kw">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="repeated-measures-anova.html#cb252-1"></a><span class="kw">head</span>(data)</span></code></pre></div>
 <pre><code>  SubID      Rest    MAP_T1   MAP_T2   MAP_T3   MAP_T4
 1     1  94.33333 102.00000 112.6667 115.3333 115.6667
 2     2  90.33333  88.33333 106.0000 106.6667 114.0000
@@ -329,10 +329,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="formatting-4" class="section level2 unnumbered">
 <h2>Formatting</h2>
 <p>The data should be converted to long format to make it compatible with the <code>ezANOVA()</code> function. We can use the <code>pivot_longer()</code> function from the <code>tidyverse</code> package. Make sure you have that package loaded before using this function.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="repeated-measures-anova.html#cb253-1"></a>data &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data, </span>
-<span id="cb253-2"><a href="repeated-measures-anova.html#cb253-2"></a>                     <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;Rest&quot;</span>, <span class="st">&quot;MAP_T1&quot;</span>, <span class="st">&quot;MAP_T2&quot;</span>, <span class="st">&quot;MAP_T3&quot;</span>, <span class="st">&quot;MAP_T4&quot;</span>),</span>
-<span id="cb253-3"><a href="repeated-measures-anova.html#cb253-3"></a>                     <span class="dt">names_to =</span> <span class="st">&quot;Time&quot;</span>,</span>
-<span id="cb253-4"><a href="repeated-measures-anova.html#cb253-4"></a>                     <span class="dt">values_to =</span> <span class="st">&quot;MAP&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="repeated-measures-anova.html#cb254-1"></a>data &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data, </span>
+<span id="cb254-2"><a href="repeated-measures-anova.html#cb254-2"></a>                     <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;Rest&quot;</span>, <span class="st">&quot;MAP_T1&quot;</span>, <span class="st">&quot;MAP_T2&quot;</span>, <span class="st">&quot;MAP_T3&quot;</span>, <span class="st">&quot;MAP_T4&quot;</span>),</span>
+<span id="cb254-3"><a href="repeated-measures-anova.html#cb254-3"></a>                     <span class="dt">names_to =</span> <span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb254-4"><a href="repeated-measures-anova.html#cb254-4"></a>                     <span class="dt">values_to =</span> <span class="st">&quot;MAP&quot;</span>)</span></code></pre></div>
 <blockquote>
 <p>More examples of formatting data can be found in <a href="CH6.html#CH6">Chapter 6</a></p>
 </blockquote>
@@ -341,32 +341,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Modeling</h2>
 <div id="the-ezanovafunction-1" class="section level3 unnumbered">
 <h3>The <code>ezANOVA()</code>Function</h3>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="repeated-measures-anova.html#cb254-1"></a><span class="kw">ezANOVA</span>(</span>
-<span id="cb254-2"><a href="repeated-measures-anova.html#cb254-2"></a>    data</span>
-<span id="cb254-3"><a href="repeated-measures-anova.html#cb254-3"></a>    , dv</span>
-<span id="cb254-4"><a href="repeated-measures-anova.html#cb254-4"></a>    , wid</span>
-<span id="cb254-5"><a href="repeated-measures-anova.html#cb254-5"></a>    , <span class="dt">within =</span> <span class="ot">NULL</span></span>
-<span id="cb254-6"><a href="repeated-measures-anova.html#cb254-6"></a>    , <span class="dt">within_full =</span> <span class="ot">NULL</span></span>
-<span id="cb254-7"><a href="repeated-measures-anova.html#cb254-7"></a>    , <span class="dt">within_covariates =</span> <span class="ot">NULL</span></span>
-<span id="cb254-8"><a href="repeated-measures-anova.html#cb254-8"></a>    , <span class="dt">between =</span> <span class="ot">NULL</span></span>
-<span id="cb254-9"><a href="repeated-measures-anova.html#cb254-9"></a>    , <span class="dt">between_covariates =</span> <span class="ot">NULL</span></span>
-<span id="cb254-10"><a href="repeated-measures-anova.html#cb254-10"></a>    , <span class="dt">observed =</span> <span class="ot">NULL</span></span>
-<span id="cb254-11"><a href="repeated-measures-anova.html#cb254-11"></a>    , <span class="dt">diff =</span> <span class="ot">NULL</span></span>
-<span id="cb254-12"><a href="repeated-measures-anova.html#cb254-12"></a>    , <span class="dt">reverse_diff =</span> <span class="ot">FALSE</span></span>
-<span id="cb254-13"><a href="repeated-measures-anova.html#cb254-13"></a>    , <span class="dt">type =</span> <span class="dv">2</span></span>
-<span id="cb254-14"><a href="repeated-measures-anova.html#cb254-14"></a>    , <span class="dt">white.adjust =</span> <span class="ot">FALSE</span></span>
-<span id="cb254-15"><a href="repeated-measures-anova.html#cb254-15"></a>    , <span class="dt">detailed =</span> <span class="ot">FALSE</span></span>
-<span id="cb254-16"><a href="repeated-measures-anova.html#cb254-16"></a>    , <span class="dt">return_aov =</span> <span class="ot">FALSE</span></span>
-<span id="cb254-17"><a href="repeated-measures-anova.html#cb254-17"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="repeated-measures-anova.html#cb255-1"></a><span class="kw">ezANOVA</span>(</span>
+<span id="cb255-2"><a href="repeated-measures-anova.html#cb255-2"></a>    data</span>
+<span id="cb255-3"><a href="repeated-measures-anova.html#cb255-3"></a>    , dv</span>
+<span id="cb255-4"><a href="repeated-measures-anova.html#cb255-4"></a>    , wid</span>
+<span id="cb255-5"><a href="repeated-measures-anova.html#cb255-5"></a>    , <span class="dt">within =</span> <span class="ot">NULL</span></span>
+<span id="cb255-6"><a href="repeated-measures-anova.html#cb255-6"></a>    , <span class="dt">within_full =</span> <span class="ot">NULL</span></span>
+<span id="cb255-7"><a href="repeated-measures-anova.html#cb255-7"></a>    , <span class="dt">within_covariates =</span> <span class="ot">NULL</span></span>
+<span id="cb255-8"><a href="repeated-measures-anova.html#cb255-8"></a>    , <span class="dt">between =</span> <span class="ot">NULL</span></span>
+<span id="cb255-9"><a href="repeated-measures-anova.html#cb255-9"></a>    , <span class="dt">between_covariates =</span> <span class="ot">NULL</span></span>
+<span id="cb255-10"><a href="repeated-measures-anova.html#cb255-10"></a>    , <span class="dt">observed =</span> <span class="ot">NULL</span></span>
+<span id="cb255-11"><a href="repeated-measures-anova.html#cb255-11"></a>    , <span class="dt">diff =</span> <span class="ot">NULL</span></span>
+<span id="cb255-12"><a href="repeated-measures-anova.html#cb255-12"></a>    , <span class="dt">reverse_diff =</span> <span class="ot">FALSE</span></span>
+<span id="cb255-13"><a href="repeated-measures-anova.html#cb255-13"></a>    , <span class="dt">type =</span> <span class="dv">2</span></span>
+<span id="cb255-14"><a href="repeated-measures-anova.html#cb255-14"></a>    , <span class="dt">white.adjust =</span> <span class="ot">FALSE</span></span>
+<span id="cb255-15"><a href="repeated-measures-anova.html#cb255-15"></a>    , <span class="dt">detailed =</span> <span class="ot">FALSE</span></span>
+<span id="cb255-16"><a href="repeated-measures-anova.html#cb255-16"></a>    , <span class="dt">return_aov =</span> <span class="ot">FALSE</span></span>
+<span id="cb255-17"><a href="repeated-measures-anova.html#cb255-17"></a>)</span></code></pre></div>
 <p>The <code>ezANOVA()</code> function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you’re performing. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
 </div>
 <div id="model" class="section level3 unnumbered">
 <h3>Model</h3>
 <p>In this example we need to specify the <code>data</code>, <code>dv</code>, <code>wid</code>, and <code>within</code> arguments. The <code>data</code> argument is set equal to the entire dataset, the <code>dv</code> argument, which is short for dependent variable, is set equal to the column of the dependent variable. The <code>wid</code> argument is set equal to the column that contains the variable specifying the case/Ss identifier; usually the <code>subID</code> column, or equivalent. The <code>within</code> argument is set equal to the within-subject factor(s).</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="repeated-measures-anova.html#cb255-1"></a>ez<span class="op">::</span><span class="kw">ezANOVA</span>(<span class="dt">data =</span> data, </span>
-<span id="cb255-2"><a href="repeated-measures-anova.html#cb255-2"></a>            <span class="dt">dv =</span> MAP, </span>
-<span id="cb255-3"><a href="repeated-measures-anova.html#cb255-3"></a>            <span class="dt">wid =</span> SubID, </span>
-<span id="cb255-4"><a href="repeated-measures-anova.html#cb255-4"></a>            <span class="dt">within =</span> .(Time))</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="repeated-measures-anova.html#cb256-1"></a>ez<span class="op">::</span><span class="kw">ezANOVA</span>(<span class="dt">data =</span> data, </span>
+<span id="cb256-2"><a href="repeated-measures-anova.html#cb256-2"></a>            <span class="dt">dv =</span> MAP, </span>
+<span id="cb256-3"><a href="repeated-measures-anova.html#cb256-3"></a>            <span class="dt">wid =</span> SubID, </span>
+<span id="cb256-4"><a href="repeated-measures-anova.html#cb256-4"></a>            <span class="dt">within =</span> .(Time))</span></code></pre></div>
 <pre><code>$ANOVA
   Effect DFn DFd       F            p p&lt;.05       ges
 2   Time   4  76 24.5791 4.476507e-13     * 0.2902555

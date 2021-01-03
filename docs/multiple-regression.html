@@ -314,15 +314,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="importing-1" class="section level2 unnumbered">
 <h2>Importing</h2>
 <p>We’ll be importing two datasets for this chapter: <strong>age_height_weight.txt</strong> and <strong>data_altitude.csv</strong>. The <strong>age_height_weight.txt</strong> file will be used for the unmoderated model, and the <strong>data_altitude.csv</strong> file will be used for the moderated and nonlinear models.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="multiple-regression.html#cb179-1"></a>data1 &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;age_height_weight.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb179-2"><a href="multiple-regression.html#cb179-2"></a>data2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_altitude.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="multiple-regression.html#cb180-1"></a>data1 &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;age_height_weight.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb180-2"><a href="multiple-regression.html#cb180-2"></a>data2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_altitude.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="viewing-1" class="section level2 unnumbered">
 <h2>Viewing</h2>
 <div id="data-for-unmoderated-model" class="section level3 unnumbered">
 <h3>Data for Unmoderated Model</h3>
 <p>As the name implies, the <strong>age_height_weight.txt</strong> file contains age, height, and weight data for several males and females. You can use the <code>str()</code> and <code>head()</code> functions to get the overall “impression” of the dataset.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="multiple-regression.html#cb180-1"></a><span class="kw">str</span>(data1)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="multiple-regression.html#cb181-1"></a><span class="kw">str</span>(data1)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   19 obs. of  5 variables:
  $ Name  : chr  &quot;Alfred&quot; &quot;Alice&quot; &quot;Barbara&quot; &quot;Carol&quot; ...
  $ Sex   : chr  &quot;M&quot; &quot;F&quot; &quot;F&quot; &quot;F&quot; ...
@@ -330,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  $ Height: num  69 56.5 65.3 62.8 63.5 57.3 59.8 62.5 62.5 59 ...
  $ Weight: num  112 84 98 102 102 ...</code></pre>
 <p>The <code>str()</code> function provides a lot of good information. We now know that the dataset was correctly imported as a data frame which consists of 19 observations of 5 variables, and we know the column names and column variable types. Additionally, the first few observations for each column is printed. But if you’d rather look at the dataset in a more standard format, you can use the <code>head()</code> function to see the first few observations:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="multiple-regression.html#cb182-1"></a><span class="kw">head</span>(data1)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="multiple-regression.html#cb183-1"></a><span class="kw">head</span>(data1)</span></code></pre></div>
 <pre><code>     Name Sex Age Height Weight
 1  Alfred   M  14   69.0  112.5
 2   Alice   F  13   56.5   84.0
@@ -339,27 +339,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 5   Henry   M  14   63.5  102.5
 6   James   M  12   57.3   83.0</code></pre>
 <p>We can use the <code>plot()</code> function to visualize the relationships between <code>Age</code>, <code>Height</code>, and <code>Weight</code>:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="multiple-regression.html#cb184-1"></a><span class="co"># Used brackets to subset the data and select columns 3, 4, 5</span></span>
-<span id="cb184-2"><a href="multiple-regression.html#cb184-2"></a><span class="kw">plot</span>(data1[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-138-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Or, you could visualize all three variables on one graph with a 3D scatterplot:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="multiple-regression.html#cb185-1"></a><span class="kw">scatterplot3d</span>(<span class="dt">x =</span> data1<span class="op">$</span>Height, <span class="dt">z =</span> data1<span class="op">$</span>Weight, <span class="dt">y =</span> data1<span class="op">$</span>Age, </span>
-<span id="cb185-2"><a href="multiple-regression.html#cb185-2"></a>              <span class="dt">main =</span> <span class="st">&quot;Weight, Age, and Height&quot;</span>, </span>
-<span id="cb185-3"><a href="multiple-regression.html#cb185-3"></a>              <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">highlight.3d =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>, <span class="dt">grid =</span> <span class="ot">TRUE</span>, <span class="dt">box =</span> <span class="ot">FALSE</span>, </span>
-<span id="cb185-4"><a href="multiple-regression.html#cb185-4"></a>              <span class="dt">xlab =</span> <span class="st">&quot;Height (in)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="dt">zlab =</span> <span class="st">&quot;Weight (lbs)&quot;</span>, </span>
-<span id="cb185-5"><a href="multiple-regression.html#cb185-5"></a>              <span class="dt">angle =</span> <span class="dv">55</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="multiple-regression.html#cb185-1"></a><span class="co"># Used brackets to subset the data and select columns 3, 4, 5</span></span>
+<span id="cb185-2"><a href="multiple-regression.html#cb185-2"></a><span class="kw">plot</span>(data1[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>We can use the <code>hist()</code> function to visualize the distributions of <code>Age</code>, <code>Height</code>, and <code>Weight</code>:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="multiple-regression.html#cb186-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
-<span id="cb186-2"><a href="multiple-regression.html#cb186-2"></a><span class="kw">hist</span>(data1<span class="op">$</span>Age)</span>
-<span id="cb186-3"><a href="multiple-regression.html#cb186-3"></a><span class="kw">hist</span>(data1<span class="op">$</span>Height)</span>
-<span id="cb186-4"><a href="multiple-regression.html#cb186-4"></a><span class="kw">hist</span>(data1<span class="op">$</span>Weight)</span></code></pre></div>
+<p>Or, you could visualize all three variables on one graph with a 3D scatterplot:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="multiple-regression.html#cb186-1"></a><span class="kw">scatterplot3d</span>(<span class="dt">x =</span> data1<span class="op">$</span>Height, <span class="dt">z =</span> data1<span class="op">$</span>Weight, <span class="dt">y =</span> data1<span class="op">$</span>Age, </span>
+<span id="cb186-2"><a href="multiple-regression.html#cb186-2"></a>              <span class="dt">main =</span> <span class="st">&quot;Weight, Age, and Height&quot;</span>, </span>
+<span id="cb186-3"><a href="multiple-regression.html#cb186-3"></a>              <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">highlight.3d =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>, <span class="dt">grid =</span> <span class="ot">TRUE</span>, <span class="dt">box =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb186-4"><a href="multiple-regression.html#cb186-4"></a>              <span class="dt">xlab =</span> <span class="st">&quot;Height (in)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="dt">zlab =</span> <span class="st">&quot;Weight (lbs)&quot;</span>, </span>
+<span id="cb186-5"><a href="multiple-regression.html#cb186-5"></a>              <span class="dt">angle =</span> <span class="dv">55</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can use the <code>hist()</code> function to visualize the distributions of <code>Age</code>, <code>Height</code>, and <code>Weight</code>:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="multiple-regression.html#cb187-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb187-2"><a href="multiple-regression.html#cb187-2"></a><span class="kw">hist</span>(data1<span class="op">$</span>Age)</span>
+<span id="cb187-3"><a href="multiple-regression.html#cb187-3"></a><span class="kw">hist</span>(data1<span class="op">$</span>Height)</span>
+<span id="cb187-4"><a href="multiple-regression.html#cb187-4"></a><span class="kw">hist</span>(data1<span class="op">$</span>Weight)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-141-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>The code <code>par(mfrow = c(2,2))</code> above is used to print the plots as a 2 x 2 grid; the <code>plot()</code> function does not need to be used in conjuction with this piece of code.</p>
 </blockquote>
 <p>And you can look at the six number summary with the <code>summary()</code> function:</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="multiple-regression.html#cb187-1"></a><span class="kw">summary</span>(data1[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="multiple-regression.html#cb188-1"></a><span class="kw">summary</span>(data1[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</span></code></pre></div>
 <pre><code>      Age            Height          Weight      
  Min.   :11.00   Min.   :51.30   Min.   : 50.50  
  1st Qu.:12.00   1st Qu.:58.25   1st Qu.: 84.25  
@@ -371,14 +371,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-for-moderated-and-nonlinear-models" class="section level3 unnumbered">
 <h3>Data for Moderated and Nonlinear Models</h3>
 <p>The <strong>data_altitude.csv</strong> file contains data about an athlete’s baseline VO2max, <code>BVO2</code>, and a VO2max value where the test was conducted at some altitude, <code>AVO2</code>. We’ll use the <code>str()</code> and <code>head()</code> functions to view the dataset:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="multiple-regression.html#cb189-1"></a><span class="kw">str</span>(data2)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="multiple-regression.html#cb190-1"></a><span class="kw">str</span>(data2)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   105 obs. of  5 variables:
  $ subID   : int  1 2 3 4 5 6 7 8 9 10 ...
  $ altitude: int  2300 2300 2500 3200 4340 2660 4300 5400 5400 5400 ...
  $ BVO2    : num  74 72.4 44.6 57.3 45.1 ...
  $ AVO2    : num  61.4 60 42.1 52.5 36.9 ...
  $ decrease: num  -12.6 -12.4 -2.5 -4.8 -8.2 ...</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="multiple-regression.html#cb191-1"></a><span class="kw">head</span>(data2)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="multiple-regression.html#cb192-1"></a><span class="kw">head</span>(data2)</span></code></pre></div>
 <pre><code>  subID altitude  BVO2  AVO2 decrease
 1     1     2300 74.00 61.42   -12.58
 2     2     2300 72.40 60.00   -12.40
@@ -396,11 +396,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-for-moderated-and-nonlinear-models-1" class="section level3 unnumbered">
 <h3>Data for Moderated and Nonlinear Models</h3>
 <p>The only formatting that needs to be done is to change the unit of <code>altitude</code> from meters to kilometers, so that the axes have similar scales. Also, we’ll create a column that squares all of the <code>alt_km</code> values which will be used for the nonlinear model. To accomplish this, we can use the <code>mutate()</code> function which comes from the <code>tidyverse</code> package. Make sure the <code>tidyverse</code> package is loaded before running this code:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="multiple-regression.html#cb193-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(data2, <span class="dt">alt_km =</span> altitude <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</span>
-<span id="cb193-2"><a href="multiple-regression.html#cb193-2"></a><span class="co"># Divide altitude values by 1000, and save values to new column</span></span></code></pre></div>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="multiple-regression.html#cb194-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(data2, <span class="dt">alt_km_sq =</span> alt_km<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb194-2"><a href="multiple-regression.html#cb194-2"></a><span class="co"># Square alt_km values, and save values to a new column</span></span></code></pre></div>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="multiple-regression.html#cb195-1"></a><span class="kw">head</span>(data2)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="multiple-regression.html#cb194-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(data2, <span class="dt">alt_km =</span> altitude <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</span>
+<span id="cb194-2"><a href="multiple-regression.html#cb194-2"></a><span class="co"># Divide altitude values by 1000, and save values to new column</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="multiple-regression.html#cb195-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(data2, <span class="dt">alt_km_sq =</span> alt_km<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb195-2"><a href="multiple-regression.html#cb195-2"></a><span class="co"># Square alt_km values, and save values to a new column</span></span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="multiple-regression.html#cb196-1"></a><span class="kw">head</span>(data2)</span></code></pre></div>
 <pre><code>  subID altitude  BVO2  AVO2 decrease alt_km alt_km_sq
 1     1     2300 74.00 61.42   -12.58   2.30    5.2900
 2     2     2300 72.40 60.00   -12.40   2.30    5.2900
@@ -417,9 +417,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Modeling</h2>
 <div id="the-lm-function-1" class="section level3 unnumbered">
 <h3>The <code>lm()</code> Function</h3>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="multiple-regression.html#cb197-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
-<span id="cb197-2"><a href="multiple-regression.html#cb197-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb197-3"><a href="multiple-regression.html#cb197-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="multiple-regression.html#cb198-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
+<span id="cb198-2"><a href="multiple-regression.html#cb198-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb198-3"><a href="multiple-regression.html#cb198-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
 <p>The <code>lm()</code> (linear model) function is used for fitting linear models. There are many arguments for this function, but the <code>formula</code> and <code>data</code>arguments are the only ones that <em>need</em> to be specified. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
 <p>The <code>lm()</code> function automatically controls for shared variance, so we don’t need to take any additional steps before adding the variables to the model.</p>
 <p>We’ll use the <code>lm()</code> function to make three models: an unmoderated model, a moderated model, and a nonlinear model.</p>
@@ -427,7 +427,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="unmoderated-model" class="section level3 unnumbered">
 <h3>Unmoderated Model</h3>
 <p>In the <code>lm()</code> function, the dependent variable is listed first, followed by a tilde, <code>~</code>, and then the independent variable(s). The <code>data</code> argument is set equal to the object that contains the dataset, which in this example is the object called <code>data1</code>. In the unmoderated model, the addition operator, <code>+</code>, is used between each independent variable.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="multiple-regression.html#cb198-1"></a><span class="kw">lm</span>(<span class="dt">formula =</span> Weight <span class="op">~</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>Height, <span class="dt">data =</span> data1)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="multiple-regression.html#cb199-1"></a><span class="kw">lm</span>(<span class="dt">formula =</span> Weight <span class="op">~</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>Height, <span class="dt">data =</span> data1)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = Weight ~ Age + Height, data = data1)
@@ -436,9 +436,9 @@ Coefficients:
 (Intercept)          Age       Height  
    -141.224        1.278        3.597  </code></pre>
 <p>The function prints out the slope and intercept for the model. To see more information about the model, the model needs to be saved as an object:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="multiple-regression.html#cb200-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> Weight <span class="op">~</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>Height, <span class="dt">data =</span> data1)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="multiple-regression.html#cb201-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> Weight <span class="op">~</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>Height, <span class="dt">data =</span> data1)</span></code></pre></div>
 <p>Now that we’ve saved the model as an object, called <code>my_model</code>, we can access a lot of information about the model. Three good functions to remember are <code>summary()</code>, <code>plot()</code>, and <code>attributes()</code>.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="multiple-regression.html#cb201-1"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="multiple-regression.html#cb202-1"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = Weight ~ Age + Height, data = data1)
@@ -459,14 +459,14 @@ Residual standard error: 11.51 on 16 degrees of freedom
 Multiple R-squared:  0.7729,    Adjusted R-squared:  0.7445 
 F-statistic: 27.23 on 2 and 16 DF,  p-value: 7.074e-06</code></pre>
 <p>Now we have a nice summary print-out which includes the <code>F-statistic</code>, <code>Residuals</code>, <code>R-squared</code>, <code>p-value</code>, and more. The <code>plot</code> function can be used on the <code>my_model</code> object to view <code>Residuals vs Fitted</code>, <code>Normal Q-Q</code>, <code>Scale-Location</code> and <code>Residuals vs Leverage</code> plots.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="multiple-regression.html#cb203-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb203-2"><a href="multiple-regression.html#cb203-2"></a><span class="kw">plot</span>(my_model)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="multiple-regression.html#cb204-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb204-2"><a href="multiple-regression.html#cb204-2"></a><span class="kw">plot</span>(my_model)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>The code <code>par(mfrow = c(2,2))</code> above is used to print the plots as a 2 x 2 grid; the <code>plot()</code> function does not need to be used in conjuction with this piece of code.</p>
 </blockquote>
 <p>The <code>my_model</code> object has attributes. Attributes can store additional information about the object, such as the model’s residuals. You can find out the attributes of an object with the <code>attributes()</code> function.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="multiple-regression.html#cb204-1"></a><span class="kw">attributes</span>(my_model)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="multiple-regression.html#cb205-1"></a><span class="kw">attributes</span>(my_model)</span></code></pre></div>
 <pre><code>$names
  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
@@ -475,15 +475,15 @@ F-statistic: 27.23 on 2 and 16 DF,  p-value: 7.074e-06</code></pre>
 $class
 [1] &quot;lm&quot;</code></pre>
 <p>The model’s <code>attributes</code> can be accessed by using a dollar sign, <code>$</code>. For example, here’s a printout of the first 5 fitted values of the model:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="multiple-regression.html#cb206-1"></a>my_model<span class="op">$</span>fitted.values[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="multiple-regression.html#cb207-1"></a>my_model<span class="op">$</span>fitted.values[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>        1         2         3         4         5 
 124.86856  78.62734 110.28117 102.56700 105.08492 </code></pre>
 </div>
 <div id="moderated-model" class="section level3 unnumbered">
 <h3>Moderated Model</h3>
 <p>In the <code>lm()</code> function, the dependent variable is listed first, followed by a tilda, <code>~</code>, and then the independent variable(s). The <code>data</code> argument is set equal to the object that contains the dataset, which in this example is the object called <code>data2</code>. In the moderated model, the multiplication operator, <code>*</code>, is used between each independent variable to indicate an interaction.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="multiple-regression.html#cb208-1"></a>my_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> decrease <span class="op">~</span><span class="st"> </span>alt_km <span class="op">*</span><span class="st"> </span>BVO2, <span class="dt">data =</span> data2)</span></code></pre></div>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="multiple-regression.html#cb209-1"></a><span class="kw">summary</span>(my_model2)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="multiple-regression.html#cb209-1"></a>my_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> decrease <span class="op">~</span><span class="st"> </span>alt_km <span class="op">*</span><span class="st"> </span>BVO2, <span class="dt">data =</span> data2)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="multiple-regression.html#cb210-1"></a><span class="kw">summary</span>(my_model2)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = decrease ~ alt_km * BVO2, data = data2)
@@ -508,8 +508,8 @@ F-statistic:   189 on 3 and 101 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="nonlinear-model" class="section level3 unnumbered">
 <h3>Nonlinear Model</h3>
 <p>In the <code>lm()</code> function, the dependent variable is listed first, followed by a tilda, <code>~</code>, and then the independent variable(s). The <code>data</code> argument is set equal to the object that contains the dataset, which in this example is the object called <code>data2</code>. In the nonlinear model, the addition operator, <code>+</code>, is used between each independent variable. In this example, the independent variables are the <code>alt_km</code> and <code>alt_km_sq</code> columns.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="multiple-regression.html#cb211-1"></a>my_model3 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> decrease <span class="op">~</span><span class="st"> </span>alt_km <span class="op">+</span><span class="st"> </span>alt_km_sq, <span class="dt">data =</span> data2)</span></code></pre></div>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="multiple-regression.html#cb212-1"></a><span class="kw">summary</span>(my_model3)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="multiple-regression.html#cb212-1"></a>my_model3 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> decrease <span class="op">~</span><span class="st"> </span>alt_km <span class="op">+</span><span class="st"> </span>alt_km_sq, <span class="dt">data =</span> data2)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="multiple-regression.html#cb213-1"></a><span class="kw">summary</span>(my_model3)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = decrease ~ alt_km + alt_km_sq, data = data2)

@@ -300,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="getting-started-with-r" class="section level1">
 <h1><span class="header-section-number">1</span> Getting Started with R</h1>
 <blockquote>
-<p>This chapter will walk through the steps of getting started with R and RStudio. <span style="background-color:lightyellow"><b>At the end of the chapter, we’ll provide a link where you can download a folder that includes all of the code and data that’s used in this guidebook.</b></span></p>
+<p>This chapter will walk through the steps of getting started with R and RStudio. <span style="background-color:lightyellow"><b>At the end of the chapter, we will provide a link where you can download a folder that includes all of the code and data that is used in this guidebook.</b></span></p>
 </blockquote>
 <div id="what-is-r" class="section level2 unnumbered">
 <h2>What is R?</h2>
@@ -356,8 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="opening-r-or-rstudio" class="section level2 unnumbered">
 <h2>Opening R or RStudio</h2>
 <p>If you decided not to download RStudio, then you’ll work with R by opening the R application. It’s perfectly fine to do this, but just know that you’ll be on your own! The rest of this book will assume you’ve installed RStudio, and we’ll occasionally make references that are specific to the RStudio interface.</p>
-<p>If you downloaded RStudio, you’ll work with R by opening RStudio. In this case, you should <em>not</em> open R, because RStudio is simply an interface for R; by using RStudio you are simultaneously using R. So, if you were to open both R and RStudio, you would be starting two separate R sessions, which is not what you want to do. Hopefully that makes sense.</p>
-<p>Now would be a good time to open RStudio and start following along.</p>
+<p>If you downloaded RStudio, you’ll work with R by opening RStudio. In this case, you should <em>not</em> open R, because RStudio is simply an interface for R; by using RStudio you are simultaneously using R. So, if you were to open both R and RStudio, you would be starting two separate R sessions, which is not what you want to do. Hopefully that makes sense, but to be abundantly clear: <strong>RStudio is the <em>only</em> application you need to open when using R</strong>. Now would be a good time to open RStudio and start following along.</p>
 </div>
 <div id="the-rstudio-layout" class="section level2 unnumbered">
 <h2>The RStudio Layout</h2>
@@ -365,18 +364,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/rstudio_panes.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><p><strong>Pane A</strong>: This is where you write your scripts. You can think of a script like a notepad, where you can write your code and then save it for later.</p></li>
-<li><p><strong>Pane B</strong>: This is where your code is evaluated, and specifically it is evaluated under the <code>Console</code> tab (you can ignore the <code>Terminal</code> tab). For example, if you wanted to calculate the mean of 3 numbers, like this <code>mean(c(12, 32, 15))</code>, the result, 19.7, would be displayed in this pane under the <code>Console</code> tab. You can also <em>write</em> code here. For example, you could write <code>mean(c(12, 32, 15))</code> directly into the console (instead of in Pane A), but keep in mind that <strong>any code that is typed here will not be saved.</strong></p></li>
-<li><p><strong>Pane C</strong>: This pane has several tabs, but the only one that really matters is the <code>Enironment</code> tab (if you don’t see a <code>Build</code> or <code>Git</code> tab, that’s okay). The <code>Environment</code> tab is where you can view your data and the objects you create, which will make more sense as you progress through the book.</p></li>
-<li><p><strong>Pane D</strong>: In this pane you can view files, plots, install packages, get help with R functions and more.</p></li>
+<li><p><strong>Pane B</strong>: This is where your code is evaluated, and specifically it is evaluated under the <code>Console</code> tab (you can ignore the <code>Terminal</code> tab). What does it mean to ‘evaluate’ code? Let’s say you wanted to calculate the mean of 3 numbers, which could be done like this in R: <code>mean(c(12, 32, 15))</code>. We then <em>evaluate</em> the code to get the answer. The result, 19.7, would be displayed in Pane B under the <code>Console</code> tab. You can also <em>write</em> code here. For example, you could write <code>mean(c(12, 32, 15))</code> directly into the console (instead of in Pane A), but keep in mind that <strong>any code that is typed here will not be saved.</strong></p></li>
+<li><p><strong>Pane C</strong>: This pane has several tabs, but the most important for our purposes is the <code>Enironment</code> tab (if you don’t see a <code>Build</code> or <code>Git</code> tab, that’s okay). The <code>Environment</code> tab is where you can view your data and the objects you create, which will make more sense as you progress through the book.</p></li>
+<li><p><strong>Pane D</strong>: In this pane you can view files, plots, install packages, get help with R functions, and more. The <code>help</code> tab is <em>very</em> useful when learning how to use R; this is where you can learn about any function you may want to use by viewing the provided documentation (which is very good in R!).</p></li>
 </ul>
 </div>
 <div id="following-along" class="section level2 unnumbered">
 <h2>Following Along</h2>
-<p>We wanted to make it as easy as possible to follow along with this guidebook, so we created a folder that contains all of the data and code that’s used throughout the chapters, which can be downloaded <a href="https://github.com/JasonDude16/Statistical-Analysis-Folder">here</a>. After clicking on the link, you should be redirected to a page that has a green “<strong>Clone or download</strong>” button, shown below.</p>
-<p><img src="images/github.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
-<p>You can then click on the dropdown arrow on the green button and click <strong>Download ZIP</strong>. Next, find the folder on your computer, unzip it, and move it to a convenient location (such as your Desktop). If you currently have an R session open, go ahead and close it. After you’ve closed your current R session, open the file within the folder that ends with the extension <strong>.Rproj</strong>. After you click on the <strong>Rproj</strong> file, RStudio should open and you should see a screen similar to the one below.</p>
+<p>We wanted to make it as easy as possible to follow along with this guidebook, so we created a folder that contains all of the data and code that’s used throughout the chapters, which can be downloaded <a href="https://github.com/JasonDude16/Statistical-Analysis-Folder">here</a>. After clicking on the link, you should be redirected to a page that has a green “Clone or download” button, shown below.</p>
 <blockquote>
-<p>By opening the .Rproj file, we opened an R project. There’s nothing particularly “special” about an R project; all it really does is set the working directory to the correct location, which will make more sense after reading Chapter 4.</p>
+<p>Note: since writing this guidebook, the GitHub website has changed slightly. At the time of this update, the green button says “Code”. Aside from this, the instructions are still the same <br>.</p>
+</blockquote>
+<p><img src="images/github.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
+<p>You can then click on the dropdown arrow on the green button and click <strong>Download ZIP</strong>. Next, find the folder on your computer, unzip it, and move it to a convenient location (such as your Desktop). If you currently have RStudio open, go ahead and close it. After you’ve closed RStudio, open the file within the folder that ends with the extension <strong>.Rproj</strong>. After you click on the <strong>Rproj</strong> file, RStudio should open and you should see a screen similar to the one below.</p>
+<blockquote>
+<p>By opening the .Rproj file, we opened an R project. There’s nothing particularly “special” about an R project; all it really does is set the working directory to the correct location, which will make more sense after reading Chapter 4. Doing this will ensure the code in the following chapters will work as expected.</p>
 </blockquote>
 <p><img src="images/rstudio-project.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
 </div>
@@ -387,13 +389,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You should now see a new pane added to the upper left section of your screen, which is the R script.</p>
 <p><img src="images/rstudio-script2.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
 <p>Let’s add a comment to the script so it’s no longer blank. Try copying and pasting the following lines into the script:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started-with-r.html#cb1-1"></a><span class="co"># This is my first R script</span></span>
-<span id="cb1-2"><a href="getting-started-with-r.html#cb1-2"></a><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span> </span></code></pre></div>
-<p><code># This is my first R script</code> is simply a comment, which is denoted by the hashtag. <code>10 * 10</code> will be evaluated once the code has been ran. You can run the code by pressing <strong>Ctrl + Enter</strong> on a Windows or <strong>Cmd + Enter</strong> on a Mac. Doing this will run <strong>only</strong> the selected line of code, meaning that your cursor must be on the line you want to evaluate in order for it to work. To run the code <code>10 * 10</code>, place your cursor before or after the expression (or you can highlight the expression) and press <strong>Ctrl/Cmd + Enter</strong>. You should see <code>[1] 100</code> printed to the console (lower left pane).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="getting-started-with-r.html#cb2-1"></a><span class="co"># This is my first R script</span></span>
+<span id="cb2-2"><a href="getting-started-with-r.html#cb2-2"></a><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span> </span></code></pre></div>
+<p><code># This is my first R script</code> is simply a comment, which is denoted by the hashtag. <code>10 * 10</code>, which is code that will multiply the numbers <code>10</code> and <code>10</code>, will be evaluated once the code has been ran. You can run the code by pressing <strong>Ctrl + Enter</strong> on a Windows or <strong>Cmd + Enter</strong> on a Mac. Doing this will run <strong>only</strong> the selected line of code, meaning that your cursor must be on the line you want to evaluate in order for it to work. To run the code <code>10 * 10</code>, place your cursor before or after the expression (or you can highlight the expression) and press <strong>Ctrl/Cmd + Enter</strong>. You should see <code>[1] 100</code> printed to the console (lower left pane).</p>
 </div>
 <div id="saving-a-script" class="section level2 unnumbered">
 <h2>Saving a Script</h2>
-<p>You can save a script by clicking on <code>File &gt; Save as</code>, and navigating to the folder you’d like to save it in. It doesn’t matter too much where you choose to save a script, but it’s good practice to create a <code>scripts</code> folder and save it there. Let’s say you’re performing an analysis related to VO2 max. A good folder setup would be creating a main folder called <code>VO2max_Analysis</code> (or something like that) and then create a <code>scripts</code> folder and <code>data</code> folder within that folder, which will of course contain your R scripts and data, respectively.</p>
+<p>You can save a script by clicking on <code>File &gt; Save as</code>, and navigating to the folder you’d like to save it in. It doesn’t matter too much where you choose to save a script, but it’s good practice to create a <code>scripts</code> folder and save it there. Let’s say you’re performing an analysis related to VO2 max. A good folder setup would be creating a main folder called <code>VO2max_Analysis</code> (or something like that) and then create a <code>scripts</code> folder and <code>data</code> folder within that folder, which will contain your R scripts and data, respectively.</p>
 
 </div>
 </div>

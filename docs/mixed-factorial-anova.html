@@ -309,12 +309,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="importing-5" class="section level2 unnumbered">
 <h2>Importing</h2>
 <p>We’ll be using the <strong>flexbility_power.csv</strong> file for this example.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="mixed-factorial-anova.html#cb257-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;flexibility_power.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="mixed-factorial-anova.html#cb258-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;flexibility_power.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="viewing-5" class="section level2 unnumbered">
 <h2>Viewing</h2>
 <p>In this dataset, male and female subjects performed a countermovement vertical jump under three conditions: <code>Baseline</code>, <code>Post_run</code>, and <code>Post_stretch</code>, where the <code>Post_run</code> and <code>Post_stretch</code> conditions consisted of running and stretching (lower body) for 10 minutes, respectively, just prior to the vertical jump. Half of the students completed the <code>Post_run</code> first and vice versa. The subjects were instructed to try to jump as high as possible under each condition. Vertical jump peak power was then calculated as a function of jump height and body mass.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="mixed-factorial-anova.html#cb258-1"></a><span class="kw">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="mixed-factorial-anova.html#cb259-1"></a><span class="kw">head</span>(data)</span></code></pre></div>
 <pre><code>  ID Sex Baseline Post_run Post_stretch
 1  1   M  2586.75  2638.65      2560.80
 2  2   M  3246.45  3428.10      3454.05
@@ -330,10 +330,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="formatting-5" class="section level2 unnumbered">
 <h2>Formatting</h2>
 <p>The data should be converted to long format to make it compatible with the <code>ezANOVA()</code> function. We can use the <code>pivot_longer()</code> function from the <code>tidyverse</code> package. Make sure you have that package loaded before using this function.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="mixed-factorial-anova.html#cb260-1"></a>data &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data, </span>
-<span id="cb260-2"><a href="mixed-factorial-anova.html#cb260-2"></a>                     <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;Baseline&quot;</span>, <span class="st">&quot;Post_run&quot;</span>, <span class="st">&quot;Post_stretch&quot;</span>),</span>
-<span id="cb260-3"><a href="mixed-factorial-anova.html#cb260-3"></a>                     <span class="dt">names_to =</span> <span class="st">&quot;Condition&quot;</span>,</span>
-<span id="cb260-4"><a href="mixed-factorial-anova.html#cb260-4"></a>                     <span class="dt">values_to =</span> <span class="st">&quot;Power_Watts&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="mixed-factorial-anova.html#cb261-1"></a>data &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> data, </span>
+<span id="cb261-2"><a href="mixed-factorial-anova.html#cb261-2"></a>                     <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;Baseline&quot;</span>, <span class="st">&quot;Post_run&quot;</span>, <span class="st">&quot;Post_stretch&quot;</span>),</span>
+<span id="cb261-3"><a href="mixed-factorial-anova.html#cb261-3"></a>                     <span class="dt">names_to =</span> <span class="st">&quot;Condition&quot;</span>,</span>
+<span id="cb261-4"><a href="mixed-factorial-anova.html#cb261-4"></a>                     <span class="dt">values_to =</span> <span class="st">&quot;Power_Watts&quot;</span>)</span></code></pre></div>
 <blockquote>
 <p>More examples of formatting data can be found in <a href="CH6.html#CH6">Chapter 6</a></p>
 </blockquote>
@@ -342,33 +342,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Modeling</h2>
 <div id="the-ezanovafunction-2" class="section level3 unnumbered">
 <h3>The <code>ezANOVA()</code>Function</h3>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="mixed-factorial-anova.html#cb261-1"></a><span class="kw">ezANOVA</span>(</span>
-<span id="cb261-2"><a href="mixed-factorial-anova.html#cb261-2"></a>    data</span>
-<span id="cb261-3"><a href="mixed-factorial-anova.html#cb261-3"></a>    , dv</span>
-<span id="cb261-4"><a href="mixed-factorial-anova.html#cb261-4"></a>    , wid</span>
-<span id="cb261-5"><a href="mixed-factorial-anova.html#cb261-5"></a>    , <span class="dt">within =</span> <span class="ot">NULL</span></span>
-<span id="cb261-6"><a href="mixed-factorial-anova.html#cb261-6"></a>    , <span class="dt">within_full =</span> <span class="ot">NULL</span></span>
-<span id="cb261-7"><a href="mixed-factorial-anova.html#cb261-7"></a>    , <span class="dt">within_covariates =</span> <span class="ot">NULL</span></span>
-<span id="cb261-8"><a href="mixed-factorial-anova.html#cb261-8"></a>    , <span class="dt">between =</span> <span class="ot">NULL</span></span>
-<span id="cb261-9"><a href="mixed-factorial-anova.html#cb261-9"></a>    , <span class="dt">between_covariates =</span> <span class="ot">NULL</span></span>
-<span id="cb261-10"><a href="mixed-factorial-anova.html#cb261-10"></a>    , <span class="dt">observed =</span> <span class="ot">NULL</span></span>
-<span id="cb261-11"><a href="mixed-factorial-anova.html#cb261-11"></a>    , <span class="dt">diff =</span> <span class="ot">NULL</span></span>
-<span id="cb261-12"><a href="mixed-factorial-anova.html#cb261-12"></a>    , <span class="dt">reverse_diff =</span> <span class="ot">FALSE</span></span>
-<span id="cb261-13"><a href="mixed-factorial-anova.html#cb261-13"></a>    , <span class="dt">type =</span> <span class="dv">2</span></span>
-<span id="cb261-14"><a href="mixed-factorial-anova.html#cb261-14"></a>    , <span class="dt">white.adjust =</span> <span class="ot">FALSE</span></span>
-<span id="cb261-15"><a href="mixed-factorial-anova.html#cb261-15"></a>    , <span class="dt">detailed =</span> <span class="ot">FALSE</span></span>
-<span id="cb261-16"><a href="mixed-factorial-anova.html#cb261-16"></a>    , <span class="dt">return_aov =</span> <span class="ot">FALSE</span></span>
-<span id="cb261-17"><a href="mixed-factorial-anova.html#cb261-17"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="mixed-factorial-anova.html#cb262-1"></a><span class="kw">ezANOVA</span>(</span>
+<span id="cb262-2"><a href="mixed-factorial-anova.html#cb262-2"></a>    data</span>
+<span id="cb262-3"><a href="mixed-factorial-anova.html#cb262-3"></a>    , dv</span>
+<span id="cb262-4"><a href="mixed-factorial-anova.html#cb262-4"></a>    , wid</span>
+<span id="cb262-5"><a href="mixed-factorial-anova.html#cb262-5"></a>    , <span class="dt">within =</span> <span class="ot">NULL</span></span>
+<span id="cb262-6"><a href="mixed-factorial-anova.html#cb262-6"></a>    , <span class="dt">within_full =</span> <span class="ot">NULL</span></span>
+<span id="cb262-7"><a href="mixed-factorial-anova.html#cb262-7"></a>    , <span class="dt">within_covariates =</span> <span class="ot">NULL</span></span>
+<span id="cb262-8"><a href="mixed-factorial-anova.html#cb262-8"></a>    , <span class="dt">between =</span> <span class="ot">NULL</span></span>
+<span id="cb262-9"><a href="mixed-factorial-anova.html#cb262-9"></a>    , <span class="dt">between_covariates =</span> <span class="ot">NULL</span></span>
+<span id="cb262-10"><a href="mixed-factorial-anova.html#cb262-10"></a>    , <span class="dt">observed =</span> <span class="ot">NULL</span></span>
+<span id="cb262-11"><a href="mixed-factorial-anova.html#cb262-11"></a>    , <span class="dt">diff =</span> <span class="ot">NULL</span></span>
+<span id="cb262-12"><a href="mixed-factorial-anova.html#cb262-12"></a>    , <span class="dt">reverse_diff =</span> <span class="ot">FALSE</span></span>
+<span id="cb262-13"><a href="mixed-factorial-anova.html#cb262-13"></a>    , <span class="dt">type =</span> <span class="dv">2</span></span>
+<span id="cb262-14"><a href="mixed-factorial-anova.html#cb262-14"></a>    , <span class="dt">white.adjust =</span> <span class="ot">FALSE</span></span>
+<span id="cb262-15"><a href="mixed-factorial-anova.html#cb262-15"></a>    , <span class="dt">detailed =</span> <span class="ot">FALSE</span></span>
+<span id="cb262-16"><a href="mixed-factorial-anova.html#cb262-16"></a>    , <span class="dt">return_aov =</span> <span class="ot">FALSE</span></span>
+<span id="cb262-17"><a href="mixed-factorial-anova.html#cb262-17"></a>)</span></code></pre></div>
 <p>The <code>ezANOVA()</code> function is used for ANOVA models. There are many arguments for this function, but not all of them need to be specified. The ones that do need to be specified will depend on the exact ANOVA that you’re performing. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
 </div>
 <div id="model-1" class="section level3 unnumbered">
 <h3>Model</h3>
 <p>In this example we need to specify the <code>data</code>, <code>dv</code>, <code>wid</code>, <code>within</code> and <code>between</code> arguments. The <code>data</code> argument is set equal to the entire dataset, the <code>dv</code> argument, which is short for dependent variable, is set equal to the column of the dependent variable. The <code>wid</code> argument is set equal to the column that contains the variable specifying the case/Ss identifier; usually the <code>subID</code> column, or equivalent. The <code>within</code> and <code>between</code> arguments are set equal to the within-subject and between-subjects factor(s).</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="mixed-factorial-anova.html#cb262-1"></a><span class="kw">ezANOVA</span>(<span class="dt">data =</span> data, </span>
-<span id="cb262-2"><a href="mixed-factorial-anova.html#cb262-2"></a>        <span class="dt">dv =</span> Power_Watts, </span>
-<span id="cb262-3"><a href="mixed-factorial-anova.html#cb262-3"></a>        <span class="dt">wid =</span> ID, </span>
-<span id="cb262-4"><a href="mixed-factorial-anova.html#cb262-4"></a>        <span class="dt">within =</span> .(Condition),</span>
-<span id="cb262-5"><a href="mixed-factorial-anova.html#cb262-5"></a>        <span class="dt">between =</span> .(Sex))</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="mixed-factorial-anova.html#cb263-1"></a><span class="kw">ezANOVA</span>(<span class="dt">data =</span> data, </span>
+<span id="cb263-2"><a href="mixed-factorial-anova.html#cb263-2"></a>        <span class="dt">dv =</span> Power_Watts, </span>
+<span id="cb263-3"><a href="mixed-factorial-anova.html#cb263-3"></a>        <span class="dt">wid =</span> ID, </span>
+<span id="cb263-4"><a href="mixed-factorial-anova.html#cb263-4"></a>        <span class="dt">within =</span> .(Condition),</span>
+<span id="cb263-5"><a href="mixed-factorial-anova.html#cb263-5"></a>        <span class="dt">between =</span> .(Sex))</span></code></pre></div>
 <pre><code>$ANOVA
          Effect DFn DFd         F            p p&lt;.05          ges
 2           Sex   1  19  3.627466 7.208602e-02       0.1596944133

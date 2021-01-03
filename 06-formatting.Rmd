@@ -133,7 +133,7 @@ mutate(data_VO2, VO2_max_cat = ifelse(VO2_max < 22.8, "Very Poor",
 head(data_VO2_F)
 ```
 
-In the code above, the data were filtered to only include females. Notice that there are two equals signs `==` within the `filter()` function. This is because two equals signs is used to represent a logical statement. The first line of code above is filtering the data to only include females: `Sex == "F"`. This is a logical statement where we are saying we only want to include the data where `Sex == "F"` is true. If you were to add only one equals sign here you'd get an error, and errors like this can be very difficult to find! 
+In the code above the data were filtered to include only females. Notice that there are two equals signs, `==`, within the `filter()` function. This is because two equals signs is used to represent a logical statement. The first line of code above is filtering the data to only include females: `Sex == "F"`. This is a logical statement where we are saying we only want to include the data where `Sex == "F"` is true. If you were to add only one equals sign here you'd get an error, and errors like this can be very difficult to find! 
 
 After filtering, the data frame was assigned to the object `data_VO2_F`. Next, the `mutate()` function was used to create a new column called `VO2_max_cat` (cat for category). Then, the `ifelse()` function was used to assign a category based on the subject's VO2_max. The first line reads, "If the VO2_max is less than 22.8, assign it the value "Very Poor"." The last category, `Superior`, is assigned if the value does not meet any of the other conditions, which in this case is all values greater than 40.0. 
 

@@ -314,21 +314,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Importing</h2>
 <p>For this chapter we’ll be using three datasets: <strong>rmr.csv</strong> for the two sample indepedent t-test, <strong>lactate_threshold.csv</strong> for the two sample dependent t-test, and the third dataset for the one sample t-test will be created in R.</p>
 <p>First we’ll create the data for the one sample t-test. The code below creates a random normal distribution of 100 samples with a mean of 54.3 and a standard deviation of 5.3, which are both arbitrary values.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="one-and-two-sample-t-test.html#cb214-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb214-2"><a href="one-and-two-sample-t-test.html#cb214-2"></a>data1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">mean =</span> <span class="fl">54.3</span>, <span class="dt">sd =</span> <span class="fl">5.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="one-and-two-sample-t-test.html#cb215-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb215-2"><a href="one-and-two-sample-t-test.html#cb215-2"></a>data1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">mean =</span> <span class="fl">54.3</span>, <span class="dt">sd =</span> <span class="fl">5.3</span>)</span></code></pre></div>
 <blockquote>
 <p>The <code>set.seed()</code> function is used to ensure that the same random normal distribution is created every time. Random normal distributions created in R are not truly random, and the values can be replicated with the <code>set.seed()</code> function. Doing this will allow you to copy and past the code into your R session and get the same results.</p>
 </blockquote>
 <p>And we’ll import the two other datasets:</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="one-and-two-sample-t-test.html#cb215-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;rmr.csv&quot;</span>)</span>
-<span id="cb215-2"><a href="one-and-two-sample-t-test.html#cb215-2"></a>data3 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;lactate_threshold.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="one-and-two-sample-t-test.html#cb216-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;rmr.csv&quot;</span>)</span>
+<span id="cb216-2"><a href="one-and-two-sample-t-test.html#cb216-2"></a>data3 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;lactate_threshold.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="viewing-2" class="section level2 unnumbered">
 <h2>Viewing</h2>
 <div id="data-for-two-sample-independent" class="section level3 unnumbered">
 <h3>Data for Two Sample Independent</h3>
 <p>The dataset for the two sample independent t-test contains resting metabolic rate values, <code>RMR</code>, for several males and females, which was collected using a metabolic cart.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="one-and-two-sample-t-test.html#cb216-1"></a><span class="kw">head</span>(data2)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="one-and-two-sample-t-test.html#cb217-1"></a><span class="kw">head</span>(data2)</span></code></pre></div>
 <pre><code>  SubID Sex VO2_abs VO2_rel  RER kcal_L      RMR
 1     1   M    0.28     4.1 0.80   4.80 1935.360
 2     2   M    0.29     3.6 0.92   4.92 2054.592
@@ -336,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4     4   M    0.52     7.3 0.89   4.92 3684.096
 5     5   M    0.28     3.4 0.86   4.86 1959.552
 6     6   M    0.27     3.7 0.91   4.92 1912.896</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="one-and-two-sample-t-test.html#cb218-1"></a><span class="kw">str</span>(data2)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="one-and-two-sample-t-test.html#cb219-1"></a><span class="kw">str</span>(data2)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   16 obs. of  7 variables:
  $ SubID  : int  1 2 3 4 5 6 7 8 9 10 ...
  $ Sex    : chr  &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; ...
@@ -349,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-for-two-sample-dependent" class="section level3 unnumbered">
 <h3>Data for Two Sample Dependent</h3>
 <p>The dataset for the two sample dependent t-test contains heart rate and VO2 data at lactate threshold and ventilatory threshold for several males and females. Lactate threshold is the point at which the blood concentration of lactate begins to increase exponentially ( <a href="https://en.wikipedia.org/wiki/Lactate_threshold">source</a>). Ventilatory threshold is the point during exercise at which ventilation starts to increase at a faster rate than VO2 (<a href="https://en.wikipedia.org/wiki/Ventilatory_threshold">source</a>).</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="one-and-two-sample-t-test.html#cb220-1"></a><span class="kw">head</span>(data3)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="one-and-two-sample-t-test.html#cb221-1"></a><span class="kw">head</span>(data3)</span></code></pre></div>
 <pre><code>  SubID VT_VO2_abs VT_HR LT_VO2_abs LT_HR
 1     1        3.3   179        3.3   188
 2     2        2.7   185        2.6   177
@@ -357,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4     4        3.3   188        3.5   186
 5     5        2.5   191        2.4   183
 6     6        2.6   193        2.5   193</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="one-and-two-sample-t-test.html#cb222-1"></a><span class="kw">str</span>(data3)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="one-and-two-sample-t-test.html#cb223-1"></a><span class="kw">str</span>(data3)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   24 obs. of  5 variables:
  $ SubID     : int  1 2 3 4 5 6 7 8 9 10 ...
  $ VT_VO2_abs: num  3.3 2.7 4.3 3.3 2.5 2.6 3.77 1.58 4.22 2.51 ...
@@ -374,11 +374,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-for-two-sample-independent-1" class="section level3 unnumbered">
 <h3>Data for Two Sample Independent</h3>
 <p>We’ll be comparing the resting metabolic rate of males and females for the independent t-test, so we need to filter the data to include only males or females, but not both. There are many ways to do this in R, and one way is to split the <code>data2</code> object into <code>data_M</code> and <code>data_F</code> objects, which only contains data for the males and females, respectively. This can be accomplished with the <code>filter()</code> function. The <code>filter()</code> function comes from the <code>tidyverse</code> package, so make sure you’ve loaded that library into your workspace.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="one-and-two-sample-t-test.html#cb224-1"></a>data2_M &lt;-<span class="st"> </span><span class="kw">filter</span>(data2, Sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>)</span>
-<span id="cb224-2"><a href="one-and-two-sample-t-test.html#cb224-2"></a>data2_F &lt;-<span class="st"> </span><span class="kw">filter</span>(data2, Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span>)</span>
-<span id="cb224-3"><a href="one-and-two-sample-t-test.html#cb224-3"></a><span class="co"># Make sure you&#39;ve loaded the tidyverse package</span></span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="one-and-two-sample-t-test.html#cb225-1"></a>data2_M &lt;-<span class="st"> </span><span class="kw">filter</span>(data2, Sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>)</span>
+<span id="cb225-2"><a href="one-and-two-sample-t-test.html#cb225-2"></a>data2_F &lt;-<span class="st"> </span><span class="kw">filter</span>(data2, Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span>)</span>
+<span id="cb225-3"><a href="one-and-two-sample-t-test.html#cb225-3"></a><span class="co"># Make sure you&#39;ve loaded the tidyverse package</span></span></code></pre></div>
 <p>Now the dataset has been separated into two separate objects which each contain only one sex.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="one-and-two-sample-t-test.html#cb225-1"></a><span class="kw">head</span>(data2_M)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="one-and-two-sample-t-test.html#cb226-1"></a><span class="kw">head</span>(data2_M)</span></code></pre></div>
 <pre><code>  SubID Sex VO2_abs VO2_rel  RER kcal_L      RMR
 1     1   M    0.28     4.1 0.80   4.80 1935.360
 2     2   M    0.29     3.6 0.92   4.92 2054.592
@@ -386,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4     4   M    0.52     7.3 0.89   4.92 3684.096
 5     5   M    0.28     3.4 0.86   4.86 1959.552
 6     6   M    0.27     3.7 0.91   4.92 1912.896</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="one-and-two-sample-t-test.html#cb227-1"></a><span class="kw">head</span>(data2_F)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="one-and-two-sample-t-test.html#cb228-1"></a><span class="kw">head</span>(data2_F)</span></code></pre></div>
 <pre><code>  SubID Sex VO2_abs VO2_rel  RER kcal_L      RMR
 1     9   F    0.23     5.2 0.86   4.86 1609.632
 2    10   F    0.17     2.8 0.83   4.83 1182.384
@@ -403,16 +403,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Modeling</h2>
 <div id="the-t.testfunction" class="section level3 unnumbered">
 <h3>The <code>t.test()</code>Function</h3>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="one-and-two-sample-t-test.html#cb229-1"></a><span class="kw">t.test</span>(x, <span class="dt">y =</span> <span class="ot">NULL</span>,</span>
-<span id="cb229-2"><a href="one-and-two-sample-t-test.html#cb229-2"></a>       <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
-<span id="cb229-3"><a href="one-and-two-sample-t-test.html#cb229-3"></a>       <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb229-4"><a href="one-and-two-sample-t-test.html#cb229-4"></a>       <span class="dt">conf.level =</span> <span class="fl">0.95</span>, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="one-and-two-sample-t-test.html#cb230-1"></a><span class="kw">t.test</span>(x, <span class="dt">y =</span> <span class="ot">NULL</span>,</span>
+<span id="cb230-2"><a href="one-and-two-sample-t-test.html#cb230-2"></a>       <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
+<span id="cb230-3"><a href="one-and-two-sample-t-test.html#cb230-3"></a>       <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb230-4"><a href="one-and-two-sample-t-test.html#cb230-4"></a>       <span class="dt">conf.level =</span> <span class="fl">0.95</span>, ...)</span></code></pre></div>
 <p>The <code>t.test()</code> function can be used for both one sample and two sample tests. For two sample tests, the observations can be either dependent or independent. Notice that there are many arguments for this function, but the <code>x</code> argument is the only argument that <em>needs</em> to be specified for one sample tests. <code>x</code> and <code>y</code> are the two arguments that need to be specified for two sample independent t-tests, and <code>x</code>, <code>y</code>, and <code>paired</code> need to be specified for dependent t-tests. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
 </div>
 <div id="one-sample" class="section level3 unnumbered">
 <h3>One Sample</h3>
 <p>For the one sample t-test, the <code>x</code> argument should be set equal to the object that contains the dataset, which in this case is the object <code>data1</code>. If the data object contained multiple columns then you would need to specify the column to use in your analysis (for example: <code>data1$Column1</code>), but in this example the <code>data1</code> object only has the one column. The default value for the population mean, <code>mu</code>, is 0, but in this made up example we’ll say <code>mu</code> is equal to 49.1.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="one-and-two-sample-t-test.html#cb230-1"></a><span class="kw">t.test</span>(<span class="dt">x =</span> data1, <span class="dt">mu =</span> <span class="fl">49.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="one-and-two-sample-t-test.html#cb231-1"></a><span class="kw">t.test</span>(<span class="dt">x =</span> data1, <span class="dt">mu =</span> <span class="fl">49.1</span>)</span></code></pre></div>
 <pre><code>
     One Sample t-test
 
@@ -429,7 +429,7 @@ mean of x
 <h3>Two Sample: Independent / Unpaired</h3>
 <p>The goal of this analysis is to determine if there is a difference between the resting metabolic rate of males and females, on average.</p>
 <p>The <code>x</code> and <code>y</code> arguments should be set equal to the object(s) that contain the data you want to compare. In this example, those are the <code>data_M</code> and <code>data_F</code> objects. Specifically, we want to compare the <code>RMR</code> column from each dataset, which can be selected with the dollar sign, <code>$</code>. By default, <code>paired</code> is set equal to <code>FALSE</code>, but it’s written out explicitly below to make the code more clear.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="one-and-two-sample-t-test.html#cb232-1"></a><span class="kw">t.test</span>(<span class="dt">x =</span> data2_M<span class="op">$</span>RMR, <span class="dt">y =</span> data2_F<span class="op">$</span>RMR, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="one-and-two-sample-t-test.html#cb233-1"></a><span class="kw">t.test</span>(<span class="dt">x =</span> data2_M<span class="op">$</span>RMR, <span class="dt">y =</span> data2_F<span class="op">$</span>RMR, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>
     Welch Two Sample t-test
 
@@ -446,7 +446,7 @@ mean of x mean of y
 <h3>Two Sample: Dependent / Paired</h3>
 <p>The goal of this analysis is to determine if lactate and ventilatory thresholds occur at the same exercise intensity, where exercise intensity is measured as VO2 consumption.</p>
 <p>The <code>x</code> and <code>y</code> arguments should be set equal to the object(s) that contain the data you want to compare, which is this example is the <code>data3</code> object. Specifically, we want to compare the <code>VT_VO2_abs</code> and <code>LT_VO2_abs</code> columns from the dataset, which can be selected with the dollar sign, <code>$</code>. By default, <code>paired</code> is set equal to <code>FALSE</code>, which needs to be changed to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="one-and-two-sample-t-test.html#cb234-1"></a><span class="kw">t.test</span>(<span class="dt">x =</span> data3<span class="op">$</span>VT_VO2_abs, <span class="dt">y =</span> data3<span class="op">$</span>LT_VO2_abs, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="one-and-two-sample-t-test.html#cb235-1"></a><span class="kw">t.test</span>(<span class="dt">x =</span> data3<span class="op">$</span>VT_VO2_abs, <span class="dt">y =</span> data3<span class="op">$</span>LT_VO2_abs, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>
     Paired t-test
 

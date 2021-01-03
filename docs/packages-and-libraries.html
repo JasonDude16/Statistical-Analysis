@@ -302,34 +302,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-are-packages" class="section level2 unnumbered">
 <h2>What are Packages?</h2>
 <p>R has hundreds of useful functions, but sometimes you’ll want or need to use a function that’s not built into R. For example, R has several built-in functions for plotting data, such as the <code>hist()</code> function:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="packages-and-libraries.html#cb35-1"></a><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
-<p>And that works fine if you want to quickly analyze your data, but that graph is certainly not publication quality. You could spruce up the plot by installing a <strong>package</strong> that contains functions for creating much more aesthetically pleasing plots, such as the <code>ggplot2</code> package.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="packages-and-libraries.html#cb36-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb36-2"><a href="packages-and-libraries.html#cb36-2"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb36-3"><a href="packages-and-libraries.html#cb36-3"></a><span class="kw">ggplot</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">rnorm =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">-1</span>)), <span class="kw">aes</span>(<span class="dt">x =</span> rnorm)) <span class="op">+</span></span>
-<span id="cb36-4"><a href="packages-and-libraries.html#cb36-4"></a><span class="st">    </span><span class="kw">geom_density</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">rnorm =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">1</span>)), </span>
-<span id="cb36-5"><a href="packages-and-libraries.html#cb36-5"></a>                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> rnorm), </span>
-<span id="cb36-6"><a href="packages-and-libraries.html#cb36-6"></a>                 <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, </span>
-<span id="cb36-7"><a href="packages-and-libraries.html#cb36-7"></a>                 <span class="dt">alpha =</span> <span class="fl">.7</span>) <span class="op">+</span></span>
-<span id="cb36-8"><a href="packages-and-libraries.html#cb36-8"></a><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.7</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb36-9"><a href="packages-and-libraries.html#cb36-9"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb36-10"><a href="packages-and-libraries.html#cb36-10"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A Colorful Distribution Example&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb36-11"><a href="packages-and-libraries.html#cb36-11"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Random Normal Distribution&quot;</span>) <span class="op">+</span></span>
-<span id="cb36-12"><a href="packages-and-libraries.html#cb36-12"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="op">+</span></span>
-<span id="cb36-13"><a href="packages-and-libraries.html#cb36-13"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor.y =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb36-14"><a href="packages-and-libraries.html#cb36-14"></a>          <span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb36-15"><a href="packages-and-libraries.html#cb36-15"></a>          <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb36-16"><a href="packages-and-libraries.html#cb36-16"></a>          <span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb36-17"><a href="packages-and-libraries.html#cb36-17"></a>          <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>, <span class="dt">family =</span> <span class="st">&quot;serif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="packages-and-libraries.html#cb36-1"></a><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
+<p>And that works fine if you want to quickly analyze your data, but that graph is certainly not publication quality. You could spruce up the plot by installing a <strong>package</strong> that contains functions for creating much more aesthetically pleasing plots, such as the <code>ggplot2</code> package.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="packages-and-libraries.html#cb37-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb37-2"><a href="packages-and-libraries.html#cb37-2"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb37-3"><a href="packages-and-libraries.html#cb37-3"></a><span class="kw">ggplot</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">rnorm =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">-1</span>)), <span class="kw">aes</span>(<span class="dt">x =</span> rnorm)) <span class="op">+</span></span>
+<span id="cb37-4"><a href="packages-and-libraries.html#cb37-4"></a><span class="st">    </span><span class="kw">geom_density</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">rnorm =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">1</span>)), </span>
+<span id="cb37-5"><a href="packages-and-libraries.html#cb37-5"></a>                 <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> rnorm), </span>
+<span id="cb37-6"><a href="packages-and-libraries.html#cb37-6"></a>                 <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb37-7"><a href="packages-and-libraries.html#cb37-7"></a>                 <span class="dt">alpha =</span> <span class="fl">.7</span>) <span class="op">+</span></span>
+<span id="cb37-8"><a href="packages-and-libraries.html#cb37-8"></a><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.7</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb37-9"><a href="packages-and-libraries.html#cb37-9"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb37-10"><a href="packages-and-libraries.html#cb37-10"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A Colorful Distribution Example&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb37-11"><a href="packages-and-libraries.html#cb37-11"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Random Normal Distribution&quot;</span>) <span class="op">+</span></span>
+<span id="cb37-12"><a href="packages-and-libraries.html#cb37-12"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="op">+</span></span>
+<span id="cb37-13"><a href="packages-and-libraries.html#cb37-13"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor.y =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb37-14"><a href="packages-and-libraries.html#cb37-14"></a>          <span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb37-15"><a href="packages-and-libraries.html#cb37-15"></a>          <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb37-16"><a href="packages-and-libraries.html#cb37-16"></a>          <span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb37-17"><a href="packages-and-libraries.html#cb37-17"></a>          <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>, <span class="dt">family =</span> <span class="st">&quot;serif&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
 <p>The <code>ggplot2</code> package is simply a collection of R code and functions, created by an R user, that allows you to make highly customizable plots like the one above without too much difficulty.</p>
 </div>
 <div id="installing-packages" class="section level2 unnumbered">
 <h2>Installing Packages</h2>
 <p>There are many packages that you can install to make data analysis easier. One package that we’ll use frequently throughout this book is the <code>tidyverse</code> package. The <code>tidyverse</code> package is actually a collection of packages bundled together– a meta-package. You can install the <code>tidyverse</code> with the following line of code:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="packages-and-libraries.html#cb37-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb37-2"><a href="packages-and-libraries.html#cb37-2"></a><span class="co"># You only need to install a package once</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="packages-and-libraries.html#cb38-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb38-2"><a href="packages-and-libraries.html#cb38-2"></a><span class="co"># You only need to install a package once</span></span></code></pre></div>
 </div>
 <div id="whats-a-library" class="section level2 unnumbered">
 <h2>What’s a Library?</h2>
@@ -338,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="loading-packages" class="section level2 unnumbered">
 <h2>Loading Packages</h2>
 <p>Packages only need to be <em>installed</em> once, but they need to be <em>loaded</em> every time you start an R session. Loading a package puts it into the working memory; that way R knows you want to use those functions from those packages. You can load a package with the <code>library()</code> function:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="packages-and-libraries.html#cb38-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="packages-and-libraries.html#cb39-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>Running the code <code>library(tidyverse)</code> now allows you to use all of the functions that come bundled with the <code>tidyverse</code> package (which is a lot!).</p>
 <blockquote>
 <p>Pro tip: It’s best practice to load your desired package with the <code>library()</code> function at the very beginning of your R script; that way it’s loaded <em>before</em> the rest of your code is ran.</p>

@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setting-the-working-directory" class="section level2 unnumbered">
 <h2>Setting the Working Directory</h2>
 <p>Before you start importing files, you need to set the working directory so R looks for and saves files in the correct place. “Directory” is a synonym for folder, so ‘setting the working directory’ really just means we need to tell R which folder we’d like to use to import data from. You can determine your current working directory with the <code>getwd()</code> function:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="CH4.html#cb39-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="CH4.html#cb40-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
 <p>When you run this code, you should have a file path printed to your console. This file path is your current working directory, which means that’s where R is currently looking for files. More specifically, the last folder name listed in the file path is where R is looking for files.</p>
 <p>To change the working directory, you simply need to navigate to the folder you’d like to import files from in the lower right pane under the <strong>files</strong> tab.</p>
 <p><img src="images/r_setwd.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
@@ -321,18 +321,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 <p>Once the working directory has correctly been set, importing data files is easy. There’s a file in the data folder named <strong>BMI_1.csv</strong>. A <code>.csv</code> file is a comma separated value file, which, as the name implies, consists of values separated by a comma. We can import the <strong>BMI_1.csv</strong> file with the <code>read.csv()</code> function:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="CH4.html#cb40-1"></a>data_csv &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;BMI_1.csv&quot;</span>)</span>
-<span id="cb40-2"><a href="CH4.html#cb40-2"></a><span class="co"># Don&#39;t forget to assign the csv file to an object</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="CH4.html#cb41-1"></a>data_csv &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;BMI_1.csv&quot;</span>)</span>
+<span id="cb41-2"><a href="CH4.html#cb41-2"></a><span class="co"># Don&#39;t forget to assign the csv file to an object</span></span></code></pre></div>
 <p>And if the <strong>BMI_1.csv</strong> was instead a .txt file (tab delimited file) or .xlsx / .xls (Excel) file, we could use the <code>read.delim()</code> and <code>read_excel()</code> functions, respectively:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="CH4.html#cb41-1"></a><span class="co"># txt file</span></span>
-<span id="cb41-2"><a href="CH4.html#cb41-2"></a>data_txt &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_1.txt&quot;</span>)</span>
-<span id="cb41-3"><a href="CH4.html#cb41-3"></a></span>
-<span id="cb41-4"><a href="CH4.html#cb41-4"></a><span class="co"># excel file</span></span>
-<span id="cb41-5"><a href="CH4.html#cb41-5"></a>data_xlsx &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;BMI_1.xlsx&quot;</span>)</span>
-<span id="cb41-6"><a href="CH4.html#cb41-6"></a><span class="co"># You need to load the tidyverse package to use the read_excel() function</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="CH4.html#cb42-1"></a><span class="co"># txt file</span></span>
+<span id="cb42-2"><a href="CH4.html#cb42-2"></a>data_txt &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_1.txt&quot;</span>)</span>
+<span id="cb42-3"><a href="CH4.html#cb42-3"></a></span>
+<span id="cb42-4"><a href="CH4.html#cb42-4"></a><span class="co"># excel file</span></span>
+<span id="cb42-5"><a href="CH4.html#cb42-5"></a>data_xlsx &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;BMI_1.xlsx&quot;</span>)</span>
+<span id="cb42-6"><a href="CH4.html#cb42-6"></a><span class="co"># You need to load the tidyverse package to use the read_excel() function</span></span></code></pre></div>
 <p><code>read_excel()</code> is a function that comes from the <code>tidyverse</code> package, which means you need to load the tidyverse into your R session in order to use it (<code>library(tidyverse)</code>).</p>
 <p>After you’ve imported your data you can view it with the <code>head()</code> function:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="CH4.html#cb42-1"></a><span class="kw">head</span>(data_xlsx)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="CH4.html#cb43-1"></a><span class="kw">head</span>(data_xlsx)</span></code></pre></div>
 <pre><code># A tibble: 6 x 2
   height weight
    &lt;dbl&gt;  &lt;dbl&gt;
@@ -344,8 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 6   67.3   197.</code></pre>
 <p>The three import functions above have many arguments that you can change if the data is not imported in the format you were expecting. For example, txt files can be formatted in different ways; sometimes the data is delimited with a tab, or it may be delimited with a semicolon. If your txt file is not separated by a tab, you can change the <code>sep</code> argument (which is short for separator) to indicate how it is separated (the default argument for <code>sep</code> is <code>"\t"</code>, which means separated by a tab).</p>
 <p>Here’s an example where the txt file is not delimited by a tab, so it gets imported incorrectly:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="CH4.html#cb44-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_2.txt&quot;</span>)</span>
-<span id="cb44-2"><a href="CH4.html#cb44-2"></a><span class="kw">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="CH4.html#cb45-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_2.txt&quot;</span>)</span>
+<span id="cb45-2"><a href="CH4.html#cb45-2"></a><span class="kw">head</span>(data)</span></code></pre></div>
 <pre><code>                      height.weight
 1 68.5166834855604;154.681763861273
 2 65.3186507959108;173.958957660404
@@ -353,9 +353,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4 64.8491663241866;165.020083309111
 5 70.1389452245124;148.630607472854
 6 67.3137063327876;196.627466047489</code></pre>
-<p>We can fix this by and passing the <code>sep</code> argument a semicolon, which indicates that the data is <em>not</em> delimited with a tab, but instead with a semicolon:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="CH4.html#cb46-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb46-2"><a href="CH4.html#cb46-2"></a><span class="kw">head</span>(data)</span></code></pre></div>
+<p>We can fix this by and passing the <code>sep</code> argument (which is short for separator) a semicolon, which indicates that the data is <em>not</em> delimited with a tab, but instead with a semicolon:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="CH4.html#cb47-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;BMI_2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb47-2"><a href="CH4.html#cb47-2"></a><span class="kw">head</span>(data)</span></code></pre></div>
 <pre><code>    height   weight
 1 68.51668 154.6818
 2 65.31865 173.9590
@@ -368,11 +368,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="writing-data" class="section level2 unnumbered">
 <h2>Writing Data</h2>
 <p>Writing files is just as easy as reading files. You can write .txt and .csv files with the following functions:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="CH4.html#cb48-1"></a><span class="co"># Write .txt file</span></span>
-<span id="cb48-2"><a href="CH4.html#cb48-2"></a><span class="kw">write.table</span>(<span class="dt">x =</span> data, <span class="dt">file =</span> <span class="st">&quot;data.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;/t&quot;</span>)</span>
-<span id="cb48-3"><a href="CH4.html#cb48-3"></a></span>
-<span id="cb48-4"><a href="CH4.html#cb48-4"></a><span class="co"># Write .csv file</span></span>
-<span id="cb48-5"><a href="CH4.html#cb48-5"></a><span class="kw">write.csv</span>(<span class="dt">x =</span> data, <span class="dt">file =</span> <span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="CH4.html#cb49-1"></a><span class="co"># Write .txt file</span></span>
+<span id="cb49-2"><a href="CH4.html#cb49-2"></a><span class="kw">write.table</span>(<span class="dt">x =</span> data, <span class="dt">file =</span> <span class="st">&quot;data.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;/t&quot;</span>)</span>
+<span id="cb49-3"><a href="CH4.html#cb49-3"></a></span>
+<span id="cb49-4"><a href="CH4.html#cb49-4"></a><span class="co"># Write .csv file</span></span>
+<span id="cb49-5"><a href="CH4.html#cb49-5"></a><span class="kw">write.csv</span>(<span class="dt">x =</span> data, <span class="dt">file =</span> <span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
 <p>The first argument, <code>x</code>, is an R object, which is typically your dataset object. The second argument, <code>file</code>, is what you’d like to name the file you’re creating. The data file will be saved in whatever folder you’re currently in.</p>
 
 </div>

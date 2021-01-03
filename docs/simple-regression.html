@@ -316,12 +316,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="importing" class="section level2 unnumbered">
 <h2>Importing</h2>
 <p>The first step is importing the data. In this example we’ll use the <strong>powerlifting.csv</strong> file in the data folder, which is a dataset that consists of competitors and their statistics at a Powerlifting competition:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="simple-regression.html#cb154-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;powerlifting.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="simple-regression.html#cb155-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;powerlifting.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="viewing" class="section level2 unnumbered">
 <h2>Viewing</h2>
 <p>You can use the <code>str()</code> and <code>head()</code> functions to get the overall “impression” of the dataset.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="simple-regression.html#cb155-1"></a><span class="kw">str</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="simple-regression.html#cb156-1"></a><span class="kw">str</span>(data)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   1000 obs. of  15 variables:
  $ X              : int  1 2 3 4 5 6 7 8 9 10 ...
  $ Name           : chr  &quot;Abbie Murphy&quot; &quot;Abbie Tuong&quot; &quot;Ainslee Hooper&quot; &quot;Amy Moldenhauer&quot; ...
@@ -339,9 +339,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  $ TotalKg        : num  290 332.5 32.5 310 390 ...
  $ Place          : chr  &quot;4&quot; &quot;2&quot; &quot;1&quot; &quot;3&quot; ...</code></pre>
 <p>The <code>str()</code> function provides a lot of good information. We now know that the dataset was correctly imported as a data frame which consists of 1000 observations of 27 variables, and we know the column names and column variable types. Additionally, the first few observations for each column is printed. But if you’d rather look at the dataset in a more standard format, you can use the <code>head()</code> function to see the first few observations:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="simple-regression.html#cb157-1"></a><span class="kw">head</span>(data[<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>])</span>
-<span id="cb157-2"><a href="simple-regression.html#cb157-2"></a><span class="co"># Only the first 9 columns are printed here to save space</span></span>
-<span id="cb157-3"><a href="simple-regression.html#cb157-3"></a><span class="co"># By default, the first 6 observations of all columns are printed</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="simple-regression.html#cb158-1"></a><span class="kw">head</span>(data[<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>])</span>
+<span id="cb158-2"><a href="simple-regression.html#cb158-2"></a><span class="co"># Only the first 9 columns are printed here to save space</span></span>
+<span id="cb158-3"><a href="simple-regression.html#cb158-3"></a><span class="co"># By default, the first 6 observations of all columns are printed</span></span></code></pre></div>
 <pre><code>  X            Name Sex Event Equipment Age AgeClass Division BodyweightKg
 1 1    Abbie Murphy   F   SBD     Wraps  29    24-34     F-OR         59.8
 2 2     Abbie Tuong   F   SBD     Wraps  29    24-34     F-OR         58.5
@@ -350,21 +350,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 5 5    Andrea Rowan   F   SBD     Wraps  45    45-49     F-OR        104.0
 6 6   April Alvarez   F   SBD     Wraps  37    35-39     F-OR         74.0</code></pre>
 <p>Let’s hypothesize that competitors who weigh more will have a higher <code>TotalKg</code>, which is the sum of the competitor’s most weight lifted on three lifts: Squat, Bench Press, and Deadlift. First, let’s visualize the relationship between these variables.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="simple-regression.html#cb159-1"></a><span class="kw">plot</span>(data<span class="op">$</span>BodyweightKg, data<span class="op">$</span>TotalKg)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="simple-regression.html#cb160-1"></a><span class="kw">plot</span>(data<span class="op">$</span>BodyweightKg, data<span class="op">$</span>TotalKg)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-121-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>It looks like data points are concentrated more heavily at specific body weights. This is likely because powerlifters compete in weight classes, and its advantageous to be as close as possible to the cutoff weight limit.</p>
 </blockquote>
 <p>We can use the <code>hist()</code> function to visualize the distributions of each variable:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="simple-regression.html#cb160-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb160-2"><a href="simple-regression.html#cb160-2"></a><span class="kw">hist</span>(data<span class="op">$</span>TotalKg)</span>
-<span id="cb160-3"><a href="simple-regression.html#cb160-3"></a><span class="kw">hist</span>(data<span class="op">$</span>BodyweightKg)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-121-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="simple-regression.html#cb161-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb161-2"><a href="simple-regression.html#cb161-2"></a><span class="kw">hist</span>(data<span class="op">$</span>TotalKg)</span>
+<span id="cb161-3"><a href="simple-regression.html#cb161-3"></a><span class="kw">hist</span>(data<span class="op">$</span>BodyweightKg)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-122-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>The code <code>par(mfrow = c(1,2))</code> above is used to print the plots as a 1 x 2 grid; the <code>plot()</code> function does not need to be used in conjuction with this piece of code.</p>
 </blockquote>
 <p>And you can look at the six number summary with the <code>summary()</code> function. Notice how the summary conveniently includes the <code>NA</code> count.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="simple-regression.html#cb161-1"></a><span class="kw">summary</span>(data[<span class="kw">c</span>(<span class="st">&quot;TotalKg&quot;</span>, <span class="st">&quot;BodyweightKg&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="simple-regression.html#cb162-1"></a><span class="kw">summary</span>(data[<span class="kw">c</span>(<span class="st">&quot;TotalKg&quot;</span>, <span class="st">&quot;BodyweightKg&quot;</span>)])</span></code></pre></div>
 <pre><code>    TotalKg        BodyweightKg   
  Min.   :  32.5   Min.   : 46.10  
  1st Qu.: 341.9   1st Qu.: 72.80  
@@ -380,8 +380,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="formatting" class="section level2 unnumbered">
 <h2>Formatting</h2>
 <p>Before modeling, we need to ask ourselves a few questions. What if someone didn’t perform one of the lifts? Powerlifting competitions have several event options, and we might be including in our analysis individuals who have a <code>TotalKg</code> value, but their value is only for the squat and bench press lifts, rather than all three. Also, what if a competitor didn’t successfully complete a lift? That is, they competed in all three lifts, but they (likely) attempted to lift too much weight and their attempts were unsuccessful so they were disqualified. It probably isn’t a good idea to include either of these scenarios in our analysis because their <code>TotalKg</code> values wouldn’t represent the summation of all three lifts, which is what we’re interested in. We could use the <code>filter()</code> function from the <code>tidyverse</code> package to filter the data and take care of both of these issues in one step. Make sure the <code>tidyverse</code> package is loaded before running this code:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="simple-regression.html#cb163-1"></a><span class="co"># Replace the original data object with the filtered data</span></span>
-<span id="cb163-2"><a href="simple-regression.html#cb163-2"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data,  Event <span class="op">==</span><span class="st"> &quot;SBD&quot;</span>, Place <span class="op">!=</span><span class="st"> &quot;DQ&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="simple-regression.html#cb164-1"></a><span class="co"># Replace the original data object with the filtered data</span></span>
+<span id="cb164-2"><a href="simple-regression.html#cb164-2"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data,  Event <span class="op">==</span><span class="st"> &quot;SBD&quot;</span>, Place <span class="op">!=</span><span class="st"> &quot;DQ&quot;</span>)</span></code></pre></div>
 <p>In the code block above, the data was filtered to include only competitors who competed in all three lifts, <code>SBD</code>, and they were not disqualified, <code>DQ</code>, meaning that they had at least one successful lift on all three lifts. This ensures that the <code>TotalKg</code> value is representing the same value for all competitors.</p>
 <blockquote>
 <p>More examples of formatting data can be found in <a href="CH6.html#CH6">Chapter 6</a></p>
@@ -391,16 +391,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Modeling</h2>
 <div id="the-lm-function" class="section level3 unnumbered">
 <h3>The <code>lm()</code> Function</h3>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="simple-regression.html#cb164-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
-<span id="cb164-2"><a href="simple-regression.html#cb164-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb164-3"><a href="simple-regression.html#cb164-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="simple-regression.html#cb165-1"></a><span class="kw">lm</span>(formula, data, subset, weights, na.action,</span>
+<span id="cb165-2"><a href="simple-regression.html#cb165-2"></a>   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb165-3"><a href="simple-regression.html#cb165-3"></a>   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</span></code></pre></div>
 <p>The <code>lm()</code> (linear model) function is used for fitting linear models. There are many arguments for this function, but the <code>formula</code> and <code>data</code>arguments are the only ones that <em>need</em> to be specified. If you’d like to learn more about functions and arguments, <a href="CH2.html#CH2">Chapter 2</a> covers basic programming concepts, including functions and arguments.</p>
 <p>We’ll use the <code>lm()</code> function to make two models: the untransformed linear model and a mean-centered model.</p>
 </div>
 <div id="untransformed-model" class="section level3 unnumbered">
 <h3>Untransformed Model</h3>
 <p>When using the <code>lm()</code> function, the <code>formula</code> argument is set equal to the dependent variable, followed by a tilde, <code>~</code>, and then the independent variable(s). The <code>data</code> argument is set equal to the object that contains the dataset, which in this example is the object called <code>data</code>.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="simple-regression.html#cb165-1"></a><span class="kw">lm</span>(<span class="dt">formula =</span> TotalKg <span class="op">~</span><span class="st"> </span>BodyweightKg, <span class="dt">data =</span> data)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="simple-regression.html#cb166-1"></a><span class="kw">lm</span>(<span class="dt">formula =</span> TotalKg <span class="op">~</span><span class="st"> </span>BodyweightKg, <span class="dt">data =</span> data)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = TotalKg ~ BodyweightKg, data = data)
@@ -409,12 +409,12 @@ Coefficients:
  (Intercept)  BodyweightKg  
        50.83          5.24  </code></pre>
 <p>The function prints out the slope and intercept for the model. We could then use the slope and intercept to create a plot with an <code>abline</code>:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="simple-regression.html#cb167-1"></a><span class="kw">plot</span>(data<span class="op">$</span>BodyweightKg, data<span class="op">$</span>TotalKg)</span>
-<span id="cb167-2"><a href="simple-regression.html#cb167-2"></a><span class="kw">abline</span>(<span class="fl">50.83</span>, <span class="fl">5.24</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-126-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="simple-regression.html#cb168-1"></a><span class="kw">plot</span>(data<span class="op">$</span>BodyweightKg, data<span class="op">$</span>TotalKg)</span>
+<span id="cb168-2"><a href="simple-regression.html#cb168-2"></a><span class="kw">abline</span>(<span class="fl">50.83</span>, <span class="fl">5.24</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-127-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
 <p>It looks like there may be a significant relationship between the two variables, but how can we be sure? The <code>lm()</code> function printed the coefficients but did not provide information about the R-squared or significance. To see this information, we need to save the model as an object, and then print the summary of the model:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="simple-regression.html#cb168-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> TotalKg <span class="op">~</span><span class="st"> </span>BodyweightKg, <span class="dt">data =</span> data)</span>
-<span id="cb168-2"><a href="simple-regression.html#cb168-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="simple-regression.html#cb169-1"></a>my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> TotalKg <span class="op">~</span><span class="st"> </span>BodyweightKg, <span class="dt">data =</span> data)</span>
+<span id="cb169-2"><a href="simple-regression.html#cb169-2"></a><span class="kw">summary</span>(my_model)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = TotalKg ~ BodyweightKg, data = data)
@@ -434,14 +434,14 @@ Residual standard error: 127.7 on 910 degrees of freedom
 Multiple R-squared:  0.4782,    Adjusted R-squared:  0.4776 
 F-statistic:   834 on 1 and 910 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Now we have a nice summary print-out which includes the <code>F-statistic</code>, <code>Residuals</code>, <code>R-squared</code>, <code>p-value</code>, and more. What’s also nice is we can now use the <code>plot</code> function on the <code>my_model</code> object that we just created to view <code>Residuals vs Fitted</code>, <code>Normal Q-Q</code>, <code>Scale-Location</code> and <code>Residuals vs Leverage</code> plots.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="simple-regression.html#cb170-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb170-2"><a href="simple-regression.html#cb170-2"></a><span class="kw">plot</span>(my_model)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="simple-regression.html#cb171-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb171-2"><a href="simple-regression.html#cb171-2"></a><span class="kw">plot</span>(my_model)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>The code <code>par(mfrow = c(2,2))</code> above is used to print the plots as a 2 x 2 grid; the <code>plot()</code> function does not need to be used in conjuction with this piece of code.</p>
 </blockquote>
 <p>What else can be done with the <code>my_model</code> object? Let’s take a look at the object’s <code>attributes</code>:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="simple-regression.html#cb171-1"></a><span class="kw">attributes</span>(my_model)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="simple-regression.html#cb172-1"></a><span class="kw">attributes</span>(my_model)</span></code></pre></div>
 <pre><code>$names
  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
@@ -450,25 +450,25 @@ F-statistic:   834 on 1 and 910 DF,  p-value: &lt; 2.2e-16</code></pre>
 $class
 [1] &quot;lm&quot;</code></pre>
 <p>The model’s <code>attributes</code> can be accessed by using a dollar sign, <code>$</code>. For example, here’s a printout of the first 5 residuals of the model:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="simple-regression.html#cb173-1"></a>my_model<span class="op">$</span>residuals[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="simple-regression.html#cb174-1"></a>my_model<span class="op">$</span>residuals[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>         1          2          3          4          5 
  -74.20773  -24.89527  -55.25580 -205.83149  -68.62079 </code></pre>
 </div>
 <div id="mean-centered-model" class="section level3 unnumbered">
 <h3>Mean-Centered Model</h3>
 <p>In this example we’ll use the same variables as before, but this time the predictor variable will be mean-centered. First, we create a column that consists of the <code>BodyweightKg</code> mean, which is 89.17. Since there are 1000 rows in the powerlifting dataset, that means we are creating a column that has the value 89.17 repeated 1000 times. This value is then saved into the column <code>BodyweightKg_mean</code>; that’s what the first line of code in the code chunk below is doing. In the second line of code, each <code>BodyweightKg</code> value is subtracted from the <code>BodyweightKg_mean</code> mean column, which is then stored in a new column called <code>BodyweightKg_mc</code>.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="simple-regression.html#cb175-1"></a><span class="co"># Create a column that consists of the mean BodyweightKg</span></span>
-<span id="cb175-2"><a href="simple-regression.html#cb175-2"></a>data<span class="op">$</span>BodyweightKg_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(data<span class="op">$</span>BodyweightKg, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb175-3"><a href="simple-regression.html#cb175-3"></a></span>
-<span id="cb175-4"><a href="simple-regression.html#cb175-4"></a><span class="co"># Subtract BodyweightKg from mean BodyweightKg column</span></span>
-<span id="cb175-5"><a href="simple-regression.html#cb175-5"></a>data<span class="op">$</span>BodyweightKg_mc &lt;-<span class="st"> </span>data<span class="op">$</span>BodyweightKg <span class="op">-</span><span class="st"> </span>data<span class="op">$</span>BodyweightKg_mean</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="simple-regression.html#cb176-1"></a><span class="co"># Create a column that consists of the mean BodyweightKg</span></span>
+<span id="cb176-2"><a href="simple-regression.html#cb176-2"></a>data<span class="op">$</span>BodyweightKg_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(data<span class="op">$</span>BodyweightKg, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb176-3"><a href="simple-regression.html#cb176-3"></a></span>
+<span id="cb176-4"><a href="simple-regression.html#cb176-4"></a><span class="co"># Subtract BodyweightKg from mean BodyweightKg column</span></span>
+<span id="cb176-5"><a href="simple-regression.html#cb176-5"></a>data<span class="op">$</span>BodyweightKg_mc &lt;-<span class="st"> </span>data<span class="op">$</span>BodyweightKg <span class="op">-</span><span class="st"> </span>data<span class="op">$</span>BodyweightKg_mean</span></code></pre></div>
 <p>Here’s what the new mean-centered column looks like graphically:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="simple-regression.html#cb176-1"></a><span class="kw">plot</span>(data<span class="op">$</span>BodyweightKg_mc ,data<span class="op">$</span>TotalKg)</span>
-<span id="cb176-2"><a href="simple-regression.html#cb176-2"></a><span class="kw">abline</span>(<span class="kw">lm</span>(data<span class="op">$</span>TotalKg <span class="op">~</span><span class="st"> </span>data<span class="op">$</span>BodyweightKg_mc), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="simple-regression.html#cb177-1"></a><span class="kw">plot</span>(data<span class="op">$</span>BodyweightKg_mc ,data<span class="op">$</span>TotalKg)</span>
+<span id="cb177-2"><a href="simple-regression.html#cb177-2"></a><span class="kw">abline</span>(<span class="kw">lm</span>(data<span class="op">$</span>TotalKg <span class="op">~</span><span class="st"> </span>data<span class="op">$</span>BodyweightKg_mc), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="70%" height="70%" style="display: block; margin: auto;" /></p>
 <p>We can now use this mean-centered column as the dependent variable in the <code>lm()</code> function.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="simple-regression.html#cb177-1"></a>my_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> TotalKg <span class="op">~</span><span class="st"> </span>BodyweightKg_mc, <span class="dt">data =</span> data)</span>
-<span id="cb177-2"><a href="simple-regression.html#cb177-2"></a><span class="kw">summary</span>(my_model2)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="simple-regression.html#cb178-1"></a>my_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> TotalKg <span class="op">~</span><span class="st"> </span>BodyweightKg_mc, <span class="dt">data =</span> data)</span>
+<span id="cb178-2"><a href="simple-regression.html#cb178-2"></a><span class="kw">summary</span>(my_model2)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = TotalKg ~ BodyweightKg_mc, data = data)

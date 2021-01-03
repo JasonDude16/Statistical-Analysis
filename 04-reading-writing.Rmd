@@ -69,7 +69,7 @@ data <- read.delim("BMI_2.txt")
 head(data)
 ```
 
-We can fix this by and passing the `sep` argument a semicolon, which indicates that the data is *not* delimited with a tab, but instead with a semicolon: 
+We can fix this by and passing the `sep` argument (which is short for separator) a semicolon, which indicates that the data is *not* delimited with a tab, but instead with a semicolon: 
 
 ```{r}
 data <- read.delim("BMI_2.txt", sep = ";")

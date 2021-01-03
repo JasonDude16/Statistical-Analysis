@@ -12,6 +12,12 @@ knitr::opts_chunk$set(echo = T, comment= '', results = 'hold', warning = F, mess
 knitr::opts_knit$set(root.dir = './data')
 ```
 
+```{r}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+```
+
 # Welcome {-}
 
 ```{r, echo=FALSE, out.height= '50%', out.width= '50%', cache=TRUE, fig.align='left'}
@@ -19,16 +25,23 @@ setwd("..")
 knitr::include_graphics("./images/book_cover.png")
 ```
 
-The purpose of this guidebook is to provide a brief introduction to performing statistical analysis in R. It is assumed that the reader is knowledgeable about statistical analysis and is selecting the appropriate statistical model for whatever research question they would like to answer, but they are unsure of how to perform the analysis in R. Consequently, statistical theory will not be covered in this book. It is also assumed that the reader is unfamiliar with programming languages and concepts. Before delving into the various statistical models, a concise overview of programming concepts will be covered, so that hopefully the reader will feel comfortable with modifying and extending on example code to suit their analytic endeavors.
+The purpose of this guidebook is to provide a brief introduction to performing statistical analysis in R, and it is intended for a reader who 1) Is knowledgeable about statistical analysis and is selecting the appropriate statistical model for whatever research question they would like to answer, and 2) Is unsure of how to perform the analysis in R, and is unfamiliar with programming languages in general. 
 
-Chapters 1 and 2 will cover downloading and describing R and the RStudio IDE, and programming basics, such as variable types and data types, objects and assignments, and functions and arguments. Chapters 3 and 4 will cover installing/loading packages and reading/writing data. Chapters 5 and 6 will cover descriptive statistics, visualizing data, and formatting data. Chapters 7-13 will cover various statistical models from the General Linear Model (GLM) framework. 
+We tried to make this book as brief as possible while still providing all of the necessary information to get up and running with R. The book is sequential and builds on knowledge from prior chapters, and, as such, we recommended reading it in order. Chapters 1 and 2 will cover downloading and describing R and the RStudio IDE, as well as programming basics, such as variable types and data types, objects and assignments, and functions and arguments. Chapters 3 and 4 will cover installing/loading packages and reading/writing files. Chapters 5 and 6 will cover descriptive statistics, visualizing data, and formatting data. Chapters 7-13 will cover various statistical models from the General Linear Model framework. 
 
 <!--
 # Functions List{-}
+Below are a few common functions that may be helpful for future reference.
 
 ```{r, eval=FALSE}
 # GET HELP ON TOPICS / WITH FUNCTIONS
 help()
+
+# READ CSV FILE
+read.csv()
+
+# READ TEXT FILE
+read.delim()
 
 # INSTALL PACKAGES
 install.packages()
@@ -83,10 +96,6 @@ aov()
 # Resources {-} 
 
 ```{r, echo=FALSE}
-library(dplyr)
-library(knitr)
-library(kableExtra)
-
 dt_url = c("https://swirlstats.com/students.html",
            "https://stackoverflow.com/",
            "https://www.statmethods.net/r-tutorial/index.html",
@@ -102,9 +111,9 @@ tibble::tibble(
     
     Link = cell_spec(Name, "html", link = dt_url),
     
-    Description = c("Swirl is an R package where you can learn and practice R,                     in R.",
+    Description = c("Swirl is an R package where you can learn and practice R,                     in R. Click on the link provided to learn more about                           installing and using swirl. ",
                     
-                    "Need help with R? Stackoverflow is a website where you can                     post programming related questions", 
+                    "Need help with R? Stackoverflow is a website for                              posting programming related questions.", 
                     
                     "Quick R by Datacamp is a webpage where the content is very                     simmilar to that of this guidebook: short and to the point,
                     but still covering everything from installing R to
@@ -116,6 +125,7 @@ tibble::tibble(
 kable(ref_table, "html", escape = FALSE) %>%
 kable_styling(bootstrap_options = c("hover", "condensed")) 
 
+# OTHER WEBSITES
 # <https://rstudio-education.github.io/hopr/>
 # <https://bookdown.org/rdpeng/rprogdatascience/>
 # <https://www.statmethods.net/r-tutorial/index.html>
@@ -125,5 +135,4 @@ kable_styling(bootstrap_options = c("hover", "condensed"))
 # <https://www.r-bloggers.com/>
 # <https://learn.datacamp.com/>
 # http://r-statistics.co/R-Tutorial.html
-    
 ```

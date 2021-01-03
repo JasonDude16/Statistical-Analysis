@@ -305,13 +305,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="viewing-data" class="section level2 unnumbered">
 <h2>Viewing Data</h2>
 <p>First, we’ll read in the <strong>powerlifting.csv</strong> file in the data folder.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="CH5.html#cb49-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;power.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="CH5.html#cb50-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;power.csv&quot;</span>)</span></code></pre></div>
 <p>After running the code above, you should see an object called <code>data</code> under the <code>Environment</code> tab in the upper right pane of RStudio. If you click on the white grid icon, RStudio will display the data in tabular form.</p>
 <p><img src="images/rstudio_view.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
 <p>In this tabular view you can filter columns, arrange columns by ascending or descending values, and search values.</p>
 <p><img src="images/rstudio_tabular.png" width="80%" height="80%" style="display: block; margin: auto;" /></p>
 <p>Another way to get the feel for an entire dataset is with the <code>str()</code> function. The benefit of the <code>str()</code> function is that the variable type is also displayed.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="CH5.html#cb50-1"></a><span class="kw">str</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="CH5.html#cb51-1"></a><span class="kw">str</span>(data)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   24 obs. of  6 variables:
  $ subject       : int  1 2 3 4 5 6 7 8 9 10 ...
  $ sex           : chr  &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; ...
@@ -320,8 +320,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  $ VJ_power_watts: num  4203 5332 4431 3256 4001 ...
  $ WG_power_watts: int  809 995 856 595 707 956 870 966 1100 1188 ...</code></pre>
 <p>If you’re only interested in viewing the first few rows or last few rows of data you can use the <code>head()</code> and <code>tail()</code> functions, respectively:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="CH5.html#cb52-1"></a><span class="kw">head</span>(data) <span class="co"># First 6 rows</span></span>
-<span id="cb52-2"><a href="CH5.html#cb52-2"></a><span class="kw">tail</span>(data) <span class="co"># Last 6 rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="CH5.html#cb53-1"></a><span class="kw">head</span>(data) <span class="co"># First 6 rows</span></span>
+<span id="cb53-2"><a href="CH5.html#cb53-2"></a><span class="kw">tail</span>(data) <span class="co"># Last 6 rows</span></span></code></pre></div>
 <pre><code>  subject sex   self_ID  mass_kg VJ_power_watts WG_power_watts
 1       1   M endurance 65.00000       4203.498            809
 2       2   M     power 80.00000       5332.476            995
@@ -337,15 +337,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 23      23   F endurance 50.00000       2283.564            492
 24      24   F     power 70.45455       4140.660            951</code></pre>
 <p>Sometimes it’s useful/convenient to access certain attributes of the data frame, such as the column names. A few of the functions for accessing attributes are provided below.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="CH5.html#cb54-1"></a><span class="kw">dim</span>(data)        <span class="co"># Dimensions</span></span>
-<span id="cb54-2"><a href="CH5.html#cb54-2"></a><span class="kw">nrow</span>(data)       <span class="co"># Number of rows</span></span>
-<span id="cb54-3"><a href="CH5.html#cb54-3"></a><span class="kw">ncol</span>(data)       <span class="co"># Number of columns</span></span>
-<span id="cb54-4"><a href="CH5.html#cb54-4"></a><span class="kw">colnames</span>(data)   <span class="co"># Column names</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="CH5.html#cb55-1"></a><span class="kw">dim</span>(data)        <span class="co"># Dimensions</span></span>
+<span id="cb55-2"><a href="CH5.html#cb55-2"></a><span class="kw">nrow</span>(data)       <span class="co"># Number of rows</span></span>
+<span id="cb55-3"><a href="CH5.html#cb55-3"></a><span class="kw">ncol</span>(data)       <span class="co"># Number of columns</span></span>
+<span id="cb55-4"><a href="CH5.html#cb55-4"></a><span class="kw">colnames</span>(data)   <span class="co"># Column names</span></span></code></pre></div>
 </div>
 <div id="data-summaries" class="section level2 unnumbered">
 <h2>Data Summaries</h2>
 <p>One of the quickest and most useful ways to produce a data summary is with the <code>summary()</code> function. This function is versatile and works well with both continuous and categorical data:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="CH5.html#cb55-1"></a><span class="kw">summary</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="CH5.html#cb56-1"></a><span class="kw">summary</span>(data)</span></code></pre></div>
 <pre><code>    subject          sex              self_ID             mass_kg     
  Min.   : 1.00   Length:24          Length:24          Min.   :45.45  
  1st Qu.: 6.75   Class :character   Class :character   1st Qu.:67.39  
@@ -361,44 +361,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  3rd Qu.:4927   3rd Qu.: 939.8  
  Max.   :6087   Max.   :1188.0  </code></pre>
 <p>For R to correctly interpret the categorical variables in this data frame, like <code>sex</code> and <code>self_ID</code>, the variables must be of the <code>factor</code> variable type. Currently these variables are listed as <code>character</code>. They can be converted to factors with the <code>as.factor()</code> function. We can then use the <code>summary()</code> function after converting the variable.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="CH5.html#cb57-1"></a><span class="kw">summary</span>(<span class="kw">as.factor</span>(data<span class="op">$</span>sex))</span>
-<span id="cb57-2"><a href="CH5.html#cb57-2"></a><span class="kw">summary</span>(<span class="kw">as.factor</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">self_ID</span><span class="st">`</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="CH5.html#cb58-1"></a><span class="kw">summary</span>(<span class="kw">as.factor</span>(data<span class="op">$</span>sex))</span>
+<span id="cb58-2"><a href="CH5.html#cb58-2"></a><span class="kw">summary</span>(<span class="kw">as.factor</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">self_ID</span><span class="st">`</span>))</span></code></pre></div>
 <pre><code> F  M 
  8 16 
 endurance     power 
        11        13 </code></pre>
 <p>You can also create a contingency table of the counts at each combination of factor levels with the <code>table()</code> function:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="CH5.html#cb59-1"></a><span class="kw">table</span>(data<span class="op">$</span>sex, data<span class="op">$</span>self_ID)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="CH5.html#cb60-1"></a><span class="kw">table</span>(data<span class="op">$</span>sex, data<span class="op">$</span>self_ID)</span></code></pre></div>
 <pre><code>   
     endurance power
   F         3     5
   M         8     8</code></pre>
 <p>More than two variables can be used, too. Similarly, you can create conditional proportions by passing the table created to the <code>prop.table()</code> function:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="CH5.html#cb61-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(data<span class="op">$</span>sex, data<span class="op">$</span>self_ID))</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="CH5.html#cb62-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(data<span class="op">$</span>sex, data<span class="op">$</span>self_ID))</span></code></pre></div>
 <pre><code>   
     endurance     power
   F 0.1250000 0.2083333
   M 0.3333333 0.3333333</code></pre>
 <p>Below are some more descriptive functions, and you can probably guess what each of them does.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="CH5.html#cb63-1"></a><span class="kw">mean</span>()</span>
-<span id="cb63-2"><a href="CH5.html#cb63-2"></a><span class="kw">median</span>()</span>
-<span id="cb63-3"><a href="CH5.html#cb63-3"></a><span class="kw">var</span>()</span>
-<span id="cb63-4"><a href="CH5.html#cb63-4"></a><span class="kw">sd</span>()</span>
-<span id="cb63-5"><a href="CH5.html#cb63-5"></a><span class="kw">min</span>()</span>
-<span id="cb63-6"><a href="CH5.html#cb63-6"></a><span class="kw">max</span>()</span>
-<span id="cb63-7"><a href="CH5.html#cb63-7"></a><span class="kw">range</span>()</span>
-<span id="cb63-8"><a href="CH5.html#cb63-8"></a><span class="kw">quantile</span>()</span>
-<span id="cb63-9"><a href="CH5.html#cb63-9"></a><span class="kw">colSums</span>()</span>
-<span id="cb63-10"><a href="CH5.html#cb63-10"></a><span class="kw">rowSums</span>()</span>
-<span id="cb63-11"><a href="CH5.html#cb63-11"></a><span class="kw">colMeans</span>()</span>
-<span id="cb63-12"><a href="CH5.html#cb63-12"></a><span class="kw">rowMeans</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="CH5.html#cb64-1"></a><span class="kw">mean</span>()</span>
+<span id="cb64-2"><a href="CH5.html#cb64-2"></a><span class="kw">median</span>()</span>
+<span id="cb64-3"><a href="CH5.html#cb64-3"></a><span class="kw">var</span>()</span>
+<span id="cb64-4"><a href="CH5.html#cb64-4"></a><span class="kw">sd</span>()</span>
+<span id="cb64-5"><a href="CH5.html#cb64-5"></a><span class="kw">min</span>()</span>
+<span id="cb64-6"><a href="CH5.html#cb64-6"></a><span class="kw">max</span>()</span>
+<span id="cb64-7"><a href="CH5.html#cb64-7"></a><span class="kw">range</span>()</span>
+<span id="cb64-8"><a href="CH5.html#cb64-8"></a><span class="kw">quantile</span>()</span>
+<span id="cb64-9"><a href="CH5.html#cb64-9"></a><span class="kw">colSums</span>()</span>
+<span id="cb64-10"><a href="CH5.html#cb64-10"></a><span class="kw">rowSums</span>()</span>
+<span id="cb64-11"><a href="CH5.html#cb64-11"></a><span class="kw">colMeans</span>()</span>
+<span id="cb64-12"><a href="CH5.html#cb64-12"></a><span class="kw">rowMeans</span>()</span></code></pre></div>
 <div id="missing-data" class="section level3 unnumbered">
 <h3>Missing Data</h3>
 <p>In the examples above, none of the data contained missing values, which made the data summaries easy to calculate. Missing data can be handled in many different ways, and selecting the most appropriate method is beyond the scope of this book. Instead, we’ll only cover how to find and omit observations with missing data. First we’ll create a data frame in R that contains <code>NA</code> values:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="CH5.html#cb64-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Col1 =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">1</span>, <span class="dv">21</span>, <span class="dv">34</span>, <span class="ot">NA</span>), </span>
-<span id="cb64-2"><a href="CH5.html#cb64-2"></a>                    <span class="dt">Col2 =</span> <span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">34</span>, <span class="dv">12</span>, <span class="dv">56</span>),</span>
-<span id="cb64-3"><a href="CH5.html#cb64-3"></a>                    <span class="dt">Col3 =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">43</span>, <span class="dv">12</span>))</span>
-<span id="cb64-4"><a href="CH5.html#cb64-4"></a>data2</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="CH5.html#cb65-1"></a>data2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Col1 =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">1</span>, <span class="dv">21</span>, <span class="dv">34</span>, <span class="ot">NA</span>), </span>
+<span id="cb65-2"><a href="CH5.html#cb65-2"></a>                    <span class="dt">Col2 =</span> <span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">34</span>, <span class="dv">12</span>, <span class="dv">56</span>),</span>
+<span id="cb65-3"><a href="CH5.html#cb65-3"></a>                    <span class="dt">Col3 =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">43</span>, <span class="dv">12</span>))</span>
+<span id="cb65-4"><a href="CH5.html#cb65-4"></a>data2</span></code></pre></div>
 <pre><code>  Col1 Col2 Col3
 1   NA   23   NA
 2    1   34    2
@@ -406,8 +406,8 @@ endurance     power
 4   34   12   43
 5   NA   56   12</code></pre>
 <p>You can use the <code>is.na()</code> function to assess if a value is missing in a data frame or not. For example:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="CH5.html#cb66-1"></a><span class="kw">is.na</span>(data2)</span>
-<span id="cb66-2"><a href="CH5.html#cb66-2"></a><span class="co"># Missing values in data frame</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="CH5.html#cb67-1"></a><span class="kw">is.na</span>(data2)</span>
+<span id="cb67-2"><a href="CH5.html#cb67-2"></a><span class="co"># Missing values in data frame</span></span></code></pre></div>
 <pre><code>      Col1  Col2  Col3
 [1,]  TRUE FALSE  TRUE
 [2,] FALSE FALSE FALSE
@@ -415,25 +415,25 @@ endurance     power
 [4,] FALSE FALSE FALSE
 [5,]  TRUE FALSE FALSE</code></pre>
 <p>What you get in return is <code>TRUE</code> and <code>FALSE</code> values. If the value is <code>TRUE</code>, that means there is an <code>NA</code> value in that location. This might not be particularly helpful, though, if you have a large data frame. Instead, it might be more useful to have the count of <code>NA</code> values returned. To do this, we could use the <code>is.na()</code> function wrapped inside of a <code>sum()</code> function:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="CH5.html#cb68-1"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(data2))</span>
-<span id="cb68-2"><a href="CH5.html#cb68-2"></a><span class="co"># Sum of missing values in data frame</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="CH5.html#cb69-1"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(data2))</span>
+<span id="cb69-2"><a href="CH5.html#cb69-2"></a><span class="co"># Sum of missing values in data frame</span></span></code></pre></div>
 <pre><code>[1] 3</code></pre>
 <p>You might want to know how many <code>NA</code> values are in a specific column rather than the entire dataset. Selecting just one column from a data frame is a very common task, and one way you can do this is with the dollar sign, <code>$</code>:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="CH5.html#cb70-1"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(data2<span class="op">$</span>Col1))</span>
-<span id="cb70-2"><a href="CH5.html#cb70-2"></a><span class="co"># Sum of missing values in Col1 </span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="CH5.html#cb71-1"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(data2<span class="op">$</span>Col1))</span>
+<span id="cb71-2"><a href="CH5.html#cb71-2"></a><span class="co"># Sum of missing values in Col1 </span></span></code></pre></div>
 <pre><code>[1] 2</code></pre>
 <p>A quick way to get the missing values for all columns of a data frame is with the <code>colSums()</code> function:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="CH5.html#cb72-1"></a><span class="kw">colSums</span>(<span class="kw">is.na</span>(data2))</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="CH5.html#cb73-1"></a><span class="kw">colSums</span>(<span class="kw">is.na</span>(data2))</span></code></pre></div>
 <pre><code>Col1 Col2 Col3 
    2    0    1 </code></pre>
 <p>You can omit all missing values in a data frame with the <code>na.omit()</code> function:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="CH5.html#cb74-1"></a><span class="kw">na.omit</span>(data2)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="CH5.html#cb75-1"></a><span class="kw">na.omit</span>(data2)</span></code></pre></div>
 <pre><code>  Col1 Col2 Col3
 2    1   34    2
 3   21   34   12
 4   34   12   43</code></pre>
 <p>The “opposite” of the <code>na.omit()</code> function would be finding and listing all the rows that <em>do</em> contain missing values, and that’s what the code below accomplishes:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="CH5.html#cb76-1"></a>data2[<span class="op">!</span><span class="kw">complete.cases</span>(data2), ]</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="CH5.html#cb77-1"></a>data2[<span class="op">!</span><span class="kw">complete.cases</span>(data2), ]</span></code></pre></div>
 <pre><code>  Col1 Col2 Col3
 1   NA   23   NA
 5   NA   56   12</code></pre>
@@ -442,10 +442,10 @@ endurance     power
 <p>You might have noticed that you can select a column in R like this: <code>data$Col3</code>, and also like this <code>data[ ,3]</code>. There are almost always multiple ways to accomplish something in R, and both ways work equally well.</p>
 </blockquote>
 <p>Let’s try computing the mean for the first column of the <code>data2</code> object which contains missing values:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="CH5.html#cb78-1"></a><span class="kw">mean</span>(data2<span class="op">$</span>Col1)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="CH5.html#cb79-1"></a><span class="kw">mean</span>(data2<span class="op">$</span>Col1)</span></code></pre></div>
 <pre><code>[1] NA</code></pre>
 <p>As you can see, <code>NA</code> is returned. This is because <code>Col1</code> contains missing values. Luckily the <code>mean()</code> function has an <code>na.rm</code> argument, which stands for ‘not available, remove’. We can set this argument to <code>TRUE</code>, so that missing values will be removed when computing the mean:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="CH5.html#cb80-1"></a><span class="kw">mean</span>(data2<span class="op">$</span>Col1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="CH5.html#cb81-1"></a><span class="kw">mean</span>(data2<span class="op">$</span>Col1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] 18.66667</code></pre>
 </div>
 </div>
@@ -455,57 +455,57 @@ endurance     power
 <div id="histogram" class="section level3 unnumbered">
 <h3>Histogram</h3>
 <p>You can make histograms with the <code>hist()</code> function. All you need to do is select the column to plot, which in this case is <code>data$VJ_power_watts</code>, and the rest will be done for you:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="CH5.html#cb82-1"></a><span class="kw">hist</span>(<span class="dt">x =</span> data<span class="op">$</span>VJ_power_watts)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>You could then change the color and labels, create a title, add vertical lines indicating the mean and median (which can each have their own color), change the bins, edit the axes, change the border color, and much more. This is just to give you an idea, in case you’d like to create more complete plots in R.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="CH5.html#cb83-1"></a><span class="kw">hist</span>(<span class="dt">x =</span> data<span class="op">$</span>VJ_power_watts, </span>
-<span id="cb83-2"><a href="CH5.html#cb83-2"></a>     <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
-<span id="cb83-3"><a href="CH5.html#cb83-3"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Vertical Jump Power (Watts)&quot;</span>,</span>
-<span id="cb83-4"><a href="CH5.html#cb83-4"></a>     <span class="dt">main =</span> <span class="st">&quot;Vertical Jump Power&quot;</span>,</span>
-<span id="cb83-5"><a href="CH5.html#cb83-5"></a>     <span class="dt">border =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb83-6"><a href="CH5.html#cb83-6"></a><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">mean</span>(data<span class="op">$</span>VJ_power_watts), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb83-7"><a href="CH5.html#cb83-7"></a><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">median</span>(data<span class="op">$</span>VJ_power_watts), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="CH5.html#cb83-1"></a><span class="kw">hist</span>(<span class="dt">x =</span> data<span class="op">$</span>VJ_power_watts)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>You could then change the color and labels, create a title, add vertical lines indicating the mean and median (which can each have their own color), change the bins, edit the axes, change the border color, and much more. This is just to give you an idea, in case you’d like to create more complete plots in R.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="CH5.html#cb84-1"></a><span class="kw">hist</span>(<span class="dt">x =</span> data<span class="op">$</span>VJ_power_watts, </span>
+<span id="cb84-2"><a href="CH5.html#cb84-2"></a>     <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
+<span id="cb84-3"><a href="CH5.html#cb84-3"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Vertical Jump Power (Watts)&quot;</span>,</span>
+<span id="cb84-4"><a href="CH5.html#cb84-4"></a>     <span class="dt">main =</span> <span class="st">&quot;Vertical Jump Power&quot;</span>,</span>
+<span id="cb84-5"><a href="CH5.html#cb84-5"></a>     <span class="dt">border =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb84-6"><a href="CH5.html#cb84-6"></a><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">mean</span>(data<span class="op">$</span>VJ_power_watts), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb84-7"><a href="CH5.html#cb84-7"></a><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">median</span>(data<span class="op">$</span>VJ_power_watts), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="scatterplot" class="section level3 unnumbered">
 <h3>Scatterplot</h3>
 <p>You can use the <code>plot()</code> function to make scatter plots or various other types of plots. Simply pass your data frame object to the function and R will plot all of the relationships.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="CH5.html#cb84-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> data)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Rather than using all of the data, you can select the relevant variables by subsetting:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="CH5.html#cb85-1"></a><span class="kw">plot</span>(data[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="CH5.html#cb85-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> data)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>In the code above, the columns <code>4:6</code> were selected, which are the columns shown in the plot. You could then color the points by a categorical variable, such as the <code>self_ID</code> variable, which is a variable indicating whether a subject self-identifies as more of a power or endurance athlete. Remember that in order for this to work, the <code>self_ID</code> column needs to be converted to a factor.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="CH5.html#cb86-1"></a><span class="kw">plot</span>(data[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">col =</span> <span class="kw">as.factor</span>(data<span class="op">$</span>self_ID))</span></code></pre></div>
+<p>Rather than using all of the data, you can select the relevant variables by subsetting:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="CH5.html#cb86-1"></a><span class="kw">plot</span>(data[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>])</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>If you wanted to plot the bivariate relationship between two of the variables, you would simply select two of the columns instead of three. Similar to the vertical lines in the histogram plot, you can add the slope and intercept to a plot with the same <code>abline()</code> function. These values were created by performing a linear model and then grabbing the coefficients from the model.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="CH5.html#cb87-1"></a><span class="kw">plot</span>(data[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>])</span>
-<span id="cb87-2"><a href="CH5.html#cb87-2"></a>intercept &lt;-<span class="st"> </span><span class="kw">lm</span>(VJ_power_watts <span class="op">~</span><span class="st"> </span>mass_kg, <span class="dt">data =</span> data)<span class="op">$</span>coeff[<span class="dv">1</span>]</span>
-<span id="cb87-3"><a href="CH5.html#cb87-3"></a>slope &lt;-<span class="st"> </span><span class="kw">lm</span>(VJ_power_watts <span class="op">~</span><span class="st"> </span>mass_kg, <span class="dt">data =</span> data)<span class="op">$</span>coeff[<span class="dv">2</span>]</span>
-<span id="cb87-4"><a href="CH5.html#cb87-4"></a><span class="kw">abline</span>(<span class="dt">coef =</span> <span class="kw">c</span>(intercept, slope), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,)</span></code></pre></div>
+<p>In the code above, the columns <code>4:6</code> were selected, which are the columns shown in the plot. You could then color the points by a categorical variable, such as the <code>self_ID</code> variable, which is a variable indicating whether a subject self-identifies as more of a power or endurance athlete. Remember that in order for this to work, the <code>self_ID</code> column needs to be converted to a factor.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="CH5.html#cb87-1"></a><span class="kw">plot</span>(data[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">col =</span> <span class="kw">as.factor</span>(data<span class="op">$</span>self_ID))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>If you wanted to plot the bivariate relationship between two of the variables, you would simply select two of the columns instead of three. Similar to the vertical lines in the histogram plot, you can add the slope and intercept to a plot with the same <code>abline()</code> function. These values were created by performing a linear model and then grabbing the coefficients from the model.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="CH5.html#cb88-1"></a><span class="kw">plot</span>(data[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>])</span>
+<span id="cb88-2"><a href="CH5.html#cb88-2"></a>intercept &lt;-<span class="st"> </span><span class="kw">lm</span>(VJ_power_watts <span class="op">~</span><span class="st"> </span>mass_kg, <span class="dt">data =</span> data)<span class="op">$</span>coeff[<span class="dv">1</span>]</span>
+<span id="cb88-3"><a href="CH5.html#cb88-3"></a>slope &lt;-<span class="st"> </span><span class="kw">lm</span>(VJ_power_watts <span class="op">~</span><span class="st"> </span>mass_kg, <span class="dt">data =</span> data)<span class="op">$</span>coeff[<span class="dv">2</span>]</span>
+<span id="cb88-4"><a href="CH5.html#cb88-4"></a><span class="kw">abline</span>(<span class="dt">coef =</span> <span class="kw">c</span>(intercept, slope), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="barplot" class="section level3 unnumbered">
 <h3>Barplot</h3>
 <p>You can make bar graphs by using the <code>table()</code> function used earlier in conjunction with the <code>barplot()</code> function.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="CH5.html#cb88-1"></a><span class="kw">barplot</span>(<span class="kw">table</span>(data<span class="op">$</span>self_ID))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="CH5.html#cb89-1"></a><span class="kw">barplot</span>(<span class="kw">table</span>(data<span class="op">$</span>self_ID, data<span class="op">$</span>sex))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-80-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>You can have the bars side-by-side instead of stacked by setting <code>beside = TRUE</code>. Notice that you can also generate legends for your plots with the <code>legend()</code> function and then coloring them accordingly.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="CH5.html#cb90-1"></a><span class="kw">barplot</span>(<span class="kw">table</span>(data<span class="op">$</span>sex, data<span class="op">$</span>self_ID), </span>
-<span id="cb90-2"><a href="CH5.html#cb90-2"></a>        <span class="dt">beside =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb90-3"><a href="CH5.html#cb90-3"></a>        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;lightcoral&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span>
-<span id="cb90-4"><a href="CH5.html#cb90-4"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>), <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;lightcoral&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="CH5.html#cb89-1"></a><span class="kw">barplot</span>(<span class="kw">table</span>(data<span class="op">$</span>self_ID))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="CH5.html#cb90-1"></a><span class="kw">barplot</span>(<span class="kw">table</span>(data<span class="op">$</span>self_ID, data<span class="op">$</span>sex))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>You can have the bars side-by-side instead of stacked by setting <code>beside = TRUE</code>. Notice that you can also generate legends for your plots with the <code>legend()</code> function and then coloring them accordingly.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="CH5.html#cb91-1"></a><span class="kw">barplot</span>(<span class="kw">table</span>(data<span class="op">$</span>sex, data<span class="op">$</span>self_ID), </span>
+<span id="cb91-2"><a href="CH5.html#cb91-2"></a>        <span class="dt">beside =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb91-3"><a href="CH5.html#cb91-3"></a>        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;lightcoral&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span>
+<span id="cb91-4"><a href="CH5.html#cb91-4"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>), <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;lightcoral&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="boxplot" class="section level3 unnumbered">
 <h3>Boxplot</h3>
 <p>Boxplots can be created with the <code>boxplots()</code> function. The formatting for this function may seem a little strange. For the <code>formula</code> argument, you’ll first list the y variable followed the x variables. The x variables will be separted by a plus sign. This function automatically converts the <code>sex</code> and <code>self_ID</code> columns to factors for us.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="CH5.html#cb91-1"></a><span class="kw">boxplot</span>(<span class="dt">formula =</span> VJ_power_watts <span class="op">~</span><span class="st"> </span>self_ID <span class="op">+</span><span class="st"> </span>sex, </span>
-<span id="cb91-2"><a href="CH5.html#cb91-2"></a>        <span class="dt">data =</span> data, </span>
-<span id="cb91-3"><a href="CH5.html#cb91-3"></a>        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;lightcoral&quot;</span>, <span class="st">&quot;lightgoldenrod&quot;</span>, <span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="CH5.html#cb92-1"></a><span class="kw">boxplot</span>(<span class="dt">formula =</span> VJ_power_watts <span class="op">~</span><span class="st"> </span>self_ID <span class="op">+</span><span class="st"> </span>sex, </span>
+<span id="cb92-2"><a href="CH5.html#cb92-2"></a>        <span class="dt">data =</span> data, </span>
+<span id="cb92-3"><a href="CH5.html#cb92-3"></a>        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;lightcoral&quot;</span>, <span class="st">&quot;lightgoldenrod&quot;</span>, <span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>You can view the list of available color options for plots by typing <code>colors()</code> into the console.</p>
 </blockquote>

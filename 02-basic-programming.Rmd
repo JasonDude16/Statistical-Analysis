@@ -26,7 +26,7 @@ You can "run" a line of code in R by pressing **Cmd + Enter** on a Mac and **Ctr
 
 >*"Why would I type code directly into the console?"*
 >
->You might want to type code directly into the console when you're performing calculations but you don't care about saving the results. A script is like a notepad where you can save your analysis. If you needed to calculate `75 * 82`, it's probably not essential to have that calculation saved to your notebad, so you can type it directly into the console to keep your notepad clean. That way, you won't have to constantly delete irrelevant code and calculations from your script.
+>You might want to type code directly into the console when you're performing calculations but you don't care about saving the results. A script is like a notepad where you can save your analysis. If you needed to calculate `75 * 82`, it's probably not essential to have that calculation saved to your notepad, so you can type it directly into the console to keep your notepad clean. That way, you won't have to constantly delete irrelevant code and calculations from your script.
 
 <!--
 Rather than repeatedly copying and pasting these code blocks into an R script, you can open the `Ch2-6.R` script that was included in the download folder to follow along more easily. If you haven't already, you can download the folder [here](https://github.com/JasonDude16/Statistical-Analysis-Folder). The `Ch2-6.R` is located within the `scripts` subdirectory. This script contains all of the code blocks used in chapters 2 through 6 of this book.
